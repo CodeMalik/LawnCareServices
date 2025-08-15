@@ -24,7 +24,7 @@ export const services: Service[] = [
       'Valve & line repairs',
       'Pressure optimization'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991868/Irrigation-System-Repair_uehkbj.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754998417/Irrigation-System-Repair_z8cjw0.jpg',
     link: '/services/irrigation-system-repair'
   },
   {
