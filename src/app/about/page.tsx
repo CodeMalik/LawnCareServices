@@ -2,7 +2,22 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Counter from '@/components/Counter'
+import { Metadata } from 'next'
 import { ScaleIn, SlideInRight, SlideInBottom , StaggeredContainer, StaggeredItem} from '@/components/animations/Animate'
+import next from 'next'
+
+export const metadata: Metadata = {
+    title: 'About Us | Professional Landscaping Services',
+    description: 'Learn about our passion for creating beautiful outdoor spaces. With years of experience, we transform landscapes into stunning, sustainable environments.',
+    keywords: ['about us', 'landscaping company', 'our story', 'professional landscapers', 'garden design'],
+    openGraph: {
+      title: 'About Our Landscaping Company',
+      description: 'Discover our commitment to excellence in landscaping and outdoor design services.',
+      type: 'website',
+      locale: 'en_US',
+    }
+  };
+
 const About = () => {
     return (
         <>

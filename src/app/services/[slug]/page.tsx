@@ -10,6 +10,7 @@ import FAQItem from '@/components/FAQItem';
 import Counter from '@/components/Counter';
 import { SlideInBottom, ScaleIn, SlideInRight, SlideInLeft, SlideInTop, StaggeredContainer, StaggeredItem, FadeIn } from '@/components/animations/Animate';
 
+
 interface ServicePageProps {
   params: {
     slug: string;
@@ -424,11 +425,15 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   return {
-    title: `${service.title} | Cancun Landscape - Professional Dallas Landscaping`,
+    title: `${service.title} | Lawn Care Services`,
     description: service.heroSubtitle,
+    keywords: [service.title, `${service.title} services`, 'landscaping', ],
+
     openGraph: {
-      title: `${service.title} | Cancun Landscape`,
+      title: `${service.title} | Lawn Care Services`,
       description: service.heroSubtitle,
+      type: 'website'
+
       //   images: [
       //     {
       //       url: service.image,

@@ -2,7 +2,19 @@ import React from 'react'
 import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import { SlideInRight, ScaleIn, SlideInLeft, SlideInBottom,SlideInTop, FadeIn } from '@/components/animations/Animate'
+import {Metadata} from 'next'
 
+export const metadata: Metadata = {
+    title: 'Contact Us | Get in Touch for Lawn Care Services',
+    description: 'Contact our team of landscaping experts today for a free consultation. We\'re here to bring your outdoor vision to life!',
+    keywords: ['contact us', 'get a quote', 'lawn care services', 'free consultation', 'customer service'],
+    openGraph: {
+      title: 'Contact Our Lawn Care Team',
+      description: 'Reach out to schedule a consultation or ask questions about our services.',
+      type: 'website',
+      locale: 'en_US',
+    }
+  };
 export const ContactSection = () => {
     return (
         <>

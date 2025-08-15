@@ -3,6 +3,20 @@ import GalleryImages from '@/components/GalleryImages'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ScaleIn,SlideInRight} from '@/components/animations/Animate'
+import {Metadata} from 'next'
+
+export const metadata: Metadata = {
+    title: 'Gallery | Lawn Care Services',
+    description: 'Browse our portfolio of completed landscaping projects. See before and after transformations of our work.',
+    keywords: ['gallery', 'portfolio', 'our work', 'landscaping projects', 'garden transformations'],
+    openGraph: {
+      title: 'Gallery | Lawn Care Services',
+      description: 'View our collection of beautiful landscaping projects and get inspired for your own outdoor space.',
+      type: 'website',
+      locale: 'en_US',
+    }
+  };
+
 const Gallery = () => {
     return (
         <>
