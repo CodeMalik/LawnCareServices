@@ -8,7 +8,7 @@ import Counter from '@/components/Counter'
 import { ScaleIn, SlideInRight } from '@/components/animations/Animate'
 import {Metadata} from 'next'
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Our Services | Lawn Care Services',
   description: 'Comprehensive landscaping services including design, installation, and maintenance. Transform your outdoor space with our expert team.',
   keywords: ['landscaping services', 'garden design', 'lawn care', 'outdoor living', 'landscape maintenance'],
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   }
 };
 
-export const ServicesSection = () => {
+const ServicesSection = () => {
   return (
     <>
 
@@ -156,4 +156,3 @@ export const ServicesSection = () => {
   )
 }
 export default ServicesSection
-

@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Counter from '@/components/Counter'
 import { Metadata } from 'next'
 import { ScaleIn, SlideInRight, SlideInBottom , StaggeredContainer, StaggeredItem} from '@/components/animations/Animate'
-import next from 'next'
 
 export const metadata: Metadata = {
     title: 'About Us | Professional Landscaping Services',
