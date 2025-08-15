@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       locale: 'en_US',
     }
   };
-export const ContactSection = () => {
+const ContactSection = () => {
     return (
         <>
             {/* Hero Section */}
