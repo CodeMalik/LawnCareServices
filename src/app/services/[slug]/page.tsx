@@ -4,18 +4,11 @@ import { notFound } from 'next/navigation';
 import { serviceContent, serviceAreas, testimonials } from '@/lib/data';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Metadata } from 'next';
+import { Metadata, NextPage } from 'next';
 import Testimonials from '@/components/Testimonials';
 import FAQItem from '@/components/FAQItem';
 import Counter from '@/components/Counter';
 import { SlideInBottom, ScaleIn, SlideInRight, SlideInLeft, SlideInTop, StaggeredContainer, StaggeredItem, FadeIn } from '@/components/animations/Animate';
-
-
-interface ServicePageProps {
-  params: {
-    slug: string;
-  };
-}
 
 export async function generateStaticParams() {
   return serviceContent.map((service) => ({
@@ -23,8 +16,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ServicePage({ params }: ServicePageProps) {
-  const { slug } = await params;
+const ServicePage: NextPage<{ params: { slug: string } }> = ({ params }) => {
+  const { slug } = params;
   const service = serviceContent.find((service) => service.slug === slug);
 
   if (!service) {
@@ -413,8 +406,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
   );
 }
 
-export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
-  const { slug } = await params;
+export default ServicePage;
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const { slug } = params;
   const service = serviceContent.find((s) => s.slug === slug);
 
   if (!service) {
@@ -425,15 +420,11 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   return {
-    title: `${service.title} | Lawn Care Services`,
+    title: `${service.title} | Cancun Landscape - Professional Dallas Landscaping`,
     description: service.heroSubtitle,
-    keywords: [service.title, `${service.title} services`, 'landscaping', ],
-
     openGraph: {
-      title: `${service.title} | Lawn Care Services`,
+      title: `${service.title} | Cancun Landscape`,
       description: service.heroSubtitle,
-      type: 'website'
-
       //   images: [
       //     {
       //       url: service.image,
