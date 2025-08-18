@@ -2,7 +2,7 @@ import React from 'react'
 import GalleryImages from '@/components/GalleryImages'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ScaleIn,SlideInRight} from '@/components/animations/Animate'
+import { ScaleIn} from '@/components/animations/Animate'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
@@ -49,14 +49,14 @@ const Gallery = () => {
                 {/* Content Container */}
                 
                 <div className="absolute z-10 w-full h-full flex items-center justify-center">
-                    <ScaleIn>
-                    <div className="w-full px-6 py-16 text-center">
+                    <ScaleIn viewportMargin='0px'>
+                    <div className="w-full py-16 text-center">
                         {/* Main Heading */}
-                        <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight mb-6">
                             Our Work Speaks for Itself
                         </h1>
                         {/* Subtitle */}
-                        <p className="text-white text-md sm:text-lg md:text-lg leading-relaxed w-full text-center px-6 sm:px-20">
+                        <p className="text-white text-sm sm:text-lg md:text-lg leading-relaxed w-full text-center px-6 sm:px-20">
                             From sprinkler installs to full landscaping transformations — here’s a look at the outdoor spaces we’ve helped bring to life. Every photo is a real project we’re proud of.
                         </p>
                     </div>
@@ -80,7 +80,7 @@ const Gallery = () => {
                 </div>
 
                 {/* Content */}
-                <SlideInRight xOffset={800} duration={0.8}>
+                <ScaleIn>
                 <div className="flex justify-start items-center px-6 sm:px-20 h-full max-w-2xl">
                     <div className="text-start">
                         <h2 className="text-center sm:text-left text-3xl sm:text-3xl font-bold text-white mb-6 leading-12">
@@ -106,7 +106,7 @@ const Gallery = () => {
                     </div>
                 </div>
                 
-                </SlideInRight>
+                </ScaleIn>
             </section>
         </>
     )

@@ -1,4 +1,3 @@
-// src/components/Testimonials.tsx
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -12,8 +11,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
 
   useEffect(() => {
     if (contentRef.current) {
-      // Check if content overflows the fixed height
-      setShowReadMore(contentRef.current.scrollHeight > contentRef.current.clientHeight);
+      setShowReadMore(contentRef.current.scrollHeight > 150);
     }
   }, [testimonial.text]);
 
@@ -33,25 +31,17 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: '2-digit',
-      day: '2-digit' 
-    });
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
   };
 
   const getAvatarColor = (name: string) => {
-    const colors = [
-      'bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-red-500', 
-      'bg-yellow-500', 'bg-indigo-500', 'bg-pink-500', 'bg-teal-500'
-    ];
+    const colors = ['bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-red-500', 'bg-yellow-500', 'bg-indigo-500', 'bg-pink-500', 'bg-teal-500'];
     const index = name.charCodeAt(0) % colors.length;
     return colors[index];
   };
 
   return (
-    <div className={`bg-white rounded-lg shadow-md p-6 mx-2 my-2 ${expanded ? 'h-auto' : 'h-[230px]'} flex flex-col transition-all duration-300 overflow-hidden`}>
-      {/* Header with avatar, name, and Google icon */}
+    <div className="bg-white rounded-lg shadow-md p-6 mx-2 my-4 flex flex-col justify-between h-[300px] transition-all duration-300 overflow-hidden">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <div className={`w-10 h-10 ${getAvatarColor(testimonial.name)} rounded-full flex items-center justify-center text-white font-bold text-lg`}>
@@ -71,8 +61,6 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
           </svg>
         </div>
       </div>
-
-      {/* Star rating */}
       <div className="flex items-center gap-1 mb-3">
         {renderStars(testimonial.rating)}
         {testimonial.verified && (
@@ -83,19 +71,15 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
           </div>
         )}
       </div>
-
-      {/* Review text */}
       <div 
         ref={contentRef}
-        className={`text-gray-700 text-sm leading-relaxed ${!expanded ? 'overflow-hidden' : ''}`}
-        style={{ height: expanded ? 'auto' : 'calc(230px - 150px)' }}
+        className={`text-gray-700 text-sm leading-relaxed overflow-hidden ${!expanded ? 'line-clamp-6' : ''}`}
+        style={{ height: expanded ? 'auto' : '150px' }}
       >
         {testimonial.text}
       </div>
-
-      {/* Read more/Hide button - only shows if content overflows */}
       {showReadMore && (
-        <div className="mt-3">
+        <div className="mt-3 text-center">
           <button 
             onClick={() => setExpanded(!expanded)} 
             className="text-blue-600 text-sm hover:underline"
@@ -108,11 +92,20 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => {
   );
 };
 
-// ... rest of your Testimonials component remains unchanged ...
-
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [cardsToShow, setCardsToShow] = useState(1); // Default to 1 for mobile
+
+  // Detect screen size and set number of cards to show
+  useEffect(() => {
+    const handleResize = () => {
+      setCardsToShow(window.innerWidth >= 640 ? 3 : 1); // 640px is the 'sm' breakpoint
+    };
+    handleResize(); // Initial call
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Auto-rotate testimonials
   useEffect(() => {
@@ -120,16 +113,16 @@ const Testimonials = () => {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => 
-        prevIndex >= testimonials.length - 3 ? 0 : prevIndex + 1
+        prevIndex >= (testimonials.length - cardsToShow) ? 0 : prevIndex + 1
       );
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, cardsToShow]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex >= testimonials.length - 3 ? 0 : prevIndex + 1
+      prevIndex >= (testimonials.length - cardsToShow) ? 0 : prevIndex + 1
     );
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
@@ -137,7 +130,7 @@ const Testimonials = () => {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? testimonials.length - 3 : prevIndex - 1
+      prevIndex === 0 ? testimonials.length - cardsToShow : prevIndex - 1
     );
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
@@ -145,7 +138,6 @@ const Testimonials = () => {
 
   return (
     <section className="py-20 bg-[rgba(237,251,226,255)] relative overflow-hidden">
-      {/* Decorative leaf element */}
       <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-48 h-48 opacity-20">
         <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M100 20C140 20 180 60 180 100C180 140 140 180 100 180C80 160 60 140 40 120C20 100 20 60 40 40C60 20 80 20 100 20Z" fill="#22c55e"/>
@@ -158,7 +150,6 @@ const Testimonials = () => {
 
       <ScaleIn duration={1}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-xl sm:text-5xl font-bold text-gray-900 mb-6">
             What Our Happy Clients Say
@@ -169,21 +160,16 @@ const Testimonials = () => {
           <div className="w-16 h-1 bg-gray-800 mx-auto"></div>
         </div>
 
-{/* Adding the div */}
-    <div className='flex flex-col md:flex-row'>
-        <div className="flex flex-col md:flex-row gap-8 mt-10">
-          {/* Rating Box */}
-          <div className="rounded-xl text-center">
-            <div className="text-2xl font-bold text-gray-900 mb-2">EXCELLENT</div>
-            <div className="flex justify-center gap-1">
-              {Array(5).fill(0).map((_, i) => (
-                <svg key={i} className="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <p className="text-gray-700 text-sm max-w-2xl mx-auto">Based on <strong>{testimonials.length} reviews</strong></p>
-             {/* Google logo */}
+        <div className="rounded-xl text-center mb-10">
+          <div className="text-2xl font-bold text-gray-900 mb-2">EXCELLENT</div>
+          <div className="flex justify-center gap-1">
+            {Array(5).fill(0).map((_, i) => (
+              <svg key={i} className="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <p className="text-gray-700 text-sm max-w-2xl mx-auto">Based on <strong>{testimonials.length} reviews</strong></p>
           <div className="mb-8">
             <svg className="h-8 mt-4 mx-auto" viewBox="0 0 272 92" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" fill="#EA4335"/>
@@ -194,38 +180,33 @@ const Testimonials = () => {
               <path d="M35.29 41.41V32H67c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.91.36 15.93 16.32.47 35.3.47c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.49.01z" fill="#4285F4"/>
             </svg>
           </div>
-          </div>
-          
         </div>
 
-        {/* Testimonials slider */}
-        <div className="relative">
-          {/* Navigation arrows */}
+        <div className="relative flex justify-center items-center mx-auto">
           <button 
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer md:block hidden"
             aria-label="Previous testimonial"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
           <button 
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer md:block hidden"
             aria-label="Next testimonial"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
-          {/* Testimonials container */}
           <div className="overflow-hidden mx-12">
             <div 
               className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * (100/3)}%)` }}
+              style={{ transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)` }}
             >
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full sm:w-1/3 flex-shrink-0">
@@ -235,9 +216,6 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
-        </div>
-
-        {/* End of Testimonials */}
       </div>
       </ScaleIn>
     </section>

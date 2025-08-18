@@ -1,7 +1,6 @@
 import React from 'react'
-import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
-import { SlideInRight, ScaleIn, SlideInLeft, SlideInBottom,SlideInTop, FadeIn } from '@/components/animations/Animate'
+import { SlideInRight, ScaleIn, SlideInLeft } from '@/components/animations/Animate'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
@@ -46,7 +45,7 @@ const ContactSection = () => {
 
                 {/* Content Container */}
                 <div className="absolute z-10 w-full h-full flex items-center justify-center">
-                    <ScaleIn>
+                    <ScaleIn viewportMargin='0px'>
                     <div className="w-full px-6 py-16 text-center">
                         {/* Main Heading */}
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">

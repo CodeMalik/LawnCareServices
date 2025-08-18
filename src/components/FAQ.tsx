@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { faqItems } from '@/lib/data';
 import Image from 'next/image';
-import { SlideInBottom, SlideInTop } from './animations/Animate';
+import { SlideInBottom, SlideInTop, ScaleIn } from './animations/Animate';
 
 interface FAQItemProps {
   question: string;
@@ -47,7 +47,7 @@ const FAQ: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-20">
           {/* Left Column - Image */}
-          <SlideInBottom yOffset={200} duration={1}>
+          <ScaleIn>
           <div className="mb-10 lg:mb-0">
             <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden">
               <Image
@@ -59,10 +59,10 @@ const FAQ: React.FC = () => {
               />
             </div>
           </div>
-          </SlideInBottom>
+          </ScaleIn>
 
           {/* Right Column - FAQ */}
-          <SlideInTop  yOffset={-200} duration={1}>
+          <ScaleIn>
           <div className="max-w-2xl mx-auto lg:max-w-none">
             <div className="mb-8">
               <h2 className="text-xl text-center sm:text-left sm:text-2xl font-bold text-gray-900 sm:text-4xl">
@@ -86,7 +86,7 @@ const FAQ: React.FC = () => {
               ))}
             </div>
           </div>
-          </SlideInTop>
+          </ScaleIn>
         </div>
       </div>
     </section>

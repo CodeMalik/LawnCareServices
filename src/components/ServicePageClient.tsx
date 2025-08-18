@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Testimonials from '@/components/Testimonials';
 import FAQItem from '@/components/FAQItem';
 import Counter from '@/components/Counter';
-import { SlideInBottom, ScaleIn, SlideInRight, SlideInLeft, SlideInTop, StaggeredContainer, StaggeredItem, FadeIn } from '@/components/animations/Animate';
+import { ScaleIn, SlideInTop, StaggeredContainer, StaggeredItem } from '@/components/animations/Animate';
 import { serviceAreas } from '@/lib/data';
 
 // This is the new client component that holds the page's content and logic.
@@ -26,7 +26,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
         </div>
 
         <div className="absolute items-center justify-center z-10 max-w-7xl mx-auto px-6 w-full">
-          <ScaleIn>
+          <ScaleIn viewportMargin='0px'>
             <div className=" mx-auto">
               <h1 className="text-2xl md:text-5xl lg:text-5xl font-bold text-white mb-6 leading-tight text-center">
                 {service.heroTitle}
@@ -186,7 +186,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Map section */}
-            <SlideInLeft xOffset={-500} duration={1}>
+            <ScaleIn>
 
               <div className="relative">
                 <div className="relative rounded-2xl overflow-hidden h-96">
@@ -214,8 +214,8 @@ const ServicePageClient = ({ service }: { service: any }) => {
                   </div>
                 </div>
               </div>
-            </SlideInLeft>
-            <SlideInRight xOffset={500} duration={0.6}>
+            </ScaleIn>
+            <ScaleIn>
 
               {/* Service areas list */}
               <div>
@@ -276,7 +276,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
                   </div>
                 </div>
               </div>
-            </SlideInRight>
+            </ScaleIn>
           </div>
         </div>
       </section>
@@ -286,7 +286,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-20">
             {/* Left Column - Image */}
-            <SlideInBottom yOffset={200} duration={1}>
+            <ScaleIn>
             <div className="mb-10 lg:mb-0">
               <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden">
                 <Image
@@ -298,10 +298,10 @@ const ServicePageClient = ({ service }: { service: any }) => {
                 />
               </div>
             </div>
-            </SlideInBottom>
+            </ScaleIn>
 
             {/* Right Column - FAQ */}
-            <SlideInTop  yOffset={-200} duration={1}>
+            <ScaleIn>
             <div className="max-w-2xl mx-auto">
               <div className="mb-5">
                 <h2 className="text-center sm:text-left text-4xl font-bold text-gray-900 sm:text-4xl">
@@ -319,7 +319,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
                 ))}
               </div>
             </div>
-            </SlideInTop>
+            </ScaleIn>
           </div>
         </div>
       </div>
@@ -335,7 +335,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        <SlideInRight  xOffset={800} duration={0.8}>
+        <ScaleIn>
         <div className="relative max-w-3xl px-6 sm:px-20">
           <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-white mb-8 leading-tight text-center sm:text-left">
             {service.cta.finalCta}
@@ -362,7 +362,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
             </Link>
           </div>
         </div>
-        </SlideInRight>
+        </ScaleIn>
       </div>
     </div>
   );

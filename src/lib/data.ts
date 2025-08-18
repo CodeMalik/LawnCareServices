@@ -121,7 +121,7 @@ export const testimonials: Testimonial[] = [
     id: 'lynwood-reinhardt',
     name: 'Lynwood Reinhardt',
     rating: 5,
-    text: 'Cancun Landscape is fantastic. Highly recommended.',
+    text: 'Lawn Care Services is fantastic. Highly recommended.',
     date: '2025-02-22',
     verified: true
   },

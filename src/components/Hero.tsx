@@ -2,7 +2,7 @@ import React from 'react';
 import { ScaleIn } from './animations/Animate';
 const Hero = () => {
   return (
-    <section className="relative min-h-[70vh] flex overflow-hidden">
+    <section className="relative min-h-[50vh] sm:min-h-[80vh] flex overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         {/* You can replace this with your actual image URL */}
@@ -17,7 +17,7 @@ const Hero = () => {
         {/* Gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
       </div>
-      <ScaleIn >
+      <ScaleIn viewportMargin='0px'>
       {/* Content Container */}
       <div className="relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <div className="mx-[10px] sm:mx-[50px] lg:mx-[60px] max-w-6xl">

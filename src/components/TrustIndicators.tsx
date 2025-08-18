@@ -58,10 +58,10 @@ const TrustIndicators: React.FC = () => {
               </div>
 
               {/* Content */}
-              <h3 className="text-md sm:text-xl font-bold text-gray-900 mb-3">
+              <h3 className="line-clamp-1 text-md sm:text-xl font-bold text-gray-900 mb-3">
                 {indicator.title}
               </h3>
-              <p className="text-gray-600 text-xs sm:text-base leading-relaxed">
+              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
                 {indicator.description}
               </p>
             </div>

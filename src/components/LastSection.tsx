@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ScaleIn , SlideInRight} from './animations/Animate';
+import { ScaleIn } from './animations/Animate';
 const LastSection = () => {
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
@@ -20,7 +20,7 @@ const LastSection = () => {
       </div>
 
       {/* Content */}
-      <SlideInRight xOffset={800} duration={0.8}>
+      <ScaleIn>
       <div className="flex justify-start items-center px-10 sm:px-20 h-full max-w-2xl">
         <div className="text-start">
           <h2 className="text-center sm:text-left text-3xl md:text-4xl font-bold text-white mb-6 leading-12">
@@ -58,8 +58,8 @@ const LastSection = () => {
             Call Now To Get Started
           </Link></div>
         </div>
-      </div>
-      </SlideInRight>
+      </div>  
+      </ScaleIn>
     </section>
   );
 };

@@ -8,7 +8,7 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Cancun Landscape - Professional Landscaping Services',
+  title: 'Lawn Care Services - Professional Landscaping Services',
   description: 'Transform your yard into a tropical paradise with our professional landscaping services in Cancun and surrounding areas.',
 }
 

@@ -5,7 +5,7 @@ import Testimonials from '@/components/Testimonials'
 import Image from 'next/image'
 import Link from 'next/link'
 import Counter from '@/components/Counter'
-import { ScaleIn, SlideInRight } from '@/components/animations/Animate'
+import { ScaleIn} from '@/components/animations/Animate'
 import {Metadata} from 'next'
 
 const metadata: Metadata = {
@@ -53,7 +53,7 @@ const ServicesSection = () => {
         {/* Content Container */}
         <div className="absolute z-10 w-full h-full flex items-center justify-center">
 
-          <ScaleIn>
+          <ScaleIn viewportMargin='0px'>
             <div className="w-full px-6 py-16 text-center">
               {/* Main Heading */}
               <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white leading-tight mb-6">
@@ -111,7 +111,7 @@ const ServicesSection = () => {
         </div>
 
         {/* Content */}
-        <SlideInRight xOffset={800} duration={0.8}>
+        <ScaleIn>
           <div className="flex justify-start items-center px-7 sm:px-20 h-full max-w-2xl">
             <div className="text-start">
               <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-12 text-center sm:text-left">
@@ -150,7 +150,7 @@ const ServicesSection = () => {
               </div>
             </div>
           </div>
-        </SlideInRight>
+        </ScaleIn>
       </section>
     </>
   )

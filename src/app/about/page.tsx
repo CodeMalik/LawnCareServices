@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Counter from '@/components/Counter'
 import { Metadata } from 'next'
-import { ScaleIn, SlideInRight, SlideInBottom , StaggeredContainer, StaggeredItem} from '@/components/animations/Animate'
+import { ScaleIn, SlideInBottom , StaggeredContainer, StaggeredItem} from '@/components/animations/Animate'
 
 export const metadata: Metadata = {
     title: 'About Us | Professional Landscaping Services',
@@ -200,7 +200,7 @@ const About = () => {
                             <SlideInBottom duration={1} delay={index * 0.2}>
                             <div 
                                 key={index}
-                                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 flex flex-col h-full"
+                                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-10 flex flex-col h-full"
                             >
                                 <div className="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center flex-shrink-0 mb-4 mx-auto">
                                     <svg 
@@ -212,10 +212,10 @@ const About = () => {
                                         {feature.icon}
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
+                                <h3 className="text-md font-bold text-gray-900 mb-3 text-center">
                                     {feature.title}
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed text-center flex-grow">
+                                <p className="text-sm text-gray-600 leading-relaxed text-center flex-grow">
                                     {feature.description}
                                 </p>
                             </div>
@@ -273,7 +273,7 @@ const About = () => {
                 {/* Content */}
                 <div className="flex justify-start items-center px-10 sm:px-20 h-full max-w-2xl">
                     <div className="text-start">
-                        <SlideInRight xOffset={800} duration={0.8}>
+                        <ScaleIn>
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-12 text-center sm:text-left">
                         Let’s Shape Nature into Your Dream Space</h2>                        <svg
                             className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto sm:mx-0"
@@ -306,7 +306,7 @@ const About = () => {
                             Ready For A Lush, Green Lawn?
                         </Link>
                         </div>
-                        </SlideInRight>
+                        </ScaleIn>
                     </div>
                 </div>
             </section>
