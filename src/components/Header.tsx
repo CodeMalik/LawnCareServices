@@ -47,7 +47,7 @@ export default function Header() {
 
   return (
     <header className="bg-gradient-to-r from-[rgba(20,23,14,255)] via-[rgba(29,32,24,255)] to-[rgba(14,18,10,255)] shadow-xl sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-[1700px] mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
@@ -77,6 +77,7 @@ export default function Header() {
                   <Link 
                     href="/services"
                     className={`${getLinkClasses('/services')} text-white hover:text-green-400`}
+                    onMouseEnter={() => setServicesDropdownOpen(true)}
                   >
                     Services
                   </Link>
@@ -190,6 +191,7 @@ export default function Header() {
                 <div 
                   className={`${getLinkClasses('/services')} text-gray-700 hover:text-green-400`}
                   onClick={() => handleNavigation('/services')}
+                  onMouseEnter={() => setServicesDropdownOpen(true)}
                 >
                   Services
                 </div>

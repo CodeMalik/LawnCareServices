@@ -2,14 +2,14 @@ import React from 'react';
 import { ScaleIn } from './animations/Animate';
 const Hero = () => {
   return (
-    <section className="relative min-h-[50vh] sm:min-h-[80vh] flex overflow-hidden">
+    <section className="relative min-h-[50vh] sm:min-h-[80vh] 2xl:min-h-[70vh] flex overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         {/* You can replace this with your actual image URL */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991300/hero-background_syinko.jpg')` // Replace with your actual image path
+            backgroundImage: `url('https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg')` // Replace with your actual image path
           }}
         />
         {/* Dark overlay */}
@@ -19,7 +19,7 @@ const Hero = () => {
       </div>
       <ScaleIn viewportMargin='0px'>
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative z-10 max-w-7xl px-4 sm:px-6 2xl:px-20 py-20">
         <div className="mx-[10px] sm:mx-[50px] lg:mx-[60px] max-w-6xl">
           {/* Top Tagline */}
           <p className="text-white leading-tight sm:leading-relaxed text-center sm:text-left text-md sm:text-xl font-medium mb-4 tracking-wide">

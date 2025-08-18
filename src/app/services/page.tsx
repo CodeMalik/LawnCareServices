@@ -30,7 +30,7 @@ const ServicesSection = () => {
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <div className="absolute inset-0">
             <img
-              src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992701/service-bg-image_nn04p0.jpg"
+              src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519853/service-bg-image_nn04p0_7_11zon_iacs7j.jpg"
               alt="Professional Landscaping Services"
               className="w-full h-full object-cover object-center"
               style={{
@@ -54,13 +54,13 @@ const ServicesSection = () => {
         <div className="absolute z-10 w-full h-full flex items-center justify-center">
 
           <ScaleIn viewportMargin='0px'>
-            <div className="w-full px-6 py-16 text-center">
+            <div className="w-full px-6 py-16 2xl:px-32 text-center">
               {/* Main Heading */}
-              <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white leading-tight mb-6">
+              <h1 className="text-lg sm:text-2xl md:text-3xl 2xl:text-5xl font-bold text-white leading-tight mb-6">
                 Professional Landscaping & Irrigation Services You Can Rely On
               </h1>
               {/* Subtitle */}
-              <p className="text-xs sm:text-md md:text-lg text-white text-md sm:text-lg md:text-lg leading-relaxed w-full text-center px-6 sm:px-20">
+              <p className="text-xs sm:text-md md:text-lg 2xl:text-xl text-white text-md sm:text-lg md:text-lg leading-relaxed w-full text-center px-6 sm:px-20">
                 From smart sprinkler systems to vibrant lawns and healthy trees — we bring expert care and long-term beauty to every outdoor space.
                 Browse our services below and choose what your yard needs today.
               </p>
@@ -95,7 +95,7 @@ const ServicesSection = () => {
       <Services />
       <ServiceAreas />
       <Testimonials />
-      <section className="relative py-20 md:py-28 overflow-hidden">
+      <section className="relative py-20 md:py-28 overflow-hidden 2xl:flex 2xl:justify-center 2xl:items-center">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 -z-10">
           <div className="relative w-full h-full">
@@ -114,20 +114,20 @@ const ServicesSection = () => {
         <ScaleIn>
           <div className="flex justify-start items-center px-7 sm:px-20 h-full max-w-2xl">
             <div className="text-start">
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-12 text-center sm:text-left">
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-12 text-center sm:text-left 2xl:text-center">
                 Your Dream Yard Starts with One Simple Step                      </h2>
               {/* Decorative underline */}
               <svg
-                className="mx-auto sm:mx-0 relative bottom-2 left-0 w-20 h-2 text-green-600"
+                className="mx-auto sm:mx-0 2xl:mx-auto relative bottom-2 left-0 w-20 h-2 text-green-600"
                 viewBox="0 0 500 20"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
               </svg>
-              <p className="text-center text-white text-md mb-8 max-w-3xl mx-auto sm:text-left">
+              <p className="text-center text-white text-md mb-8 max-w-3xl mx-auto sm:text-left 2xl:text-center">
                 Whether it’s restoring your lawn, upgrading your sprinklers, or refreshing your landscape — we’re ready to bring your outdoor vision to life. Let’s make it happen.                      </p>
-              <div className='w-full flex justify-center sm:justify-start'>
+              <div className='w-full flex justify-center sm:justify-start 2xl:justify-center'>
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 sm:px-6 sm:py-2 rounded-xl text-sm sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"

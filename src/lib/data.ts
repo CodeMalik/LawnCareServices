@@ -265,7 +265,7 @@ export const serviceContent: ServiceContent[] = [
         title: 'Sprinkler Installation & Repair',
         heroTitle: 'Smarter Sprinklers. Greener Lawns',
         heroSubtitle: 'Get expert sprinkler installation and repair to keep your yard green, healthy, and worry-free year-round.',
-        image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992694/service-1-bg-image_bndfq1.jpg',
+        image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519852/service-1-bg-image_bndfq1_11_11zon_spwl4k.jpg',
         stats: [
           { number: 698, description: 'Systems Installed' },
           { number: 1106, description: 'Happy Clients' },
@@ -370,7 +370,7 @@ export const serviceContent: ServiceContent[] = [
     title: 'Irrigation System Repair',
     heroTitle: 'Healthy Lawns Start with Efficient Irrigation',
     heroSubtitle: 'Restore perfect water flow, fix leaks, and keep your yard healthy, without wasting a drop.',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992664/irrigation-repair_tapml1.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519848/Irrigation-System-Repair_z8cjw0_5_11zon_wjdrko.jpg',
     stats: [
       {
         number: 3200,
@@ -488,7 +488,7 @@ export const serviceContent: ServiceContent[] = [
     title: 'Landscaping Services',
     heroTitle: 'Landscaping That Wows, Every Time',
     heroSubtitle: 'From bold designs to flawless installs, we craft landscapes that turn homes into showpieces.',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992578/1_jrturb.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1_w9p5t6_10_11zon_ii2yyf.jpg',
     stats: [
       {
         number: 875,
@@ -605,7 +605,7 @@ export const serviceContent: ServiceContent[] = [
     title: 'Lawn Health & Protection',
     heroTitle: 'Lawn Care That Goes Beyond Mowing',
     heroSubtitle: 'Keep your lawn vibrant and disease-free with expert care that goes beyond mowing.',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992609/5-4_jz6vbh.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/5-4_jz6vbh_14_11zon_dsm4tk.jpg',
     stats: [
       {
         number: 2450,
@@ -722,7 +722,7 @@ export const serviceContent: ServiceContent[] = [
     title: 'Tree & Plant Health Management',
     heroTitle: 'Strong Roots. Healthy Trees. Beautiful Landscape.',
     heroSubtitle: 'Strong roots, healthy plants, and vibrant trees, because your greenery deserves the best care.',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992607/5-3_mljoxn.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/5-3_mljoxn_16_11zon_zajmzz.jpg',
     stats: [
       {
         number: 1850,
@@ -839,7 +839,7 @@ export const serviceContent: ServiceContent[] = [
     title: 'Insect & Weed Control',
     heroTitle: 'Weeds Gone. Bugs Gone. Beautiful Lawn On.',
     heroSubtitle: 'Protect your yard from destructive pests and invasive weeds with safe, effective treatments.',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992590/3-5_bg3s9i.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/3-5_bg3s9i_15_11zon_wiiepg.jpg',
     stats: [
       {
         number: 2000,

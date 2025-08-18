@@ -2,7 +2,7 @@ import React from 'react'
 import ContactForm from '@/components/ContactForm'
 import { SlideInRight, ScaleIn, SlideInLeft } from '@/components/animations/Animate'
 import {Metadata} from 'next'
-
+import Image from 'next/image'
 export const metadata: Metadata = {
     title: 'Contact Us | Get in Touch for Lawn Care Services',
     description: 'Contact our team of landscaping experts today for a free consultation. We\'re here to bring your outdoor vision to life!',
@@ -22,10 +22,11 @@ const ContactSection = () => {
                 {/* Background Image */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                     <div className="absolute inset-0">
-                        <img
-                            src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991449/1-3_gtvfal.jpg"
+                        <Image
+                            src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1-3_gtvfal_3_11zon_qbqgyw.jpg"
                             alt="Contact Us - Professional Landscaping Services"
                             className="w-full h-full object-cover object-center"
+                            fill
                             style={{
                                 position: 'absolute',
                                 top: 0,
@@ -48,11 +49,11 @@ const ContactSection = () => {
                     <ScaleIn viewportMargin='0px'>
                     <div className="w-full px-6 py-16 text-center">
                         {/* Main Heading */}
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold text-white leading-tight mb-6 ">
                             Contact
                         </h1>
                         {/* Subtitle */}
-                        <p className="text-white text-md sm:text-lg md:text-lg leading-relaxed w-full text-center sm:px-20 max-w-4xl mx-auto">
+                        <p className="text-white text-md sm:text-lg md:text-lg 2xl:text-3xl leading-relaxed w-full text-center sm:px-20 max-w-4xl mx-auto">
                             Have questions? Need a quote? Want to schedule a service? We're just a message or call away.
                             Reach out and let's make your landscape vision a reality.
                         </p>
@@ -62,14 +63,14 @@ const ContactSection = () => {
             </section>
 
             {/* Contact Form & Info Section */}
-            <section className="w-full py-16 sm:py-24 bg-white ">
+            <section className="w-full py-16 sm:py-24 bg-white">
                 <div className="w-full sm:mx-auto px-6">
                     <ScaleIn>
-                    <div className="flex flex-col sm:flex-row w-full mb-20">
-                        <h2 className="w-full px-6 sm:w-1/2 text-xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 text-center">
+                    <div className="flex flex-col sm:flex-row w-full mb-20 2xl:px-30">
+                        <h2 className="w-full sm:w-1/2 text-xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 text-center 2xl:text-left">
                             Getting in Touch Is Easy!
                         </h2>
-                        <p className="w-full sm:w-1/2 text-gray-600 text-sm sm:text-md sm:px-20 text-center sm:text-left">
+                        <p className="w-full sm:w-1/2 text-gray-600 text-sm sm:text-md 2xl:text-lg sm:px-20 2xl:px-10 text-center sm:text-left 2xl:text-left">
                             Whether you're ready to start a project or just have a quick question, we're here to help.
                             Fill out the form and one of our friendly team members will get back to you shortly.
                         </p>

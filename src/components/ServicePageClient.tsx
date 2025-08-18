@@ -13,7 +13,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Enhanced with better gradient and text positioning */}
-      <div className="relative bg-gray-900 min-h-[40vh] sm:min-h-[90vh] flex items-center">
+      <div className="relative bg-gray-900 min-h-[40vh] sm:min-h-[90vh]">
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src={service.image}
@@ -25,13 +25,13 @@ const ServicePageClient = ({ service }: { service: any }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" />
         </div>
 
-        <div className="absolute items-center justify-center z-10 max-w-7xl mx-auto px-6 w-full">
+        <div className="absolute z-10 px-6 w-full h-full flex items-center justify-center">
           <ScaleIn viewportMargin='0px'>
-            <div className=" mx-auto">
-              <h1 className="text-2xl md:text-5xl lg:text-5xl font-bold text-white mb-6 leading-tight text-center">
+            <div className="w-full flex flex-col items-center justify-center">
+              <h1 className="text-center text-2xl md:text-5xl lg:text-5xl 2xl:text-6xl font-bold text-white mb-6 leading-tight text-center">
                 {service.heroTitle}
               </h1>
-              <p className="text-sm md:text-md lg:text-xl text-gray-200 mb-10 leading-relaxed font-light text-center">
+              <p className="text-center text-sm md:text-md lg:text-xl 2xl:text-2xl text-gray-200 mb-10 leading-relaxed font-light">
                 {service.heroSubtitle}
               </p>
             </div>
@@ -324,7 +324,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
         </div>
       </div>
       {/* Final CTA Section */}
-      <div className="relative sm:py-24 py-16 overflow-hidden">
+      <div className="relative sm:py-24 py-16 overflow-hidden w-full">
         <div className="absolute inset-0">
           <Image
             src={service.cta.image}
@@ -336,13 +336,13 @@ const ServicePageClient = ({ service }: { service: any }) => {
         </div>
 
         <ScaleIn>
-        <div className="relative max-w-3xl px-6 sm:px-20">
-          <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-white mb-8 leading-tight text-center sm:text-left">
+        <div className="relative max-w-3xl px-6 sm:px-20 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center 2xl:mx-auto">
+          <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-white mb-8 leading-tight text-center sm:text-left 2xl:text-center">
             {service.cta.finalCta}
           </h2>
           {/* Decorative underline */}
           <svg
-            className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto sm:mx-0"
+            className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto sm:mx-0 2xl:mx-auto"
             viewBox="0 0 500 20"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
@@ -350,7 +350,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
             <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
           </svg>
 
-          <p className="text-md lg:text-lg text-white mb-12 leading-relaxed text-center sm:text-left">
+          <p className="text-md lg:text-lg text-white mb-12 leading-relaxed text-center sm:text-left 2xl:text-center">
             {service.cta.finalCtaDescription}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center sm:justify-start">

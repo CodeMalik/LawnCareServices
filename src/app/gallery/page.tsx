@@ -25,7 +25,7 @@ const Gallery = () => {
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                     <div className="absolute inset-0">
                         <img
-                            src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991874/gallery-bg-image_qcs4x2.jpg"
+                            src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/gallery-bg-image_qcs4x2_4_11zon_gxan6c.jpg"
                             alt="Gallery Background Image"
                             className="w-full h-full object-cover object-center"
                             style={{
@@ -69,7 +69,7 @@ const Gallery = () => {
                 <div className="absolute inset-0 -z-10">
                     <div className="relative w-full h-full">
                         <Image
-                            src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991865/gallery-bg-image-2_th5mlq.jpg"
+                            src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/gallery-bg-image-2_bwqtp2_1_11zon_faeyp1.jpg"
                             alt="Beautiful landscape"
                             fill
                             className="object-cover"
