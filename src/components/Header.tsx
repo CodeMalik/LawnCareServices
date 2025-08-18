@@ -1,43 +1,18 @@
-'use client'
+'use client';
 
-import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const router = useRouter();
 
-  // Close dropdown when clicking outside or when route changes
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (mobileMenuOpen || servicesDropdownOpen) {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-          setServicesDropdownOpen(false);
-          setMobileMenuOpen(false);
-        }
-      }
-    };
-
-    // Close mobile menu when route changes
-    const handleRouteChange = () => {
-      setMobileMenuOpen(false);
-      setServicesDropdownOpen(false);
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    window.addEventListener('popstate', handleRouteChange);
-    
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      window.removeEventListener('popstate', handleRouteChange);
-    };
-  }, [pathname, mobileMenuOpen, servicesDropdownOpen]);
-
-  // Close menus when pathname changes (for client-side navigation)
+  // Close menus when pathname changes
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
@@ -50,21 +25,25 @@ export default function Header() {
     { name: 'Lawn Health & Protection', href: '/services/lawn-health-protection' },
     { name: 'Tree & Plant Health Management', href: '/services/tree-plant-health-management' },
     { name: 'Insect & Weed Control', href: '/services/insect-weed-control' }
-  ]
+  ];
 
   const isActivePage = (href: string) => {
-    if (href === '/') return pathname === '/'
-    return pathname.startsWith(href)
-  }
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
 
   const getLinkClasses = (href: string) => {
-    const isActive = isActivePage(href)
+    const isActive = isActivePage(href);
     return `text-gray-700 py-3 hover:text-green-400 cursor-pointer font-medium transition-colors duration-200 text-sm ${
-      isActive 
-        ? 'text-green-400' 
-        : 'hover:text-green-400'
-    }`
-  }
+      isActive ? 'text-green-400' : 'hover:text-green-400'
+    }`;
+  };
+
+  // Handle navigation and menu closure
+  const handleNavigation = (href: string) => {
+    setMobileMenuOpen(false); // Close menu before navigation
+    router.push(href); // Programmatic navigation
+  };
 
   return (
     <header className="bg-gradient-to-r from-[rgba(20,23,14,255)] via-[rgba(29,32,24,255)] to-[rgba(14,18,10,255)] shadow-xl sticky top-0 z-50">
@@ -196,25 +175,24 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white shadow-lg">
+        <div className="lg:hidden bg-white shadow-lg z-60">
           <nav className="max-w-7xl mx-auto px-4 py-2 flex flex-col divide-y divide-gray-100">
-            <Link 
-              href="/" 
+            <div 
               className={`py-2 ${getLinkClasses('/')} text-black`}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => handleNavigation('/')}
             >
               Home
-            </Link>
+            </div>
             
             {/* Services Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <div className="flex items-center justify-between w-full">
-                <Link 
-                  href="/services"
+                <div 
                   className={`${getLinkClasses('/services')} text-gray-700 hover:text-green-400`}
+                  onClick={() => handleNavigation('/services')}
                 >
                   Services
-                </Link>
+                </div>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -240,48 +218,39 @@ export default function Header() {
               {servicesDropdownOpen && (
                 <div className="ml-4 mt-1 space-y-0 pl-3">
                   {serviceItems.map((item, index) => (
-                    <Link
+                    <div
                       key={index}
-                      href={item.href}
                       className="block py-3 px-2 -ml-2 text-gray-600 hover:text-green-500 transition-colors text-sm border-b border-gray-100 last:border-0"
-                      onClick={(e) => {
-                        // Don't prevent default - allow navigation
-                        setServicesDropdownOpen(false);
-                        setMobileMenuOpen(false);
-                      }}
+                      onClick={() => handleNavigation(item.href)}
                     >
                       {item.name}
-                    </Link>
+                    </div>
                   ))}
                 </div>
               )}
             </div>
 
-            <Link 
-              href="/gallery" 
+            <div 
               className={`py-2 ${getLinkClasses('/gallery')} text-black`}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => handleNavigation('/gallery')}
             >
               Gallery
-            </Link>
-            <Link 
-              href="/about" 
+            </div>
+            <div 
               className={`py-2 ${getLinkClasses('/about')} text-black`}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => handleNavigation('/about')}
             >
               About
-            </Link>
-            <Link 
-              href="/contact" 
+            </div>
+            <div 
               className={`py-2 ${getLinkClasses('/contact')} text-black`}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => handleNavigation('/contact')}
             >
               Contact
-            </Link>
-            
+            </div>
           </nav>
         </div>
       )}
     </header>
-  )
+  );
 }

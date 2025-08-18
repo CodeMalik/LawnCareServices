@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const About = () => {
     return (
         <>
-            <section className="relative bg-gray-900 min-h-[40vh] sm:min-h-[100vh]">
+            <section className="relative bg-gray-900 min-h-[50vh] sm:min-h-[100vh]">
                 {/* Background Image */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                     <div className="absolute inset-0">
@@ -48,15 +48,15 @@ const About = () => {
 
                 {/* Content Container */}
                 
-                <div className="absolute z-10 w-full h-full flex items-center justify-center pt-30">
+                <div className="absolute z-10 w-full h-full flex items-center justify-center py-30">
                 <ScaleIn>
                     <div className="w-full sm:max-w-7xl px-6 py-16 text-center">
                         {/* Main Heading */}
-                        <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold text-white leading-tight mb-6  px-6 sm:px-50">
+                        <h1 className="text-xl sm:text-4xl md:text-6xl font-bold text-white leading-tight mb-6  px-6 sm:px-50">
                             Meet the Cancun Landscape                        </h1>
                         {/* Subtitle */}
-                        <p className="text-white text-md sm:text-md md:text-lg leading-relaxed w-full text-center px-6 sm:px-50">
-                            Cancun Landscaping has helped homeowners across Dallas, TX, transform their yards into thriving, beautiful spaces. Founded by Jamie Cervantes out of a passion for the natural world, our company blends expert landscaping, irrigation repair, and lawn care with a commitment to quality, reliability, and personal service. This isn’t just our work, it’s our craft, and we take pride in every project we touch.
+                        <p className="text-white text-sm sm:text-md md:text-lg leading-relaxed w-full text-center px-6 sm:px-50">
+                            Lawn Care Services blends expert landscaping, irrigation repair, and lawn care with a commitment to quality, reliability, and personal service. This isn’t just our work, it’s our craft, and we take pride in every project we touch.
                         </p>
                     </div>
                 </ScaleIn>
