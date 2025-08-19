@@ -41,10 +41,10 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   }
 
   return {
-    title: `${service.title} | Cancun Landscape - Professional Dallas Landscaping`,
+    title: `${service.title} | Lawn Care Services - Professional Dallas Landscaping`,
     description: service.heroSubtitle,
     openGraph: {
-      title: `${service.title} | Cancun Landscape`,
+      title: `${service.title} | Lawn Care Services`,
       description: service.heroSubtitle,
     },
   };

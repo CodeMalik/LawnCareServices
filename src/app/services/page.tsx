@@ -24,7 +24,7 @@ const ServicesSection = () => {
   return (
     <>
 
-      <section className="relative bg-gray-900 min-h-[50vh] sm:min-h-[90vh]">
+      <section className="relative bg-gray-900 min-h-[70vh] sm:min-h-[110vh] 2xl:min-h-[70vh] pt-24 md:pt-28">
 
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -54,7 +54,7 @@ const ServicesSection = () => {
         <div className="absolute z-10 w-full h-full flex items-center justify-center">
 
           <ScaleIn viewportMargin='0px'>
-            <div className="w-full px-6 py-16 2xl:px-32 text-center">
+            <div className="w-full px-6 pb-16 sm:pb-45 2xl:px-32 text-center">
               {/* Main Heading */}
               <h1 className="text-lg sm:text-2xl md:text-3xl 2xl:text-5xl font-bold text-white leading-tight mb-6">
                 Professional Landscaping & Irrigation Services You Can Rely On
@@ -73,19 +73,19 @@ const ServicesSection = () => {
         <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-8 sm:p-12">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             <div className="space-y-2">
-              <div className="text-4xl sm:text-5xl font-bold text-green-600">
+              <div className="text-2xl sm:text-5xl font-bold text-green-600">
                 <Counter value={25} duration={2} suffix="+" />
               </div>
               <div className="text-gray-700 font-medium">Years of Experience</div>
             </div>
             <div className="space-y-2">
-              <div className="text-4xl sm:text-5xl font-bold text-green-600">
+              <div className="text-2xl sm:text-5xl font-bold text-green-600">
                 <Counter value={1000} duration={2} suffix="+" />
               </div>
               <div className="text-gray-700 font-medium">Happy Customers</div>
             </div>
             <div className="space-y-2">
-              <div className="text-4xl sm:text-5xl font-bold text-green-600">
+              <div className="text-2xl sm:text-5xl font-bold text-green-600">
                 <Counter value={100} duration={2} suffix="%" />
               </div>
               <div className="text-gray-700 font-medium">Satisfaction Guarantee</div>
@@ -112,22 +112,22 @@ const ServicesSection = () => {
 
         {/* Content */}
         <ScaleIn>
-          <div className="flex justify-start items-center px-7 sm:px-20 h-full max-w-2xl">
-            <div className="text-start">
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-12 text-center sm:text-left 2xl:text-center">
+          <div className="flex justify-center items-center px-7 sm:px-20 h-full max-w-2xl mx-auto">
+            <div className="text-center">
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-12 text-center ">
                 Your Dream Yard Starts with One Simple Step                      </h2>
               {/* Decorative underline */}
               <svg
-                className="mx-auto sm:mx-0 2xl:mx-auto relative bottom-2 left-0 w-20 h-2 text-green-600"
+                className="mx-auto relative bottom-2 left-0 w-20 h-2 text-green-600"
                 viewBox="0 0 500 20"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
               </svg>
-              <p className="text-center text-white text-md mb-8 max-w-3xl mx-auto sm:text-left 2xl:text-center">
+              <p className="text-center text-white text-md mb-8 max-w-3xl mx-auto">
                 Whether it’s restoring your lawn, upgrading your sprinklers, or refreshing your landscape — we’re ready to bring your outdoor vision to life. Let’s make it happen.                      </p>
-              <div className='w-full flex justify-center sm:justify-start 2xl:justify-center'>
+              <div className='w-full flex justify-center'>
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 sm:px-6 sm:py-2 rounded-xl text-sm sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"

@@ -155,7 +155,7 @@ const Testimonials = () => {
             What Our Happy Clients Say
           </h2>
           <p className="text-sm sm:text-md text-gray-600 max-w-4xl mx-auto mb-8">
-            Real stories. Real results. See why homeowners across Dallas trust Cancun Landscaping for lawns they love.
+            Real stories. Real results. See why homeowners across Dallas trust Lawn Care Services for lawns they love.
           </p>
           <div className="w-16 h-1 bg-gray-800 mx-auto"></div>
         </div>

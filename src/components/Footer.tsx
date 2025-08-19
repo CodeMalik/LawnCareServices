@@ -12,14 +12,14 @@ export default function Footer() {
             <Link href="/" className="flex items-center mb-6">
               <Image 
                 src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992780/logo_acnbfd.png" 
-                alt="Cancun Landscape Logo"
+                alt="Lawn Care Services Logo"
                 width={180}
                 height={60}
                 className="h-12 w-auto"
               />
             </Link>
             <p className="text-xs sm:text-lg leading-7  ">
-            At Cancun Landscape, we blend creativity and craftsmanship to build outdoor spaces that are beautiful, functional, and easy to maintain. With years of local experience, we’re proud to be your trusted landscaping experts.            </p>  
+            At Lawn Care Services, we blend creativity and craftsmanship to build outdoor spaces that are beautiful, functional, and easy to maintain. With years of local experience, we’re proud to be your trusted landscaping experts.            </p>  
           </div>
 
           {/* Services */}
@@ -38,7 +38,7 @@ export default function Footer() {
           <div className="w-full sm:w-auto">
             <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-7" >Contact Info</h3>
             <address className="not-italic text-xs sm:text-lg space-y-3">
-              <p className="mb-2">
+              {/* <p className="mb-2">
                 <Link 
                   href="https://www.google.com/maps/search/?api=1&query=14035+Jamwood+Ln+Farmers+Branch+TX+75234" 
                   target="_blank" 
@@ -108,7 +108,7 @@ export default function Footer() {
                   </svg>
                   gardenchange@gmail.com
                 </Link>
-              </p>
+              </p> */}
               <p className="flex items-center">
                 <svg 
                   className="w-5 h-5 mr-2 text-green-500" 
@@ -131,7 +131,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="text-xs sm:text-md border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>Copyright © {new Date().getFullYear()} Cancun Landscape. All rights reserved.</p>
+          <p>Copyright © {new Date().getFullYear()} Lawn Care Services. All rights reserved.</p>
         </div>
       </div>
     </footer>

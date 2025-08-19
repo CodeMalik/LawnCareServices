@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 const Gallery = () => {
     return (
         <>
-            <section className="relative bg-gray-900 min-h-[40vh] sm:min-h-[90vh]">
+            <section className="relative bg-gray-900 min-h-[70vh] sm:min-h-[110vh] 2xl:min-h-[70vh] pt-24 md:pt-28">
                 {/* Background Image */}
-                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center">
                     <div className="absolute inset-0">
                         <img
                             src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/gallery-bg-image_qcs4x2_4_11zon_gxan6c.jpg"
@@ -48,7 +48,7 @@ const Gallery = () => {
                         
                 {/* Content Container */}
                 
-                <div className="absolute z-10 w-full h-full flex items-center justify-center">
+                <div className="absolute pb-20 z-10 w-full h-full flex items-center justify-center">
                     <ScaleIn viewportMargin='0px'>
                     <div className="w-full py-16 text-center">
                         {/* Main Heading */}
@@ -64,7 +64,7 @@ const Gallery = () => {
                 </div>
             </section>
             <GalleryImages />
-            <section className="relative py-20 md:py-28 overflow-hidden">
+            <section className="relative py-20 md:py-28 overflow-hidden ">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 -z-10">
                     <div className="relative w-full h-full">
@@ -81,21 +81,21 @@ const Gallery = () => {
 
                 {/* Content */}
                 <ScaleIn>
-                <div className="flex justify-start items-center px-6 sm:px-20 h-full max-w-2xl">
-                    <div className="text-start">
-                        <h2 className="text-center sm:text-left text-3xl sm:text-3xl font-bold text-white mb-6 leading-12">
+                <div className="flex justify-center items-center px-6 sm:px-20 h-full max-w-2xl mx-auto">
+                    <div className="text-center">
+                        <h2 className="text-center text-3xl font-bold text-white mb-6 leading-12">
                         Let’s Bring Nature Into Your Lovely House  </h2>                      {/* Decorative underline */}
                         <svg
-                            className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto sm:mx-0"
+                            className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto"
                             viewBox="0 0 500 20"
                             fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
                         </svg>
-                        <p className="text-center sm:text-left text-white text-md mb-8 max-w-3xl mx-auto sm:mx-0">
+                        <p className="text-center text-white text-md mb-8 max-w-3xl mx-auto">
                         Ready to refresh your yard or start something new? Whether you’re tackling brown patches, overgrown gardens, or outdated irrigation — we’ve got you covered with expert landscaping solutions.</p>
-                        <div className="flex justify-center sm:justify-start">
+                        <div className="flex justify-center">
                           <Link
                             href="/contact"
                             className="inline-flex items-center justify-center text-center text-sm sm:text-lg bg-[var(--primary-color)] hover:bg-green-600 text-white px-6 py-2 sm:px-8 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"

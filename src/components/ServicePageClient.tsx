@@ -13,8 +13,8 @@ const ServicePageClient = ({ service }: { service: any }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Enhanced with better gradient and text positioning */}
-      <div className="relative bg-gray-900 min-h-[40vh] sm:min-h-[90vh]">
-        <div className="absolute inset-0 overflow-hidden">
+      <div className="relative bg-gray-900 min-h-[70vh] sm:min-h-[110vh] 2xl:min-h-[70vh] pt-24 md:pt-28">
+        <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
           <Image
             src={service.image}
             alt={service.title}
@@ -25,7 +25,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" />
         </div>
 
-        <div className="absolute z-10 px-6 w-full h-full flex items-center justify-center">
+        <div className="absolute z-10 pb-20 px-6 w-full h-full flex items-center justify-center">
           <ScaleIn viewportMargin='0px'>
             <div className="w-full flex flex-col items-center justify-center">
               <h1 className="text-center text-2xl md:text-5xl lg:text-5xl 2xl:text-6xl font-bold text-white mb-6 leading-tight text-center">
@@ -162,7 +162,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
 
       {/* Card Section - Enhanced with better styling */}
       <div className="relative py-16 bg-[rgba(237,251,226,255)] overflow-hidden">
-        <ScaleIn>
+        <FadeIn>
           <div className="relative sm:max-w-6xl md:max-w-7xl lg:max-w-6xl bg-white rounded-xl mx-auto px-6 py-10 text-center">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
               {service.card.title}
@@ -179,7 +179,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
               </Link>
             </div>
           </div>
-        </ScaleIn>
+        </FadeIn>
       </div>
 
       <section className="py-20 bg-white">
@@ -336,13 +336,13 @@ const ServicePageClient = ({ service }: { service: any }) => {
         </div>
 
         <ScaleIn>
-        <div className="relative max-w-3xl px-6 sm:px-20 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center 2xl:mx-auto">
-          <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-white mb-8 leading-tight text-center sm:text-left 2xl:text-center">
+        <div className="relative max-w-3xl px-6 sm:px-20 flex flex-col justify-center items-center mx-auto">
+          <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-white mb-8 leading-tight text-center">
             {service.cta.finalCta}
           </h2>
           {/* Decorative underline */}
           <svg
-            className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto sm:mx-0 2xl:mx-auto"
+            className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto"
             viewBox="0 0 500 20"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
@@ -350,13 +350,13 @@ const ServicePageClient = ({ service }: { service: any }) => {
             <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
           </svg>
 
-          <p className="text-md lg:text-lg text-white mb-12 leading-relaxed text-center sm:text-left 2xl:text-center">
+          <p className="text-md lg:text-lg text-white mb-12 leading-relaxed text-center">
             {service.cta.finalCtaDescription}
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center sm:justify-start">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-fit mx-auto sm:mx-0"
+              className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-fit mx-auto"
             >
               {service.cta.buttonText}
             </Link>

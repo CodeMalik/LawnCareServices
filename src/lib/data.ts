@@ -113,7 +113,7 @@ export const testimonials: Testimonial[] = [
     id: 'jorge-cruz',
     name: 'Jorge Cruz',
     rating: 5,
-    text: 'Highly recommended, very professional and great customer service lorem ipsum dolor sit amet consectetur adipiscing elit',
+    text: 'Highly recommended, very professional and great customer service',
     date: '2025-06-22',
     verified: true
   },
@@ -333,7 +333,7 @@ export const serviceContent: ServiceContent[] = [
         },
         mapSection: {
           title: 'Service Coverage',
-          description: 'Cancun Landscape proudly offers sprinkler installation & repair in the following areas:'
+          description: 'Lawn Care Services proudly offers sprinkler installation & repair in the following areas:'
         },
         faqs: [
           {
@@ -451,7 +451,7 @@ export const serviceContent: ServiceContent[] = [
     },
     mapSection: {
       title: 'Service Areas',
-      description: 'Cancun Landscape proudly offers irrigation repair services in Dallas and nearby communities.'
+      description: 'Lawn Care Services proudly offers irrigation repair services in Dallas and nearby communities.'
     },
     faqs: [
       {
@@ -651,7 +651,7 @@ export const serviceContent: ServiceContent[] = [
       },
       {
         image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992713/The-Cancun-Advantage-for-Lawn-Health_smgrym.jpg',
-        title: 'The Cancun Advantage for Lawn Health',
+        title: 'The Advantage for Lawn Health',
         description: 'We don’t just maintain lawns, we protect and strengthen them for long-term beauty.',
         featuresArray: [
           { description: '25+ Years of Lawn Care Expertise' },
@@ -898,7 +898,7 @@ export const serviceContent: ServiceContent[] = [
     ],
     solution: {
       title: 'Weed-Free, Bug-Free Lawns',
-      description: 'Real lawn transformations made possible with Cancun’s expert insect and weed control services.',
+      description: 'Real lawn transformations made possible with expert insect and weed control services.',
       imageGallery: [
         { image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992635/8-5_f2r7f6.jpg' },
         { image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992727/Why-Choose-Us_tl6osl.jpg' },

@@ -21,23 +21,23 @@ const LastSection = () => {
 
       {/* Content */}
       <ScaleIn>
-      <div className="flex justify-start items-center px-10 sm:px-20 h-full max-w-2xl">
-        <div className="text-start">
-          <h2 className="text-center sm:text-left 2xl:text-center text-3xl md:text-4xl font-bold text-white mb-6 leading-12">
+      <div className="flex justify-center items-center px-10 sm:px-20 h-full max-w-2xl mx-auto">
+        <div className="text-center">
+          <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6 leading-12">
           From Lawn to Lush, Let’s Begin!
           </h2>
           {/* Decorative underline */}
           <svg 
-                className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto sm:mx-0 2xl:mx-auto" 
+                className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto" 
                 viewBox="0 0 500 20" 
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
             </svg>
-          <p className="text-sm text-white 2xl:text-center sm:text-md mb-8 max-w-3xl mx-auto">
-          Whether it’s lush lawn care, expert sprinkler repair, or full-scale landscaping, Cancun Landscaping is here to help your yard thrive.          </p>
-          <div className='w-full flex justify-center sm:justify-start 2xl:justify-center'>
+          <p className="text-sm text-white text-center sm:text-md mb-8 max-w-3xl mx-auto">
+          Whether it’s lush lawn care, expert sprinkler repair, or full-scale landscaping, Lawn Care Services is here to help your yard thrive.          </p>
+          <div className='w-full flex justify-center'>
           <Link
             href="/contact"
             className="text-sm sm:text-lg bg-[var(--primary-color)] hover:bg-green-700 text-white px-4 py-2 sm:px-6 sm:py-2 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-center w-fit"

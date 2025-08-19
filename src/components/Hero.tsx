@@ -2,7 +2,7 @@ import React from 'react';
 import { ScaleIn } from './animations/Animate';
 const Hero = () => {
   return (
-    <section className="relative min-h-[50vh] sm:min-h-[80vh] 2xl:min-h-[70vh] flex overflow-hidden">
+    <section className="relative min-h-[50vh] sm:min-h-[80vh] 2xl:min-h-[70vh] flex overflow-hidden pt-24 md:pt-28">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         {/* You can replace this with your actual image URL */}

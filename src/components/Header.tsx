@@ -46,14 +46,14 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[rgba(20,23,14,255)] via-[rgba(29,32,24,255)] to-[rgba(14,18,10,255)] shadow-xl sticky top-0 z-50">
+    <header className="fixed w-full top-0 left-0 bg-gradient-to-r from-[rgba(20,23,14,255)] via-[rgba(29,32,24,255)] to-[rgba(14,18,10,255)] shadow-xl z-50">
       <div className="max-w-[1700px] mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
             <Image 
               src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992780/logo_acnbfd.png" 
-              alt="Cancun Landscape Logo"
+              alt="Lawn Care Services Logo"
               width={200}
               height={65}
               className="h-14 w-auto"

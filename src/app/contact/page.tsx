@@ -18,9 +18,9 @@ const ContactSection = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative bg-gray-900 min-h-[40vh] sm:min-h-[90vh]">
+            <section className="relative bg-gray-900 min-h-[70vh] sm:min-h-[110vh] 2xl:min-h-[70vh] pt-24 md:pt-28">
                 {/* Background Image */}
-                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center">
                     <div className="absolute inset-0">
                         <Image
                             src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1-3_gtvfal_3_11zon_qbqgyw.jpg"
@@ -45,7 +45,7 @@ const ContactSection = () => {
                 </div>
 
                 {/* Content Container */}
-                <div className="absolute z-10 w-full h-full flex items-center justify-center">
+                <div className="absolute z-10 w-full pb-35 h-full flex items-center justify-center">
                     <ScaleIn viewportMargin='0px'>
                     <div className="w-full px-6 py-16 text-center">
                         {/* Main Heading */}
@@ -122,7 +122,7 @@ const ContactSection = () => {
 
                                     {/* Email */}
                                     <a 
-                                        href="mailto:info@cancunlandscape.com"
+                                        href=""
                                         className="flex flex-col items-center justify-center sm:items-start sm:justify-start sm:flex-row sm:items-start space-y-2 sm:space-x-4 p-2 sm:p-4 hover:bg-gray-50 rounded-lg transition-colors duration-200 group cursor-pointer"
                                     >
                                         <div className="flex-shrink-0 mt-1">
@@ -145,7 +145,7 @@ const ContactSection = () => {
                                         <div>
                                             <h4 className="font-bold text-lg mb-0.5 text-gray-900 group-hover:text-blue-600 transition-colors duration-200 text-center sm:text-left">Email Us</h4>
                                             <p className="text-gray-600 font-medium text-sm group-hover:text-blue-700 transition-colors duration-200 text-center sm:text-left">
-                                                info@cancunlandscape.com
+                                                {/* info@gmail.com */}
                                             </p>
                                         </div>
                                     </a>

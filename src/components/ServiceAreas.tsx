@@ -47,7 +47,7 @@ const ServiceAreas: React.FC = () => {
             Proudly Serving Dallas & Beyond
           </h5>
           <p className="text-sm text-gray-500 max-w-4xl mx-auto">
-            Wherever you are in North Texas, Cancun Landscaping brings expert lawn care,
+            Wherever you are in North Texas, Lawn Care Services brings expert lawn care,
             sprinkler repair, and landscaping right to your doorstep.
           </p>
         </div>

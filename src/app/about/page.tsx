@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 const About = () => {
     return (
         <>
-            <section className="relative bg-gray-900 min-h-[50vh] sm:min-h-[100vh]">
+            <section className="relative bg-gray-900 min-h-[70vh] sm:min-h-[110vh] 2xl:min-h-[70vh] pt-24 md:pt-28">
                 {/* Background Image */}
-                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center">
                     <div className="absolute inset-0">
                         <Image
                             src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1_w9p5t6_10_11zon_ii2yyf.jpg"
@@ -49,12 +49,12 @@ const About = () => {
 
                 {/* Content Container */}
 
-                <div className="absolute z-10 w-full h-full flex items-center justify-center py-30">
+                <div className="absolute z-10 w-full pb-50 h-full flex items-center justify-center py-30">
                     <ScaleIn>
                         <div className="w-full sm:max-w-7xl px-6 py-16 text-center">
                             {/* Main Heading */}
                             <h1 className="text-xl sm:text-4xl md:text-6xl 2xl:text-7xl font-bold text-white leading-tight mb-6  px-6 sm:px-50 2xl:px-20">
-                                Meet the Cancun Landscape                        </h1>
+                                Meet the Lawn Care Services                        </h1>
                             {/* Subtitle */}
                             <p className="text-white text-sm sm:text-md md:text-lg 2xl:text-xl leading-relaxed w-full text-center px-6 sm:px-50">
                                 Lawn Care Services blends expert landscaping, irrigation repair, and lawn care with a commitment to quality, reliability, and personal service. This isn’t just our work, it’s our craft, and we take pride in every project we touch.
@@ -116,7 +116,7 @@ const About = () => {
                                         </div>
                                         <h2 className="text-xl font-bold text-gray-800 mb-3">Our Values</h2>
                                         <p className="text-sm text-gray-600 leading-relaxed flex-grow">
-                                            At Cancun Landscaping, we believe in honest work, lasting quality, and putting our customers first.
+                                            At Lawn Care Services, we believe in honest work, lasting quality, and putting our customers first.
                                             Every service is guided by respect for nature.
                                         </p>
                                     </div>
@@ -138,7 +138,7 @@ const About = () => {
                             A Legacy of Beautiful Lawns and Happy Clients
                         </h2>
                         <p className="w-full sm:w-1/2 2xl:w-[55%] 2xl:pr-0 text-gray-600 text-sm sm:text-md sm:px-20 2xl:px-0 2xl:pl-10 text-center  2xl:text-lg">
-                            For decades, Cancun Landscaping has been Dallas's go-to for reliable sprinkler repair, precise irrigation, and lawn care that actually lasts. We don't just mow, we protect, restore, and elevate your outdoor space. From lush green lawns to flawless sprinkler systems, we deliver fast, honest service and results that speak for themselves.
+                            For decades, Lawn Care Services has been Dallas's go-to for reliable sprinkler repair, precise irrigation, and lawn care that actually lasts. We don't just mow, we protect, restore, and elevate your outdoor space. From lush green lawns to flawless sprinkler systems, we deliver fast, honest service and results that speak for themselves.
                         </p>
                     </div>
                 </div>
@@ -269,21 +269,21 @@ const About = () => {
                 </div>
 
                 {/* Content */}
-                <div className="flex justify-start items-center px-10 sm:px-20 h-full max-w-2xl 2xl:mx-auto">
-                    <div className="text-start 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center">
+                <div className="flex justify-center items-center px-10 sm:px-20 h-full max-w-2xl mx-auto">
+                    <div className="text-center">
                         <ScaleIn>
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-12 text-center sm:text-left 2xl:text-center">
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-12 text-center">
                                 Let’s Shape Nature into Your Dream Space</h2>                        <svg
-                                    className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto sm:mx-0 2xl:mx-auto"
+                                    className="relative bottom-2 left-0 w-20 h-2 text-green-600 mx-auto"
                                     viewBox="0 0 500 20"
                                     fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
                                 <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
                             </svg>
-                            <p className="text-white text-md mb-8 max-w-3xl text-center sm:text-left 2xl:text-center">
-                                Whether it’s lush lawn care, expert sprinkler repair, or full-scale landscaping, Cancun Landscaping is here to help your yard thrive.</p>
-                            <div className="w-full flex justify-center sm:justify-start 2xl:justify-center">
+                            <p className="text-white text-md mb-8 max-w-3xl text-center">
+                                Whether it’s lush lawn care, expert sprinkler repair, or full-scale landscaping, Lawn Care Services is here to help your yard thrive.</p>
+                            <div className="w-full flex justify-center">
                                 <Link
                                     href="/contact"
                                     className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 sm:px-6 sm:py-2 rounded-xl text-sm sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
