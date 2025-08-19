@@ -1,7 +1,7 @@
 import React from 'react';
 import { serviceAreas } from '@/lib/data';
 import Link from 'next/link';
-import { SlideInLeft, SlideInRight, ScaleIn } from './animations/Animate';
+import { SlideInLeft, SlideInRight, ScaleIn, FadeIn } from './animations/Animate';
 
 const ServiceAreas: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const ServiceAreas: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Map section */}
-          <ScaleIn>
+          <FadeIn>
           <div className="relative sm:px-6 lg:px-8">
             <div className="relative rounded-2xl overflow-hidden h-96">
               <iframe
@@ -36,10 +36,10 @@ const ServiceAreas: React.FC = () => {
               </div>
             </div>
           </div>
-          </ScaleIn>
+          </FadeIn>
 
           {/* Service areas list */}
-          <ScaleIn>
+          <FadeIn>
           <div>
              {/* Section header */}
         <div className="text-center mb-8 px-8 sm:px-6 lg:px-8">
@@ -99,7 +99,7 @@ const ServiceAreas: React.FC = () => {
               </div>
             </div>
           </div>
-          </ScaleIn>
+          </FadeIn>
         </div>
       </div>
     </section>

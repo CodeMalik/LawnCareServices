@@ -25,7 +25,7 @@ const GallerySection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {miniGalleryItems.map((item) => (
             <StaggeredItem key={item.id}>  
-            <ScaleIn duration={1}>
+            <FadeIn duration={1}>
             <div key={item.id} className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="aspect-w-4 aspect-h-3">
                 <Image
@@ -46,7 +46,7 @@ const GallerySection = () => {
                 )}
               </div>
             </div>
-            </ScaleIn>
+            </FadeIn>
             </StaggeredItem>
           ))}
         </div>

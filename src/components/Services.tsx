@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { services } from '@/lib/data';
 import type { Service } from '@/types';
-import { SlideInBottom, StaggeredContainer, StaggeredItem } from './animations/Animate';
+import { SlideInBottom, StaggeredContainer, StaggeredItem, FadeIn } from './animations/Animate';
 
 interface ServiceCardProps {
   service: Service;
@@ -88,9 +88,9 @@ const Services: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service) => (
             <StaggeredItem key={service.id}>
-              <SlideInBottom>
+              <FadeIn>
             <ServiceCard key={service.id} service={service} />
-            </SlideInBottom>
+            </FadeIn>
             </StaggeredItem>
           ))}
         </div>

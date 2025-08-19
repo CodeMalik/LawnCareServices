@@ -131,7 +131,6 @@ const About = () => {
                 <Image src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991600/7_om4k0z.jpg" alt="About" width={1100} height={1100} className="object-cover rounded-xl" />
             </div>
             {/* Legacy Section */}
-            {/* Legacy Section */}
             <section className="w-full py-16 sm:py-24 bg-white">
                 <div className="w-full sm:max-w-[1200px] md:max-w-[1200px] lg:max-w-[1200px] xl:max-w-[1200px] 2xl:max-w-[1300px] mx-auto px-6 2xl:px-20">
                     <div className="flex flex-col sm:flex-row w-full space-y-6 justify-center gap-2">

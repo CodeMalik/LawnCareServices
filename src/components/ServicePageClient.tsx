@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Testimonials from '@/components/Testimonials';
 import FAQItem from '@/components/FAQItem';
 import Counter from '@/components/Counter';
-import { ScaleIn, SlideInTop, StaggeredContainer, StaggeredItem } from '@/components/animations/Animate';
+import { ScaleIn, SlideInTop, StaggeredContainer, StaggeredItem, FadeIn } from '@/components/animations/Animate';
 import { serviceAreas } from '@/lib/data';
 
 // This is the new client component that holds the page's content and logic.
@@ -66,7 +66,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
                 const isEven = index % 2 === 0;
                 return (
                   <StaggeredItem key={index}>
-                    <ScaleIn>
+                    <FadeIn>
                       <div
                         key={index}
                         className={`flex flex-col md:flex-row gap-8 group ${isEven ? '' : 'md:flex-row-reverse'}`}
@@ -106,7 +106,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
                           </Link>
                         </div>
                       </div>
-                    </ScaleIn>
+                    </FadeIn>
                   </StaggeredItem>
 
                 );
@@ -131,7 +131,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               {service.solution.imageGallery.map((image: any, index: number) => (
                 <StaggeredItem key={index}>
-                  <ScaleIn>
+                  <FadeIn>
                     <div key={index} className="group relative rounded-2xl overflow-hidden cursor-pointer h-64 w-full">
 
                       <Image
@@ -143,7 +143,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
                     </div>
-                  </ScaleIn>
+                  </FadeIn>
                 </StaggeredItem>
               ))}
             </div>
@@ -186,7 +186,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Map section */}
-            <ScaleIn>
+            <FadeIn>
 
               <div className="relative">
                 <div className="relative rounded-2xl overflow-hidden h-96">
@@ -214,8 +214,8 @@ const ServicePageClient = ({ service }: { service: any }) => {
                   </div>
                 </div>
               </div>
-            </ScaleIn>
-            <ScaleIn>
+            </FadeIn>
+            <FadeIn>
 
               {/* Service areas list */}
               <div>
@@ -276,7 +276,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
                   </div>
                 </div>
               </div>
-            </ScaleIn>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -286,7 +286,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-20">
             {/* Left Column - Image */}
-            <ScaleIn>
+            <FadeIn>
             <div className="mb-10 lg:mb-0">
               <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden">
                 <Image
@@ -298,10 +298,10 @@ const ServicePageClient = ({ service }: { service: any }) => {
                 />
               </div>
             </div>
-            </ScaleIn>
+            </FadeIn>
 
             {/* Right Column - FAQ */}
-            <ScaleIn>
+            <FadeIn>
             <div className="max-w-2xl mx-auto">
               <div className="mb-5">
                 <h2 className="text-center sm:text-left text-4xl font-bold text-gray-900 sm:text-4xl">
@@ -319,7 +319,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
                 ))}
               </div>
             </div>
-            </ScaleIn>
+            </FadeIn>
           </div>
         </div>
       </div>

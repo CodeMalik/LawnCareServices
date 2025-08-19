@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { StaggeredContainer, StaggeredItem, ScaleIn } from '@/components/animations/Animate';
+import { StaggeredContainer, StaggeredItem, ScaleIn, FadeIn } from '@/components/animations/Animate';
 const GalleryImages = () => {
   // Array of gallery images with specific details
   const images = [
@@ -121,7 +121,7 @@ const GalleryImages = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {images.map((image) => (
           <StaggeredItem key={image.id}>
-            <ScaleIn>
+            <FadeIn>
           <div 
             key={image.id} 
             className="relative group overflow-hidden rounded-lg aspect-[4/3] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
@@ -140,7 +140,7 @@ const GalleryImages = () => {
               </div>
             </div>
           </div>
-          </ScaleIn>
+          </FadeIn>
           </StaggeredItem>
         ))}
       </div>
