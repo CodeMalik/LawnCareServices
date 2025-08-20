@@ -137,6 +137,13 @@ export default function Header() {
               >
                 About
               </Link>
+              
+              <Link 
+                href="/locations" 
+                className={getLinkClasses('/locations') + ' text-white'}
+              >
+                Locations
+              </Link>
               <Link 
                 href="/contact" 
                 className={getLinkClasses('/contact') + ' text-white'}
@@ -243,6 +250,12 @@ export default function Header() {
               onClick={() => handleNavigation('/about')}
             >
               About
+            </div>
+            <div 
+              className={`py-2 ${getLinkClasses('/locations')} text-black`}
+              onClick={() => handleNavigation('/locations')}
+            >
+              Locations
             </div>
             <div 
               className={`py-2 ${getLinkClasses('/contact')} text-black`}

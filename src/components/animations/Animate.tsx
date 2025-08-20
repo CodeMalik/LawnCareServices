@@ -3,6 +3,8 @@
 
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
+import { Variants } from 'framer-motion';
+
 
 type AnimationWrapperProps = {
   children: ReactNode;

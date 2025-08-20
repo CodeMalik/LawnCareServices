@@ -53,3 +53,19 @@ html {
   transform: translateY(-10px);
   transition: opacity 300ms, transform 300ms;
 }
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Remove the default margin from the map container */
+.leaflet-container {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure the map container takes up full height of its parent */
+#map {
+  height: 100%;
+  width: 100%;
+}
