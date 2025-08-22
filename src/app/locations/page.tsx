@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Search, Globe, Briefcase, Eye } from 'lucide-react';
+import { Search, Globe, Briefcase, Eye, MapPin } from 'lucide-react';
+import InteractiveMap from '@/components/InteractiveMap';
 import HeroSection from '@/components/HeroSection';
 import LastCTA from '@/components/LastCTA';
 
@@ -19,20 +20,21 @@ interface Location {
     careers?: string;
 }
 
-const MAIN_WEBSITE_URL = 'https://www.augustalawncareservices.com';
+const MAIN_WEBSITE_URL = 'https://www.lawncareservices.us';
 
-// Updated locations with specific entries and top 10 cities
+// Updated locations with specific entries and top 10 locations
 const locations: Location[] = [
+    // Top 10 locations
     { id: '1', name: 'Augusta Lawn Care of Columbia', city: 'Columbia', state: 'SC', zipCode: '29223', phone: '803.780.4459', lat: 34.0007, lng: -81.0348 },
-    { id: '2', name: 'Augusta Lawn Care of Virginia Beach', city: 'Virginia Beach', state: 'VA', zipCode: '23456', phone: '757.918.7800', lat: 36.8529, lng: -75.9780 },
-    { id: '3', name: 'Augusta Lawn Care of Minneapolis', city: 'Minneapolis', state: 'MN', zipCode: '55401', phone: '612.555.0140', lat: 44.9778, lng: -93.2650 },
-    { id: '4', name: 'Augusta Lawn Care of Milwaukee', city: 'Milwaukee', state: 'WI', zipCode: '53201', phone: '414.555.0139', lat: 43.0389, lng: -87.9065 },
-    { id: '5', name: 'Augusta Lawn Care of Detroit', city: 'Detroit', state: 'MI', zipCode: '48201', phone: '313.555.0130', lat: 42.3601, lng: -83.0750 },
-    { id: '6', name: 'Augusta Lawn Care of Augusta', city: 'Augusta', state: 'GA', zipCode: '30904', phone: '706.432.1001', lat: 33.6500, lng: -82.0000 },
-    { id: '7', name: 'Augusta Lawn Care of Charlotte', city: 'Charlotte', state: 'NC', zipCode: '28201', phone: '704.555.0125', lat: 35.1696, lng: -80.8896 },
-    { id: '8', name: 'Augusta Lawn Care of Omaha', city: 'Omaha', state: 'NE', zipCode: '68101', phone: '402.555.0144', lat: 41.2565, lng: -95.9345 },
-    { id: '9', name: 'Augusta Lawn Care of Indianapolis', city: 'Indianapolis', state: 'IN', zipCode: '46201', phone: '317.555.0132', lat: 39.7684, lng: -86.1581 },
-    { id: '10', name: 'Augusta Lawn Care of Wilmington', city: 'Wilmington', state: 'DE', zipCode: '19801', phone: '302.555.0145', lat: 39.7459, lng: -75.5466 },
+    { id: '2', name: 'Augusta Lawn Care of Minnesota', city: 'Minnesota', state: 'MN', zipCode: '55401', phone: '612.555.0140', lat: 44.9778, lng: -93.2650 },
+    { id: '3', name: 'Augusta Lawn Care of Wisconsin', city: 'Wisconsin', state: 'WI', zipCode: '53701', phone: '608.555.0139', lat: 43.0731, lng: -89.4012 },
+    { id: '4', name: 'Augusta Lawn Care of Virginia', city: 'Virginia', state: 'VA', zipCode: '23218', phone: '804.555.0140', lat: 37.5407, lng: -77.4360 },
+    { id: '5', name: 'Augusta Lawn Care of Michigan', city: 'Michigan', state: 'MI', zipCode: '48901', phone: '517.555.0141', lat: 42.7325, lng: -84.5555 },
+    { id: '6', name: 'Augusta Lawn Care of Georgia', city: 'Georgia', state: 'GA', zipCode: '30301', phone: '404.555.0142', lat: 33.7490, lng: -84.3880 },
+    { id: '7', name: 'Augusta Lawn Care of North Carolina', city: 'North-Carolina', state: 'NC', zipCode: '27601', phone: '919.555.0143', lat: 35.7796, lng: -78.6382 },
+    { id: '8', name: 'Augusta Lawn Care of Nebraska', city: 'Nebraska', state: 'NE', zipCode: '68501', phone: '402.555.0144', lat: 40.8136, lng: -96.7026 },
+    { id: '9', name: 'Augusta Lawn Care of Indiana', city: 'Indiana', state: 'IN', zipCode: '46201', phone: '317.555.0132', lat: 39.7684, lng: -86.1581 },
+    { id: '10', name: 'Augusta Lawn Care of Delaware', city: 'Delaware', state: 'DE', zipCode: '19901', phone: '302.555.0145', lat: 39.1582, lng: -75.5244 },
     { id: '11', name: 'Augusta Lawn Care in Nocatee', city: 'Nocatee', state: 'FL', zipCode: '32081', phone: '904.917.2525', lat: 32.2216, lng: -81.3696 },
     { id: '12', name: 'Augusta Lawn Care of Aiken', city: 'Aiken', state: 'SC', zipCode: '29805', phone: '803.850.4642', lat: 34.8522, lng: -81.1437 },
     { id: '13', name: 'Augusta Lawn Care of Alexandria', city: 'Alexandria', state: 'VA', zipCode: '22206', phone: '703.870.3434', lat: 38.8022, lng: -77.0369 },
@@ -63,16 +65,17 @@ const locations: Location[] = [
 // Add website and careers URLs based on city names
 locations.forEach(location => {
     const citySlug = location.city.toLowerCase().replace(/\s+/g, '-');
+    const stateSlug = location.state.toLowerCase();
     location.website = `${MAIN_WEBSITE_URL}/${citySlug}`;
-    location.careers = `${MAIN_WEBSITE_URL}/careers/${citySlug}`;
+    location.careers = `${MAIN_WEBSITE_URL}careers/${citySlug}`;
 });
 
-const topCities = ['Columbia', 'Virginia Beach', 'Minneapolis', 'Milwaukee', 'Detroit', 'Augusta', 'Charlotte', 'Omaha', 'Indianapolis', 'Wilmington'];
+const topCities = ['Columbia', 'Minnesota', 'Wisconsin', 'Virginia', 'Michigan', 'Georgia', 'North-Carolina', 'Nebraska', 'Indiana', 'Delaware'];
 
 const LocationsPage = () => {
     const [searchAddress, setSearchAddress] = useState('');
     const [filteredLocations, setFilteredLocations] = useState(locations);
-    const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
+    const [selectedLocation, setSelectedLocation] = useState<Location | null>(locations[0]);
     const [userLocation, setUserLocation] = useState<{ lat: number, lng: number } | null>(null);
     const mapRef = useRef<HTMLDivElement>(null);
 
@@ -153,30 +156,31 @@ const LocationsPage = () => {
                     </motion.h1>
 
                     {/* Search Section */}
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
-                        <div className="flex items-center gap-2">
-                            <span className="text-gray-700 font-medium">FIND LOCATIONS NEAR:</span>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 w-full px-4 sm:px-0">
+                        <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto mb-4 sm:mb-0">
+                            <span className="text-gray-700 font-medium text-sm sm:text-base mb-2 sm:mb-0">FIND LOCATIONS NEAR:</span>
                             <button
                                 onClick={handleMyLocation}
-                                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center gap-2 transition-colors"
+                                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center gap-2 transition-colors cursor-pointer w-full sm:w-auto justify-center"
                             >
                                 <MapPin className="h-4 w-4" />
                                 My Location
                             </button>
                         </div>
 
-                        <div className="relative flex-1 max-w-md">
+                        <div className="relative w-full sm:flex-1 max-w-md">
                             <input
                                 type="text"
                                 placeholder="Enter an address"
                                 value={searchAddress}
                                 onChange={(e) => setSearchAddress(e.target.value)}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent cursor-text text-sm sm:text-base"
                             />
                             {searchAddress && (
                                 <button
                                     onClick={() => setSearchAddress('')}
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer text-lg leading-none"
+                                    aria-label="Clear search"
                                 >
                                     ×
                                 </button>
@@ -188,43 +192,10 @@ const LocationsPage = () => {
 
             {/* Map Section */}
             <div className="bg-white" ref={mapRef}>
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="h-96 bg-blue-100 rounded-lg mb-8 relative overflow-hidden">
-                        <div className="bg-white rounded-lg shadow-md overflow-hidden h-[500px]">
-                            {selectedLocation ? (
-                                <iframe
-                                    width="100%"
-                                    height="100%"
-                                    src={`https://www.openstreetmap.org/export/embed.html?bbox=${selectedLocation.lng - 0.01}%2C${selectedLocation.lat - 0.01}%2C${selectedLocation.lng + 0.01}%2C${selectedLocation.lat + 0.01}&amp;layer=mapnik&marker=${selectedLocation.lat}%2C${selectedLocation.lng}`}
-                                    className="border-0"
-                                />
-                            ) : (
-                                <div className="h-full w-full flex items-center justify-center bg-gray-100">
-                                    <div className="text-center">
-                                        <MapPin className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                                        <p className="text-gray-600">Select a location to view on map</p>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                        {/* Map Controls */}
-                        <div className="absolute top-4 left-4 bg-white rounded-md shadow-md">
-                            <button className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border-r border-gray-200">
-                                Map
-                            </button>
-                            <button className="px-3 py-2 text-sm font-medium text-gray-500">
-                                Satellite
-                            </button>
-                        </div>
-
-                        {/* Fullscreen button */}
-                        <button className="absolute top-4 right-4 bg-white p-2 rounded-md shadow-md hover:bg-gray-50">
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+                <InteractiveMap 
+                    selectedLocation={selectedLocation}
+                    locations={locations}
+                />
             </div>
 
             {/* Top Locations Section */}
@@ -233,7 +204,7 @@ const LocationsPage = () => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mb-12"
                 >
                     {topLocations.map((location) => (
                         <motion.div
@@ -241,7 +212,7 @@ const LocationsPage = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             whileHover={{ y: -4 }}
-                            className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                            className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-200 cursor-default"
                         >
                             <h3 className="text-green-600 font-semibold text-lg mb-1 leading-tight">
                                 {location.name}
@@ -258,7 +229,7 @@ const LocationsPage = () => {
                                     href={location.website}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2"
+                                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     <Globe className="h-4 w-4" />
                                     Website
@@ -268,7 +239,7 @@ const LocationsPage = () => {
                                     href={location.careers}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2"
+                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     <Briefcase className="h-4 w-4" />
                                     Careers
@@ -276,7 +247,7 @@ const LocationsPage = () => {
 
                                 <button
                                     onClick={() => showOnMap(location)}
-                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2"
+                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     <Eye className="h-4 w-4" />
                                     Show on Map
@@ -291,7 +262,7 @@ const LocationsPage = () => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6"
                 >
                     {otherLocations.map((location) => (
                         <motion.div
@@ -299,7 +270,7 @@ const LocationsPage = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             whileHover={{ y: -4 }}
-                            className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                            className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-200 cursor-default"
                         >
                             <h3 className="text-green-600 font-semibold text-lg mb-1 leading-tight">
                                 {location.name}
@@ -316,7 +287,7 @@ const LocationsPage = () => {
                                     href={location.website}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2"
+                                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     <Globe className="h-4 w-4" />
                                     Website
@@ -326,7 +297,7 @@ const LocationsPage = () => {
                                     href={location.careers}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2"
+                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     <Briefcase className="h-4 w-4" />
                                     Careers
@@ -334,7 +305,7 @@ const LocationsPage = () => {
 
                                 <button
                                     onClick={() => showOnMap(location)}
-                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2"
+                                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     <Eye className="h-4 w-4" />
                                     Show on Map
@@ -361,7 +332,7 @@ const LocationsPage = () => {
             
         </div>
         <LastCTA 
-                bgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1_w9p5t6_10_11zon_ii2yyf.jpg" 
+                bgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg" 
                 title="From Lawn to Lush, Let’s Begin!" 
                 description="Whether its lush lawn care, expert sprinkler repair, or full-scale landscaping, Lawn Care Services is here to help your yard thrive." 
                 ctaText="Call Now To Get Started" 

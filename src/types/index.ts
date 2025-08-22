@@ -184,3 +184,63 @@ export interface ServiceContent {
   buttonText:string;
   }
 }
+
+
+export interface LocationMainPage {
+  id: string;
+  slug: string;
+  title: string;
+  hero :{
+    title: string;
+    subtitle: string;
+    image: string;
+  };
+  form: {
+    id:string;
+    locationSlug: string; // To track submission origin
+    serviceSlug?: string; // Optional, for service-specific forms
+  };
+  ServiceText:{
+    title:string;
+    description:string;
+    image:string;
+  };
+  AllServices:{
+    title:string;
+    description:string;
+    ServiceArray:{
+      title:string;
+      image:string;
+      features:{
+        description:string;
+      }[],
+      buttonText:string;
+    }[];
+  };
+  services: LocationService[]; // Embed full service definitions
+}
+
+export interface LocationService {
+  slug: string; // e.g., 'columbia-lawn-care-services'
+  name: string;
+  hero: {
+    title: string;
+    image: string;
+  };
+  ServiceText: {
+    title: string;
+    description: string;
+    buttonText: string;
+    image: string;
+  };
+  SpecificServices: {
+    title: string;
+    ServiceCards: {
+      bgImage: string;
+      title: string;
+      description: string;
+      image: string;
+    }[];
+    buttonText: string;
+  };
+}
