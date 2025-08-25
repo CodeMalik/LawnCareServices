@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
+import {FadeIn} from '@/components/animations/Animate';
 
 interface FormData {
   name: string;
@@ -81,6 +82,8 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
   };
 
   return (
+    <>
+    <FadeIn>
     <section className="py-12 px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-12">
@@ -259,6 +262,8 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
         </div>
       </div>
     </section>
+    </FadeIn>
+    </>
   );
 };
 

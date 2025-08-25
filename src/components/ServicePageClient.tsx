@@ -7,6 +7,8 @@ import FAQItem from '@/components/FAQItem';
 import Counter from '@/components/Counter';
 import { ScaleIn, SlideInTop, StaggeredContainer, StaggeredItem, FadeIn } from '@/components/animations/Animate';
 import { serviceAreas } from '@/lib/data';
+import LocationContactForm from '@/components/LocationContactForm';
+import LocationServiceText from '@/components/LocationServiceText';
 
 // This is the new client component that holds the page's content and logic.
 const ServicePageClient = ({ service }: { service: any }) => {
@@ -41,6 +43,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
       </div>
 
       {/* Stats Section - Enhanced with animations */}
+      {service.stats &&
       <div className="bg-[var(--primary-color)] py-10 sm:py-20 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -55,6 +58,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
           </div>
         </div>
       </div>
+    }
 
       {/* Features Section - Enhanced cards with better spacing */}
       <div className="py-20 bg-gray-50">
@@ -115,8 +119,14 @@ const ServicePageClient = ({ service }: { service: any }) => {
           </StaggeredContainer>
         </div>
       </div>
+      {service.form &&
+      <LocationContactForm form={service.form} />}
 
+      {service.ServiceText &&
+      <LocationServiceText serviceText={service.ServiceText} />}
+      
       {/* Solution Gallery - Enhanced with better grid and hover effects */}
+      {service.solution &&
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -159,8 +169,9 @@ const ServicePageClient = ({ service }: { service: any }) => {
           </div>
         </div>
       </div>
-
+      }
       {/* Card Section - Enhanced with better styling */}
+      {service.card &&
       <div className="relative py-16 bg-[rgba(237,251,226,255)] overflow-hidden">
         <FadeIn>
           <div className="relative sm:max-w-6xl md:max-w-7xl lg:max-w-6xl bg-white rounded-xl mx-auto px-6 py-10 text-center">
@@ -181,7 +192,8 @@ const ServicePageClient = ({ service }: { service: any }) => {
           </div>
         </FadeIn>
       </div>
-
+      }
+      {service.map &&
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -280,8 +292,9 @@ const ServicePageClient = ({ service }: { service: any }) => {
           </div>
         </div>
       </section>
-
+      }
       <Testimonials />
+      {service.faq &&
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-20">
@@ -323,6 +336,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
           </div>
         </div>
       </div>
+      }
       {/* Final CTA Section */}
       <div className="relative sm:py-24 py-16 overflow-hidden w-full">
         <div className="absolute inset-0">

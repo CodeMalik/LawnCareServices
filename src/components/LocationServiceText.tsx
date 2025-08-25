@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import {FadeIn} from '@/components/animations/Animate';
 
 interface ServiceText {
   title: string;
@@ -19,11 +20,13 @@ const LocationServiceText: React.FC<{ serviceText: ServiceText }> = ({ serviceTe
   };
 
   return (
-    <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+    <>
+    <FadeIn>
+    <section className="py-12 md:py-16 lg:py-20 px-10 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-8 xl:gap-16">
           {/* Text Content */}
-          <div className="w-full lg:w-1/2 space-y-6 order-2 sm:order-1">
+          <div className="w-full lg:w-1/2 space-y-6 order-2 sm:order-1 px-0 lg:px-10 2xl:px-0">
             <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 leading-tight text-center sm:text-left">
               {serviceText.title}
             </h2>
@@ -37,7 +40,7 @@ const LocationServiceText: React.FC<{ serviceText: ServiceText }> = ({ serviceTe
             <div className="pt-2 text-center sm:text-left">
               <button
                 onClick={handleScrollToServices}
-                className="inline-flex items-center px-4 py-2 sm:px-8 sm:py-3 border border-transparent text-base font-medium rounded-xl text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center px-4 py-2 sm:px-8 sm:py-3 text-base font-medium rounded-xl text-white bg-green-600 hover:bg-green-700 focus:outline-none transition-colors transform hover:scale-105 hover:shadow-lg cursor-pointer duration-300"
               >
                 Explore Our Services
                 <svg 
@@ -73,6 +76,8 @@ const LocationServiceText: React.FC<{ serviceText: ServiceText }> = ({ serviceTe
         </div>
       </div>
     </section>
+    </FadeIn>
+    </>
   );
 };
 

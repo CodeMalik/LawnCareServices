@@ -3,11 +3,14 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import {FadeIn} from '@/components/animations/Animate';
 
 const LocationAbout: React.FC = () => {
   return (
+    <FadeIn>
     <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-green-50">
       <div className="max-w-7xl mx-auto">
+        
         <div className="flex flex-col lg:flex-row items-center gap-8 xl:gap-16">
           {/* Image Section */}
           <div className="w-full lg:w-1/2">
@@ -22,7 +25,8 @@ const LocationAbout: React.FC = () => {
               />
             </div>
           </div>
-          
+        
+        
           {/* Content Section */}
           <div className="w-full lg:w-1/2 space-y-8">
             <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 text-center lg:text-left">
@@ -56,6 +60,7 @@ const LocationAbout: React.FC = () => {
         </div>
       </div>
     </section>
+    </FadeIn>
   );
 };
 

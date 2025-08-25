@@ -1,9 +1,51 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import { getLocationServices } from '@/utils/locationService';
+import { getServiceNavigation } from '@/utils/navigation';
+
+
+interface ServiceItem {
+  name: string;
+  href: string;
+  serviceSlug?: string;
+}
+
+const defaultServiceItems: ServiceItem[] = [
+  { 
+    name: 'Sprinkler Installation & Repair', 
+    href: '/services/sprinkler-installation-repair',
+    serviceSlug: 'sprinkler-installation-repair'
+  },
+  { 
+    name: 'Irrigation System Repair', 
+    href: '/services/irrigation-system-repair',
+    serviceSlug: 'irrigation-system-repair'
+  },
+  { 
+    name: 'Landscaping Services', 
+    href: '/services/landscaping-services',
+    serviceSlug: 'landscaping-services'
+  },
+  { 
+    name: 'Lawn Health & Protection', 
+    href: '/services/lawn-health-protection',
+    serviceSlug: 'lawn-health-protection'
+  },
+  { 
+    name: 'Tree & Plant Health Management', 
+    href: '/services/tree-plant-health-management',
+    serviceSlug: 'tree-plant-health-management'
+  },
+  { 
+    name: 'Insect & Weed Control', 
+    href: '/services/insect-weed-control',
+    serviceSlug: 'insect-weed-control'
+  }
+];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,20 +54,23 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
 
+  // Get navigation items based on current path
+  const serviceNavItems = getServiceNavigation(pathname);
+  
   // Close menus when pathname changes
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
   }, [pathname]);
 
-  const serviceItems = [
-    { name: 'Sprinkler Installation & Repair', href: '/services/sprinkler-installation-repair' },
-    { name: 'Irrigation System Repair', href: '/services/irrigation-system-repair' },
-    { name: 'Landscaping Services', href: '/services/landscaping-services' },
-    { name: 'Lawn Health & Protection', href: '/services/lawn-health-protection' },
-    { name: 'Tree & Plant Health Management', href: '/services/tree-plant-health-management' },
-    { name: 'Insect & Weed Control', href: '/services/insect-weed-control' }
-  ];
+  // Map navigation items to service items
+  const serviceItems: ServiceItem[] = useMemo(() => {
+    return serviceNavItems.map(item => ({
+      name: item.name,
+      href: item.href,
+      serviceSlug: item.href.split('/').pop()
+    }));
+  }, [serviceNavItems]);
 
   const isActivePage = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -34,7 +79,7 @@ export default function Header() {
 
   const getLinkClasses = (href: string) => {
     const isActive = isActivePage(href);
-    return `text-gray-700 py-3 hover:text-green-400 cursor-pointer font-medium transition-colors duration-200 text-sm ${
+    return `text-gray-700 py-1 hover:text-green-400 cursor-pointer font-normal transition-colors duration-200 text-sm ${
       isActive ? 'text-green-400' : 'hover:text-green-400'
     }`;
   };

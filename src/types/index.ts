@@ -139,7 +139,18 @@ export interface ServiceContent {
   heroSubtitle: string;
   // description: string;
   image: string;
-  stats: {
+  form?: {
+    id:string;
+    locationSlug: string; // To track submission origin
+    serviceSlug?: string; // Optional, for service-specific forms
+  };
+  ServiceText?: {
+    title: string;
+    description: string;
+    buttonText: string;
+    image: string;
+  };
+  stats?: {
     number: number;
     description: string;
   }[];
@@ -154,7 +165,7 @@ export interface ServiceContent {
     buttonText:string;
   }[];
   
-  solution: {
+  solution?: {
     title: string;
     description: string;
     imageGallery:{
@@ -162,18 +173,18 @@ export interface ServiceContent {
     }[],
     buttonText:string;
   };
-  card:{
+  card?:{
     title:string;
     description:string;
     buttonText:string;
   };
-  mapSection:{
+  mapSection?:{
     title:string;
     description:string;
   };
   
   //doing this-------------------------------------------------------
-  faqs: {
+  faqs?: {
     question: string;
     answer: string;
   }[];
