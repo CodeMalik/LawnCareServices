@@ -60,7 +60,10 @@ export default function Header() {
   // Check if we're on a location or service page
   const isLocationOrServicePage = pathname?.startsWith('/location/') || 
                                pathname?.startsWith('/services/') ||
-                               pathname === '/locations';
+                               pathname === '/locations' ||
+                               // Check if we're on a dynamic location page (e.g., /dallas, /austin)
+                               (pathname && pathname.split('/').filter(Boolean).length === 1 && 
+                                !['', 'about', 'contact', 'gallery', 'services'].includes(pathname.split('/')[1]));
   
   // Close menus when pathname changes
   useEffect(() => {
