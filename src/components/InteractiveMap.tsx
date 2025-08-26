@@ -3,13 +3,17 @@
 import { useState, useRef, useEffect } from 'react';
 import { MapPin, Fullscreen, Minimize2, Map as MapIcon, Satellite, Navigation } from 'lucide-react';
 
-interface Location {
+export interface Location {
   id: string;
   name: string;
   city: string;
   state: string;
+  zipCode: string;
+  phone: string;
   lat: number;
   lng: number;
+  website?: string;
+  careers?: string;
 }
 
 interface InteractiveMapProps {
@@ -46,14 +50,15 @@ export default function InteractiveMap({ selectedLocation, onLocationChange, loc
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords;
-          const userLocation = {
+          const userLocation: Location = {
             id: 'my-location',
             name: 'My Location',
             city: '',
             state: '',
-            lat: latitude,
-            lng: longitude
+            zipCode: '',
+            phone: '',
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
           };
           onLocationChange?.(userLocation);
         },
@@ -64,7 +69,7 @@ export default function InteractiveMap({ selectedLocation, onLocationChange, loc
         {
           enableHighAccuracy: true,
           timeout: 5000,
-          maximumAge: 0
+          maximumAge: 0,
         }
       );
     } else {
@@ -76,11 +81,6 @@ export default function InteractiveMap({ selectedLocation, onLocationChange, loc
     const baseUrl = 'https://www.openstreetmap.org/export/embed.html';
     const bbox = `${location.lng - 0.01},${location.lat - 0.01},${location.lng + 0.01},${location.lat + 0.01}`;
     const marker = `${location.lat},${location.lng}`;
-    
-    // if (mapView === 'satellite') {
-    //   return `https://www.google.com/maps/embed/v1/view?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&center=${location.lat},${location.lng}&zoom=15&maptype=satellite`;
-    // }
-    
     return `${baseUrl}?bbox=${bbox}&layer=mapnik&marker=${marker}`;
   };
 

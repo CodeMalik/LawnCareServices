@@ -228,30 +228,9 @@ export interface LocationMainPage {
       buttonText:string;
     }[];
   };
-  services: LocationService[]; // Embed full service definitions
+  services: {
+    slug: string; // e.g., 'columbia-lawn-care-services'
+    name: string;
+  }[]; // Embed full service definitions
 }
 
-export interface LocationService {
-  slug: string; // e.g., 'columbia-lawn-care-services'
-  name: string;
-  hero: {
-    title: string;
-    image: string;
-  };
-  ServiceText: {
-    title: string;
-    description: string;
-    buttonText: string;
-    image: string;
-  };
-  SpecificServices: {
-    title: string;
-    ServiceCards: {
-      bgImage: string;
-      title: string;
-      description: string;
-      image: string;
-    }[];
-    buttonText: string;
-  };
-}

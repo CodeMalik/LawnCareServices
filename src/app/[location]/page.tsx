@@ -83,7 +83,9 @@ const LocationPage = async ({ params }: Props) => {
       <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-8 sm:p-12">
         <LocationStats />
       </div>
-      <LocationContactForm form={loc.form} />
+      <div id="contact-form">
+        <LocationContactForm form={loc.form} />
+      </div>
       <Testimonials />
       <LocationServiceText serviceText={loc.ServiceText} />
 

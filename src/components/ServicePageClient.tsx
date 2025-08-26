@@ -120,7 +120,9 @@ const ServicePageClient = ({ service }: { service: any }) => {
         </div>
       </div>
       {service.form &&
-      <LocationContactForm form={service.form} />}
+      <div id="contact-form">
+      <LocationContactForm form={service.form} />
+      </div>}
 
       {service.ServiceText &&
       <LocationServiceText serviceText={service.ServiceText} />}

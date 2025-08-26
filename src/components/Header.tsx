@@ -57,6 +57,11 @@ export default function Header() {
   // Get navigation items based on current path
   const serviceNavItems = getServiceNavigation(pathname);
   
+  // Check if we're on a location or service page
+  const isLocationOrServicePage = pathname?.startsWith('/location/') || 
+                               pathname?.startsWith('/services/') ||
+                               pathname === '/locations';
+  
   // Close menus when pathname changes
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -85,8 +90,21 @@ export default function Header() {
   };
 
   // Handle navigation and menu closure
-  const handleNavigation = (href: string) => {
+  const handleNavigation = (href: string, e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+    }
     setMobileMenuOpen(false); // Close menu before navigation
+    
+    // If on mobile and clicking contact, scroll to contact form
+    if (window.innerWidth < 640 && href === '/contact') {
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    
     router.push(href); // Programmatic navigation
   };
 
@@ -126,16 +144,19 @@ export default function Header() {
                   >
                     Services
                   </Link>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setServicesDropdownOpen(!servicesDropdownOpen);
-                    }}
+                  <div 
+                    className="relative group cursor-pointer"
                     onMouseEnter={() => setServicesDropdownOpen(true)}
-                    className="ml-1 focus:outline-none"
-                    aria-expanded={servicesDropdownOpen}
-                    aria-label="Toggle services dropdown"
+                    onMouseLeave={() => setServicesDropdownOpen(false)}
+                    onClick={(e) => {
+                      if (isLocationOrServicePage) {
+                        e.preventDefault();
+                        return;
+                      }
+                      if (window.innerWidth < 1024) {
+                        setServicesDropdownOpen(!servicesDropdownOpen);
+                      }
+                    }}
                   >
                     <svg 
                       className={`w-4 h-4 text-white cursor-pointer hover:text-green-400 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`}
@@ -145,8 +166,8 @@ export default function Header() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </button>
-                </div>
+                  </div>
+                  </div>
 
                 {/* Dropdown Menu */}
                 {servicesDropdownOpen && (
@@ -183,18 +204,36 @@ export default function Header() {
                 About
               </Link>
               
-              <Link 
-                href="/locations" 
-                className={getLinkClasses('/locations') + ' text-white'}
-              >
-                Locations
-              </Link>
-              <Link 
-                href="/contact" 
-                className={getLinkClasses('/contact') + ' text-white'}
+              {/* Hide Locations link when on location or service pages */}
+              {!isLocationOrServicePage && (
+                <Link 
+                  href="/locations" 
+                  className={getLinkClasses('/locations') + ' text-white'}
+                >
+                  Locations
+                </Link>
+              )}
+              
+              {/* Contact link - scrolls to form on mobile or location/service pages */}
+              <a 
+                href="#contact-form" 
+                className={`${getLinkClasses('/contact')} text-white`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  // On mobile or location/service page, try to scroll to contact form
+                  if ((window.innerWidth < 640 || isLocationOrServicePage) && document.getElementById('contact-form')) {
+                    const contactForm = document.getElementById('contact-form');
+                    if (contactForm) {
+                      contactForm.scrollIntoView({ behavior: 'smooth' });
+                      return;
+                    }
+                  }
+                  // Otherwise navigate to contact page
+                  router.push('/contact');
+                }}
               >
                 Contact
-              </Link>
+              </a>
             </nav>
 
             {/* Phone Number Button */}
@@ -296,15 +335,32 @@ export default function Header() {
             >
               About
             </div>
-            <div 
-              className={`py-2 ${getLinkClasses('/locations')} text-black`}
-              onClick={() => handleNavigation('/locations')}
-            >
-              Locations
-            </div>
+            {!isLocationOrServicePage && (
+              <div 
+                className={`py-2 ${getLinkClasses('/locations')} text-black`}
+                onClick={() => handleNavigation('/locations')}
+              >
+                Locations
+              </div>
+            )}
             <div 
               className={`py-2 ${getLinkClasses('/contact')} text-black`}
-              onClick={() => handleNavigation('/contact')}
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileMenuOpen(false);
+                
+                // On mobile or when on location/service page, scroll to contact form if it exists
+                if ((window.innerWidth < 640 || isLocationOrServicePage) && document.getElementById('contact-form')) {
+                  const contactForm = document.getElementById('contact-form');
+                  if (contactForm) {
+                    contactForm.scrollIntoView({ behavior: 'smooth' });
+                    return;
+                  }
+                }
+                
+                // Otherwise, navigate to contact page
+                router.push('/contact');
+              }}
             >
               Contact
             </div>
