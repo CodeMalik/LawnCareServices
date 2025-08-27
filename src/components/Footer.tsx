@@ -11,11 +11,11 @@ export default function Footer() {
           <div className="sm:mb-0 ">
             <Link href="/" className="flex items-center mb-6">
               <Image 
-                src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992780/logo_acnbfd.png" 
+                src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1756287854/output-onlinepngtools_qcy2wr.png" 
                 alt="Lawn Care Services Logo"
-                width={180}
-                height={60}
-                className="h-12 w-auto"
+                width={100}
+                height={100}
+                className=""
               />
             </Link>
             <p className="text-xs sm:text-lg leading-7  ">

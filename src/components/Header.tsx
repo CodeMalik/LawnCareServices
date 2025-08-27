@@ -118,11 +118,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
             <Image 
-              src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992780/logo_acnbfd.png" 
+              src="/output-onlinepngtools.png" 
               alt="Lawn Care Services Logo"
-              width={200}
-              height={65}
-              className="h-14 w-auto"
+              height={100}
+              width={100}
+              className="sm:ml-15 2xl:ml-0"
               priority
             />
           </Link>
