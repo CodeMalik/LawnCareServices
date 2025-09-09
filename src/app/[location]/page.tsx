@@ -9,7 +9,6 @@ import { Metadata } from 'next';
 import LocationContactForm from '@/components/LocationContactForm';
 import LocationServiceText from '@/components/LocationServiceText';
 import LocationAbout from '@/components/LocationAbout';
-import {FadeIn} from '@/components/animations/Animate';
 
 interface Props {
   params: Promise<{ location: string }>;

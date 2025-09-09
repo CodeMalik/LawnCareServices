@@ -5,6 +5,10 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { FadeIn } from '@/components/animations/Animate';
 
+// ======================
+// 🔹 Type Definitions
+// ======================
+
 interface FormData {
   name: string;
   email: string;
@@ -15,24 +19,43 @@ interface FormData {
   acceptedPrice?: boolean;
 }
 
-const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; serviceSlug?: string } }> = ({ form }) => {
+interface LocationContactFormProps {
+  form: {
+    id: string;
+    locationSlug: string;
+    serviceSlug?: string;
+  };
+}
+
+// ======================
+// ✅ Component: Fully Typed & Explicit
+// ======================
+
+const LocationContactForm = ({ form }: LocationContactFormProps): React.ReactNode => {
+  // Type-safe access to dynamic route params
   const params = useParams();
+
+  // Form state
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
     address: '',
   });
+
   const [status, setStatus] = useState<string | null>(null);
-  const [agreed, setAgreed] = useState(false);
-  const [showService, setShowService] = useState(false);
-  const [showPropertySize, setShowPropertySize] = useState(false);
-  const [showPrice, setShowPrice] = useState(false);
+  const [agreed, setAgreed] = useState<boolean>(false);
+  const [showService, setShowService] = useState<boolean>(false);
+  const [showPropertySize, setShowPropertySize] = useState<boolean>(false);
+  const [showPrice, setShowPrice] = useState<boolean>(false);
   const [price, setPrice] = useState<number | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  // Handle input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({ ...prev, [name]: value }));
+
     if (name === 'service' && value) {
       setShowPropertySize(true);
     }
@@ -42,18 +65,22 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
     }
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  // Handle blur on email field
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>): void => {
     if (e.target.name === 'email' && formData.email.trim()) {
       setShowService(true);
     }
   };
 
-  const calculatePrice = (size: string) => {
-    const rates = { small: 50, medium: 100, large: 200 };
-    setPrice(rates[size as keyof typeof rates] || 50);
+  // Calculate price based on property size
+  const calculatePrice = (size: string): void => {
+    const rates: Record<string, number> = { small: 50, medium: 100, large: 200 };
+    const calculatedPrice = rates[size as keyof typeof rates] || 50;
+    setPrice(calculatedPrice);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Form submission
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     setStatus('Submitting...');
 
@@ -65,12 +92,18 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
     if (showPrice && formData.acceptedPrice === false) {
       setStatus('Price declined. Please adjust your selections or try again.');
       setShowPrice(false);
-      setFormData((prev) => ({ ...prev, service: '', propertySize: '', acceptedPrice: undefined }));
+      setFormData((prev) => ({
+        ...prev,
+        service: '',
+        propertySize: '',
+        acceptedPrice: undefined,
+      }));
       setShowService(true);
       setShowPropertySize(false);
       return;
     }
 
+    // Simulate success
     alert('Form submitted successfully with accepted price!');
     setFormData({ name: '', email: '', phone: '', address: '' });
     setStatus(null);
@@ -89,9 +122,9 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
             {/* Image Section */}
             <div className="w-full lg:w-1/2 xl:w-1/2">
               <div className="relative h-64 sm:h-80 md:h-96 lg:h-full rounded-xl overflow-hidden shadow-lg">
-                <Image 
-                  src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1-3_gtvfal_3_11zon_qbqgyw.jpg" 
-                  alt="Lawn care professional working" 
+                <Image
+                  src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1-3_gtvfal_3_11zon_qbqgyw.jpg"
+                  alt="Lawn care professional working"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -99,21 +132,31 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                 />
               </div>
             </div>
-            
+
             {/* Form Section */}
             <div className="w-full lg:w-1/2 xl:w-3/5 max-w-2xl mx-auto lg:mx-0">
               <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md">
                 <div className="text-center mb-8">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Get Your Mowing Price Instantly</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+                    Get Your Mowing Price Instantly
+                  </h2>
                   <p className="text-gray-600">or</p>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-2">Get A Free Estimate For All Other Services</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-2">
+                    Get A Free Estimate For All Other Services
+                  </h3>
                 </div>
+
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                   <input type="hidden" name="locationSlug" value={form.locationSlug} />
-                  {form.serviceSlug && <input type="hidden" name="serviceSlug" value={form.serviceSlug} />}
-                  
+                  {form.serviceSlug && (
+                    <input type="hidden" name="serviceSlug" value={form.serviceSlug} />
+                  )}
+
+                  {/* Name */}
                   <div className="space-y-1">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name*</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      Name*
+                    </label>
                     <input
                       type="text"
                       id="name"
@@ -125,8 +168,12 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                       className="block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-[var(--primary-color)] focus:ring-1 p-2.5 focus:ring-[var(--primary-color)] text-sm transition-all duration-200 outline-none"
                     />
                   </div>
+
+                  {/* Email */}
                   <div className="space-y-1">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email*</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                      Email*
+                    </label>
                     <input
                       type="email"
                       id="email"
@@ -139,8 +186,12 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                       className="block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-[var(--primary-color)] focus:ring-1 p-2.5 focus:ring-[var(--primary-color)] text-sm transition-all duration-200 outline-none"
                     />
                   </div>
+
+                  {/* Address */}
                   <div className="space-y-1">
-                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address*</label>
+                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                      Address*
+                    </label>
                     <input
                       type="text"
                       id="address"
@@ -152,8 +203,12 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                       className="block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-[var(--primary-color)] focus:ring-1 p-2.5 focus:ring-[var(--primary-color)] text-sm transition-all duration-200 outline-none"
                     />
                   </div>
+
+                  {/* Phone */}
                   <div className="space-y-1">
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone*</label>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                      Phone*
+                    </label>
                     <input
                       type="tel"
                       id="phone"
@@ -165,9 +220,13 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                       className="block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-[var(--primary-color)] focus:ring-1 p-2.5 focus:ring-[var(--primary-color)] text-sm transition-all duration-200 outline-none"
                     />
                   </div>
+
+                  {/* Service Dropdown */}
                   {showService && (
                     <div className="space-y-1">
-                      <label htmlFor="service" className="block text-sm font-medium text-gray-700">Which Service is Needed?</label>
+                      <label htmlFor="service" className="block text-sm font-medium text-gray-700">
+                        Which Service is Needed?
+                      </label>
                       <select
                         id="service"
                         name="service"
@@ -175,7 +234,7 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                         onChange={handleChange}
                         required
                         className="block w-full h-12 text-base rounded-lg border-2 border-gray-300 bg-white px-4 py-3 shadow-sm transition-all duration-200 focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] focus:outline-none md:text-sm"
-                      >  
+                      >
                         <option value="">Select a service</option>
                         <option value="mowing">Lawn Mowing</option>
                         <option value="landscaping">Landscaping</option>
@@ -183,9 +242,13 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                       </select>
                     </div>
                   )}
+
+                  {/* Property Size */}
                   {showPropertySize && (
                     <div className="space-y-1">
-                      <label htmlFor="propertySize" className="block text-sm font-medium text-gray-700">Property Size</label>
+                      <label htmlFor="propertySize" className="block text-sm font-medium text-gray-700">
+                        Property Size
+                      </label>
                       <select
                         id="propertySize"
                         name="propertySize"
@@ -193,7 +256,7 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                         onChange={handleChange}
                         required
                         className="block w-full h-12 text-base rounded-lg border-2 border-gray-300 bg-white px-4 py-3 shadow-sm transition-all duration-200 focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] focus:outline-none md:text-sm"
-                      >  
+                      >
                         <option value="">Select property size</option>
                         <option value="small">Small (0-500 sq ft)</option>
                         <option value="medium">Medium (500-2000 sq ft)</option>
@@ -201,20 +264,28 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                       </select>
                     </div>
                   )}
+
+                  {/* Price Display & Accept/Decline */}
                   {showPrice && price !== null && (
                     <div>
-                      <p className="text-center text-lg font-semibold text-gray-900">Instant Price: ${price}</p>
+                      <p className="text-center text-lg font-semibold text-gray-900">
+                        Instant Price: ${price}
+                      </p>
                       <div className="mt-2 flex justify-around">
                         <button
                           type="button"
-                          onClick={() => setFormData((prev) => ({ ...prev, acceptedPrice: true }))}
+                          onClick={() =>
+                            setFormData((prev) => ({ ...prev, acceptedPrice: true }))
+                          }
                           className="bg-[var(--primary-color)] text-white py-2 px-4 rounded-md hover:bg-green-600 transition-all hover:scale-[1.02] duration-200 cursor-pointer"
                         >
                           Accept
                         </button>
                         <button
                           type="button"
-                          onClick={() => setFormData((prev) => ({ ...prev, acceptedPrice: false }))}
+                          onClick={() =>
+                            setFormData((prev) => ({ ...prev, acceptedPrice: false }))
+                          }
                           className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-all hover:scale-[1.02] duration-200 cursor-pointer"
                         >
                           Decline
@@ -222,6 +293,8 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                       </div>
                     </div>
                   )}
+
+                  {/* Agreement Checkbox */}
                   <div className="flex items-start space-x-3 pt-2">
                     <div className="flex items-center h-5">
                       <input
@@ -234,9 +307,18 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                       />
                     </div>
                     <label htmlFor="agreed" className="text-sm text-gray-700">
-                      I agree to the <span className="text-[var(--primary-color)] hover:underline font-medium cursor-pointer">Terms and Conditions</span> and <span className="text-[var(--primary-color)] hover:underline font-medium cursor-pointer">Privacy Policy</span>.
+                      I agree to the{' '}
+                      <span className="text-[var(--primary-color)] hover:underline font-medium cursor-pointer">
+                        Terms and Conditions
+                      </span>{' '}
+                      and{' '}
+                      <span className="text-[var(--primary-color)] hover:underline font-medium cursor-pointer">
+                        Privacy Policy
+                      </span>.
                     </label>
                   </div>
+
+                  {/* Submit Button */}
                   <button
                     type="submit"
                     className={`w-full py-3 px-6 rounded-lg font-medium text-white hover:scale-[1.02] transition-all duration-300 transform cursor-pointer ${
@@ -248,10 +330,16 @@ const LocationContactForm: React.FC<{ form: { id: string; locationSlug: string; 
                   >
                     {status === 'Submitting...' ? 'Sending...' : 'Send Message'}
                   </button>
+
+                  {/* Status Message */}
                   {status && (
-                    <div className={`text-center text-sm p-3 rounded-md ${
-                      status.includes('error') ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700 '
-                    }`}>
+                    <div
+                      className={`text-center text-sm p-3 rounded-md ${
+                        status.includes('error')
+                          ? 'bg-red-50 text-red-700'
+                          : 'bg-green-50 text-green-700'
+                      }`}
+                    >
                       {status}
                     </div>
                   )}

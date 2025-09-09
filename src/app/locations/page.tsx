@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, FC } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Globe, Briefcase, Eye, MapPin } from 'lucide-react';
 import InteractiveMap from '@/components/InteractiveMap';
@@ -20,7 +20,7 @@ interface Location {
   careers?: string;
 }
 
-const MAIN_WEBSITE_URL = 'https://www.lawncareservices.us';
+const MAIN_WEBSITE_URL: string = 'https://www.lawncareservices.us  ';
 
 // Updated locations with specific entries and top 10 locations
 const locations: Location[] = [
@@ -61,25 +61,49 @@ const locations: Location[] = [
   { id: '34', name: 'Augusta Lawn Care of New York', city: 'New York', state: 'NY', zipCode: '10001', phone: '212.555.0143', lat: 40.7128, lng: -74.0060 },
 ];
 
-locations.forEach(location => {
-  const citySlug = location.city.toLowerCase().replace(/\s+/g, '-');
-  const stateSlug = location.state.toLowerCase();
+locations.forEach((location: Location): void => {
+  const citySlug: string = location.city.toLowerCase().replace(/\s+/g, '-');
+  const stateSlug: string = location.state.toLowerCase();
   location.website = `${MAIN_WEBSITE_URL}/${citySlug}`;
   location.careers = `${MAIN_WEBSITE_URL}careers/${citySlug}`;
 });
 
-const topCities = ['Columbia', 'Minnesota', 'Wisconsin', 'Virginia', 'Michigan', 'Georgia', 'North-Carolina', 'Nebraska', 'Indiana', 'Delaware'];
+const topCities: string[] = ['Columbia', 'Minnesota', 'Wisconsin', 'Virginia', 'Michigan', 'Georgia', 'North-Carolina', 'Nebraska', 'Indiana', 'Delaware'];
 
-const LocationsPage = () => {
-  const [searchAddress, setSearchAddress] = useState('');
-  const [filteredLocations, setFilteredLocations] = useState(locations);
+interface UserLocation {
+  lat: number;
+  lng: number;
+}
+
+interface HeroSectionProps {
+  Herotitle: string;
+  Herodescription: string;
+  HerobgImage: string;
+}
+
+interface LastCTAProps {
+  bgImage: string;
+  title: string;
+  description: string;
+  ctaText: string;
+}
+
+interface InteractiveMapProps {
+  selectedLocation: Location | null;
+  locations: Location[];
+  onLocationChange: (loc: Location) => void;
+}
+
+const LocationsPage: FC = () => {
+  const [searchAddress, setSearchAddress] = useState<string>('');
+  const [filteredLocations, setFilteredLocations] = useState<Location[]>(locations);
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(locations[0]);
-  const [userLocation, setUserLocation] = useState<{ lat: number, lng: number } | null>(null);
+  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (searchAddress.trim()) {
-      const filtered = locations.filter(location =>
+      const filtered: Location[] = locations.filter((location: Location): boolean =>
         location.city.toLowerCase().includes(searchAddress.toLowerCase()) ||
         location.state.toLowerCase().includes(searchAddress.toLowerCase()) ||
         location.zipCode.includes(searchAddress) ||
@@ -107,14 +131,15 @@ const LocationsPage = () => {
     }
   }, [searchAddress, userLocation]);
 
-  const handleMyLocation = () => {
+  const handleMyLocation = (): void => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
+        (position: GeolocationPosition): void => {
+          const newUserLocation: UserLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          });
+          };
+          setUserLocation(newUserLocation);
           const userLoc: Location = {
             id: 'user-loc',
             name: 'My Location',
@@ -126,9 +151,11 @@ const LocationsPage = () => {
             lng: position.coords.longitude,
           };
           setSelectedLocation(userLoc);
-          mapRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (mapRef.current) {
+            mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         },
-        (error) => {
+        (error: GeolocationPositionError): void => {
           console.error('Error getting location:', error);
           alert('Unable to get your location');
         }
@@ -138,13 +165,15 @@ const LocationsPage = () => {
     }
   };
 
-  const showOnMap = (location: Location) => {
+  const showOnMap = (location: Location): void => {
     setSelectedLocation(location);
-    mapRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (mapRef.current) {
+      mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
-  const topLocations = locations.filter(location => topCities.includes(location.city));
-  const otherLocations = filteredLocations.filter(location => !topCities.includes(location.city));
+  const topLocations: Location[] = locations.filter((location: Location): boolean => topCities.includes(location.city));
+  const otherLocations: Location[] = filteredLocations.filter((location: Location): boolean => !topCities.includes(location.city));
 
   return (
     <>
@@ -152,7 +181,7 @@ const LocationsPage = () => {
         <HeroSection 
           Herotitle="AUGUSTA LAWN CARE LOCATIONS" 
           Herodescription="Find the nearest Augusta Lawn Care location to your location." 
-          HerobgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1_w9p5t6_10_11zon_ii2yyf.jpg" 
+          HerobgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1_w9p5t6_10_11zon_ii2yyf.jpg  " 
         />
         <div className="bg-white border-b">
           <div className="max-w-7xl mx-auto px-4 py-8">
@@ -181,18 +210,20 @@ const LocationsPage = () => {
                   type="text"
                   placeholder="Enter city, state, or zip code"
                   value={searchAddress}
-                  onChange={(e) => setSearchAddress(e.target.value)}
-                  onKeyPress={(e) => {
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setSearchAddress(e.target.value)}
+                  onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>): void => {
                     if (e.key === 'Enter' && filteredLocations.length > 0) {
                       setSelectedLocation(filteredLocations[0]);
-                      mapRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      if (mapRef.current) {
+                        mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
                     }
                   }}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-green-500 cursor-text text-sm sm:text-base outline-none"
                 />
                 {searchAddress && (
                   <button
-                    onClick={() => setSearchAddress('')}
+                    onClick={(): void => setSearchAddress('')}
                     className="absolute container right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer text-lg leading-none"
                     aria-label="Clear search"
                   >
@@ -208,7 +239,7 @@ const LocationsPage = () => {
           <InteractiveMap 
             selectedLocation={selectedLocation}
             locations={locations}
-            onLocationChange={(loc) => setSelectedLocation(loc)}
+            onLocationChange={(loc: Location): void => setSelectedLocation(loc)}
           />
         </div>
 
@@ -219,7 +250,7 @@ const LocationsPage = () => {
             animate={{ opacity: 1 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mb-12"
           >
-            {topLocations.map((location) => (
+            {topLocations.map((location: Location) => (
               <motion.div
                 key={location.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -259,7 +290,7 @@ const LocationsPage = () => {
                   </a>
 
                   <button
-                    onClick={() => showOnMap(location)}
+                    onClick={(): void => showOnMap(location)}
                     className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Eye className="h-4 w-4" />
@@ -276,7 +307,7 @@ const LocationsPage = () => {
             animate={{ opacity: 1 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6"
           >
-            {otherLocations.map((location) => (
+            {otherLocations.map((location: Location) => (
               <motion.div
                 key={location.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -316,7 +347,7 @@ const LocationsPage = () => {
                   </a>
 
                   <button
-                    onClick={() => showOnMap(location)}
+                    onClick={(): void => showOnMap(location)}
                     className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Eye className="h-4 w-4" />
@@ -341,7 +372,7 @@ const LocationsPage = () => {
         </div>
       </div>
       <LastCTA 
-        bgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg" 
+        bgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg  " 
         title="From Lawn to Lush, Let’s Begin!" 
         description="Whether its lush lawn care, expert sprinkler repair, or full-scale landscaping, Lawn Care Services is here to help your yard thrive." 
         ctaText="Call Now To Get Started" 
