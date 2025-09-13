@@ -1,20 +1,123 @@
-import React from 'react'
-import ContactForm from '@/components/ContactForm'
-import { SlideInRight, ScaleIn, SlideInLeft } from '@/components/animations/Animate'
-import { Metadata } from 'next'
-import Image from 'next/image'
-export const metadata: Metadata = {
+import React from 'react';
+import ContactForm from '@/components/ContactForm';
+import { SlideInRight, ScaleIn, SlideInLeft } from '@/components/animations/Animate';
+import { Metadata } from 'next';
+import Image from 'next/image';
+
+const metadata: Metadata = {
     title: 'Contact Us | Get in Touch for Lawn Care Services',
-    description: 'Contact our team of landscaping experts today for a free consultation. We\'re here to bring your outdoor vision to life!',
-    keywords: ['contact us', 'get a quote', 'lawn care services', 'free consultation', 'customer service'],
+    description: "Contact our team of landscaping experts today for a free consultation. We're here to bring your outdoor vision to life!",
+    keywords: [
+        'contact us',
+        'get a quote',
+        'lawn care services',
+        'free consultation',
+        'customer service',
+    ],
     openGraph: {
         title: 'Contact Our Lawn Care Team',
         description: 'Reach out to schedule a consultation or ask questions about our services.',
         type: 'website',
         locale: 'en_US',
-    }
+    },
 };
+
+// Optional: Define interface if you plan to make contact info dynamic later
+// For now, it's static, so not strictly needed — but included for scalability
+interface ContactInfoItem {
+    title: string;
+    value: string;
+    href: string;
+    icon: React.ReactNode;
+    bgColor: string;
+    hoverBgColor: string;
+    textColor: string;
+    hoverTextColor: string;
+}
+
 const ContactSection = () => {
+    // You could make this dynamic later — for now, just declared for clarity
+    const contactItems: ContactInfoItem[] = [
+        {
+            title: 'Call Us',
+            value: '(972) 543-9020',
+            href: 'tel:+19725439020',
+            icon: (
+                <svg
+                    className="w-5 h-5 text-green-600 group-hover:text-green-700 transition-colors duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                </svg>
+            ),
+            bgColor: 'bg-green-100',
+            hoverBgColor: 'group-hover:bg-green-50',
+            textColor: 'text-green-600',
+            hoverTextColor: 'group-hover:text-green-700',
+        },
+        {
+            title: 'Email Us',
+            value: 'abc@gmail.com',
+            href: 'mailto:abc@gmail.com',
+            icon: (
+                <svg
+                    className="w-5 h-5 text-blue-600 group-hover:text-blue-700 transition-colors duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                </svg>
+            ),
+            bgColor: 'bg-blue-100',
+            hoverBgColor: 'group-hover:bg-blue-50',
+            textColor: 'text-blue-600',
+            hoverTextColor: 'group-hover:text-blue-700',
+        },
+        {
+            title: 'Our Location',
+            value: '14035 Janwood Ln, Farmers Branch, TX 75234',
+            href: 'https://www.google.com/maps/place/14035+Janwood+Ln,+Farmers+Branch,+TX+75234,+USA',
+            icon: (
+                <svg
+                    className="w-5 h-5 text-purple-600 group-hover:text-purple-700 transition-colors duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                </svg>
+            ),
+            bgColor: 'bg-purple-100',
+            hoverBgColor: 'group-hover:bg-purple-50',
+            textColor: 'text-purple-600',
+            hoverTextColor: 'group-hover:text-purple-700',
+        },
+    ];
+
     return (
         <>
             {/* Hero Section */}
@@ -34,7 +137,7 @@ const ContactSection = () => {
                                 width: '100%',
                                 height: '100%',
                                 objectFit: 'cover',
-                                objectPosition: 'center'
+                                objectPosition: 'center',
                             }}
                         />
                     </div>
@@ -46,16 +149,18 @@ const ContactSection = () => {
 
                 {/* Content Container */}
                 <div className="absolute z-10 w-full pb-35 h-full flex items-center justify-center">
-                    <ScaleIn viewportMargin='0px'>
+                    <ScaleIn viewportMargin="0px">
                         <div className="w-full px-6 py-16 text-center">
                             {/* Main Heading */}
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold text-white leading-tight mb-6 ">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-bold text-white leading-tight mb-6">
                                 Contact
                             </h1>
                             {/* Subtitle */}
                             <p className="text-white text-md sm:text-lg md:text-lg 2xl:text-3xl leading-relaxed w-full text-center sm:px-20 max-w-4xl mx-auto">
-                                Have questions? Need a quote? Want to schedule a service? We're just a message or call away.
-                                Reach out and let's make your landscape vision a reality.
+                                Have questions? Need a quote? Want to schedule a
+                                service? We're just a message or call away. Reach
+                                out and let's make your landscape vision a
+                                reality.
                             </p>
                         </div>
                     </ScaleIn>
@@ -71,133 +176,68 @@ const ContactSection = () => {
                                 Getting in Touch Is Easy!
                             </h2>
                             <p className="w-full sm:w-1/2 text-gray-600 text-sm sm:text-md 2xl:text-lg sm:px-10 2xl:px-10 text-center sm:text-left 2xl:text-left">
-                                Whether you're ready to start a project or just have a quick question, we're here to help.
-                                Fill out the form and one of our friendly team members will get back to you shortly.
+                                Whether you're ready to start a project or just
+                                have a quick question, we're here to help. Fill
+                                out the form and one of our friendly team
+                                members will get back to you shortly.
                             </p>
                         </div>
                     </ScaleIn>
 
-
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 px-6 sm:px-30">
-
                         {/* Contact Information */}
                         <SlideInLeft xOffset={-200} duration={0.4}>
                             <div className="order-1">
-                                <div className="">
-                                    <div>
-                                        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center sm:text-left">Contact Details</h3>
-                                    </div>
+                                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center sm:text-left">
+                                    Contact Details
+                                </h3>
 
-                                    {/* Contact Info Cards */}
-                                    <div className="">
-                                        {/* Phone */}
+                                {/* Render contact items */}
+                                <div className="space-y-4">
+                                    {contactItems.map((item, index) => (
                                         <a
-                                            href="tel:+19725439020"
+                                            key={index}
+                                            href={item.href}
+                                            target={item.title === 'Our Location' ? '_blank' : undefined}
+                                            rel={
+                                                item.title === 'Our Location'
+                                                    ? 'noopener noreferrer'
+                                                    : undefined
+                                            }
                                             className="flex flex-col items-center justify-center sm:items-start sm:justify-start sm:flex-row sm:items-start space-y-2 sm:space-x-4 p-2 sm:p-4 hover:bg-gray-50 rounded-lg transition-colors duration-200 group cursor-pointer"
                                         >
                                             <div className="flex-shrink-0 mt-1">
-                                                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-50 transition-colors duration-200">
-                                                    <svg
-                                                        className="w-5 h-5 text-green-600 group-hover:text-green-700 transition-colors duration-200"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                                                        />
-                                                    </svg>
+                                                <div
+                                                    className={`w-10 h-10 ${item.bgColor} rounded-full flex items-center justify-center ${item.hoverBgColor} transition-colors duration-200`}
+                                                >
+                                                    {item.icon}
                                                 </div>
                                             </div>
                                             <div>
-                                                <h4 className="font-bold text-lg mb-0.5 text-gray-900 group-hover:text-green-600 transition-colors duration-200 text-center sm:text-left">Call Us</h4>
-                                                <p className="text-gray-600 font-medium text-sm group-hover:text-green-700 transition-colors duration-200 text-center sm:text-left">
-                                                    (972) 543-9020
+                                                <h4
+                                                    className={`font-bold text-lg mb-0.5 text-gray-900 ${item.hoverTextColor} transition-colors duration-200 text-center sm:text-left`}
+                                                >
+                                                    {item.title}
+                                                </h4>
+                                                <p
+                                                    className={`text-gray-600 font-medium text-sm ${item.hoverTextColor} transition-colors duration-200 text-center sm:text-left`}
+                                                >
+                                                    {item.value}
                                                 </p>
                                             </div>
                                         </a>
-
-                                        {/* Email */}
-                                        <a
-                                            href=""
-                                            className="flex flex-col items-center justify-center sm:items-start sm:justify-start sm:flex-row sm:items-start space-y-2 sm:space-x-4 p-2 sm:p-4 hover:bg-gray-50 rounded-lg transition-colors duration-200 group cursor-pointer"
-                                        >
-                                            <div className="flex-shrink-0 mt-1">
-                                                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-50 transition-colors duration-200">
-                                                    <svg
-                                                        className="w-5 h-5 text-blue-600 group-hover:text-blue-700 transition-colors duration-200"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <h4 className="font-bold text-lg mb-0.5 text-gray-900 group-hover:text-blue-600 transition-colors duration-200 text-center sm:text-left">Email Us</h4>
-                                                <p className="text-gray-600 font-medium text-sm group-hover:text-blue-700 transition-colors duration-200 text-center sm:text-left">
-                                                    {/* info@gmail.com */}
-                                                    abc@gmail.com
-                                                </p>
-                                            </div>
-                                        </a>
-
-                                        {/* Address */}
-                                        <a
-                                            href="https://www.google.com/maps/place/14035+Janwood+Ln,+Farmers+Branch,+TX+75234,+USA"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex flex-col items-center justify-center sm:items-start sm:justify-start sm:flex-row sm:items-start space-y-2 sm:space-x-4 p-2 sm:p-4 hover:bg-gray-50 rounded-lg transition-colors duration-200 group cursor-pointer"
-                                        >
-                                            <div className="flex-shrink-0 mt-1">
-                                                <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center group-hover:bg-purple-50 transition-colors duration-200">
-                                                    <svg
-                                                        className="w-5 h-5 text-purple-600 group-hover:text-purple-700 transition-colors duration-200"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                                        />
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <h4 className="font-bold text-lg mb-0.5 text-gray-900 group-hover:text-purple-600 transition-colors duration-200 text-center sm:text-left">Our Location</h4>
-                                                <p className="text-gray-600 text-sm group-hover:text-purple-700 transition-colors duration-200 text-center sm:text-left">
-                                                    14035 Janwood Ln, Farmers Branch, TX 75234
-                                                </p>
-                                            </div>
-                                        </a>
-
-                                    </div>
+                                    ))}
                                 </div>
                             </div>
                         </SlideInLeft>
+
                         {/* Contact Form */}
                         <SlideInRight xOffset={200} duration={0.4}>
                             <div className="order-2">
                                 <div className="rounded-2xl">
-                                    <h3 className="text-3xl text-center sm:text-left font-bold mb-6">Send Us a Message</h3>
+                                    <h3 className="text-3xl text-center sm:text-left font-bold mb-6">
+                                        Send Us a Message
+                                    </h3>
                                     <ContactForm />
                                 </div>
                             </div>
@@ -205,6 +245,7 @@ const ContactSection = () => {
                     </div>
                 </div>
             </section>
+
             {/* Map section */}
             <div className="px-10 sm:px-30 mb-20">
                 <div className="relative rounded-2xl overflow-hidden h-96">
@@ -233,7 +274,7 @@ const ContactSection = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default ContactSection
+export default ContactSection;

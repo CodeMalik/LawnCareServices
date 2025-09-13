@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ScaleIn} from '@/components/animations/Animate'
 import {Metadata} from 'next'
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
     title: 'Gallery | Lawn Care Services',
     description: 'Browse our portfolio of completed landscaping projects. See before and after transformations of our work.',
     keywords: ['gallery', 'portfolio', 'our work', 'landscaping projects', 'garden transformations'],

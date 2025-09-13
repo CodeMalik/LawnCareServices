@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --primary-color: #54b435 ; /* Cancun Landscape green */
+  --primary-color: #54b435;
   --secondary-color: #f5a623;
   --tertiary-color: #edfbe2;
 }

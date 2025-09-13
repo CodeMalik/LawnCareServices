@@ -1,7 +1,11 @@
 import { locations } from '@/lib/data';
 
-export function generateStaticParams() {
-  return locations.map((location) => ({
+interface Location {
+  slug: string;
+}
+
+export function generateStaticParams(): { location: string }[] {
+  return locations.map((location: Location) => ({
     location: location.slug,
   }));
 }

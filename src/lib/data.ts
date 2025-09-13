@@ -7,8 +7,11 @@ export const services: Service[] = [
     description: 'Smart watering — every time.',
     features: [
       'New & replacement systems',
-      'Leak repairs & pressure fixes',
-      'Smart controller upgrades'
+      'Leak detection & repairs',
+      'Pressure balancing for optimal flow',
+      'Smart controller upgrades for efficiency',
+      'Custom irrigation designs for unique landscapes',
+      'System check-ups for year-round performance'
     ],
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/sprinkles_ygwubq.webp',
     link: '/services/sprinkler-installation-repair'
@@ -18,9 +21,12 @@ export const services: Service[] = [
     title: 'Irrigation System Repair',
     description: 'Restore flow, save water.',
     features: [
-      'Leak detection & fixes',
-      'Valve & line repairs',
-      'Pressure optimization'
+      'Detect & fix leaks to minimize waste',
+       'Valve replacements for accurate water flow',
+  'Optimize water pressure for healthy plants',
+ 'Troubleshoot and repair faulty lines',
+  'Improve system performance with modern upgrades',
+  'Regular inspections to maintain peak efficiency',
     ],
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/arrigation_repair_qtouoi.webp',
     link: '/services/irrigation-system-repair'
@@ -30,9 +36,12 @@ export const services: Service[] = [
     title: 'Landscaping Services',
     description: 'Turn Ordinary into Outstanding',
     features: [
-      'Custom landscape design',
-      'Garden & hardscape installs',
-      'Mulching & soil prep'
+       'Custom landscape design that fits your vision',
+  'Install stunning gardens and hardscapes',
+  'Expert mulching for healthier soil',
+  'Soil preparation for lush, thriving plants',
+  'Outdoor lighting and decorative features',
+  'Year-round maintenance for continuous beauty',
     ],
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/service_jre4ii.webp',
     link: '/services/landscaping-services'
@@ -42,9 +51,12 @@ export const services: Service[] = [
     title: 'Lawn Health & Protection',
     description: 'Greener lawns, stronger roots.',
     features: [
-      'Seasonal fertilization',
-      'Aeration & soil care',
-      'Disease & drought defense'
+  'Seasonal fertilization for growth boost',
+  'Aeration to improve soil quality',
+  'Comprehensive drought defense solutions',
+  'Disease prevention for long-term lawn health',
+  'Nutrient-rich soil care for optimum plant life',
+  'Expert advice on maintaining a healthy lawn',
     ],
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/lawn-care_nr24lc.webp',
     link: '/services/lawn-health-protection'
@@ -54,9 +66,12 @@ export const services: Service[] = [
     title: 'Tree & Plant Care',
     description: 'Stronger growth, vibrant life.',
     features: [
-      'Tree injections',
-      'Plant-specific care',
-      'Pest & disease treatment'
+      'Specialized tree injections for faster growth',
+  'Custom plant care based on species needs',
+  'Effective pest & disease treatments',
+  'Root care for longevity and stability',
+  'Pruning & trimming for healthy development',
+  'Seasonal protection for year-round health',
     ],
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/tree-cares_b46fzz.webp',
     link: '/services/tree-plant-health-management'
@@ -66,9 +81,12 @@ export const services: Service[] = [
     title: 'Insect & Weed Control',
     description: 'Goodbye pests, hello healthy lawn.',
     features: [
-      'Weed prevention',
-      'Eco-friendly insect control',
-      'Seasonal protection plans'
+  'Advanced weed prevention strategies',
+  'Eco-friendly insect control solutions',
+  'Natural pest management for a greener yard',
+  'Effective seasonal protection plans',
+  'Targeted treatments for problem areas',
+  'Safe for pets and family-friendly treatments',
     ],
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/weed_fzqelt.webp',
     link: '/services/insect-weed-control'
@@ -83,19 +101,39 @@ export const trustIndicators: TrustIndicator[] = [
   },
   {
     id: 'experience',
-    title: '25+ Years of Experience',
+    title: '18+ Years of Experience',
     description: 'Proven expertise you can see in every yard we touch.'
   },
   {
     id: 'licensed-insured',
     title: 'Licensed & Insured',
-    description: 'Honest work. Total peace of mind'
+    description: 'Honest work. Total peace of mind.'
   },
   {
     id: 'eco-friendly',
     title: 'Eco-Friendly Products',
-    description: 'Safe for pets & kids'
-  }
+    description: 'Safe for pets & kids.'
+  },
+   {
+    id: 'satisfaction',
+    title: '100% Customer Satisfaction Guaranteed',
+    description: ' We stand by our work and our customers.'
+  },
+   {
+    id: 'all-season',
+    title: 'Offer All-Season Services',
+    description: 'Lawn care and maintenance, no matter the weather.'
+  },
+  {
+    id: 'affordable-price',
+    title: 'Affordable Pricing Plans',
+    description: 'Quality service without breaking the bank.'
+  },
+  {
+    id: 'local-expertise',
+    title: 'Local Expertise',
+    description: 'Deep understanding of regional climates, landscaping soil types for optimal lawn care.'
+  },
 ];
 
 export const testimonials: Testimonial[] = [
@@ -154,29 +192,59 @@ export const serviceAreas: ServiceArea[] = [
 export const faqItems: FAQItem[] = [
   {
     id: 'watering-frequency',
-    question: 'How often should I water my lawn in Dallas?',
-    answer: 'For most Dallas lawns, we recommend watering 2–3 times per week, early in the morning. Our sprinkler systems are designed to optimize water use and avoid waste.'
+    question: 'How often should I water my lawn in the United States?',
+    answer: ' Water your lawn 2-3 times a week, early in the morning. This ensures that your lawn receives adequate hydration, with minimal water loss from evaporation, helping your grass grow healthier and stronger.'
   },
   {
     id: 'sprinkler-repair',
     question: 'Do you repair broken or leaking sprinkler systems?',
-    answer: 'Yes! We specialize in sprinkler and irrigation repair. From leaks and clogs to full system diagnostics, we ensure your system runs efficiently and reliably.'
+    answer: ' Yes, we specialize in repairing broken or leaking sprinkler systems. Our services include leak detection, pressure optimization, and valve repairs to restore the full functionality of your system and enhance water efficiency.'
   },
   {
     id: 'service-areas',
-    question: 'What areas do you serve outside of Dallas?',
-    answer: 'We proudly serve a wide area, including Coppell, Frisco, Plano, Denton, McKinney, Garland, Irving, Arlington, and more.'
+    question: 'What areas do you serve outside of Columbia?',
+    answer: ' We serve all major regions across the United States. Our services are available in various states, ensuring that whether you are in the East, West, North, or South, you can rely on our expert lawn care and landscaping solutions.'
   },
   {
     id: 'pet-safety',
     question: 'Are your insect and weed treatments safe for pets?',
-    answer: 'Absolutely. We use pet-friendly, eco-conscious products that are tough on pests and weeds but safe for your family and furry friends.'
+    answer: ' Yes, all our insect and weed treatments are pet-safe. We use eco-friendly, non-toxic products that are safe for both pets and children, ensuring your lawn stays healthy without compromising safety.'
   },
   {
     id: 'response-time',
     question: 'How soon can you start after I book a service?',
-    answer: 'We offer some of the fastest landscaping response times in the Dallas area. In most cases, we can schedule your service within just a few days.'
-  }
+    answer: 'We can typically start within 12-48 hours of booking. Once your service is scheduled, we prioritize quick response times, ensuring your lawn care needs are met as soon as possible based on location and service availability.'
+  },
+  {
+    id: 'response-time',
+    question: 'What are the common lawn care problems?',
+    answer: 'Common lawn care problems include weeds, pests, poor soil conditions, and inconsistent watering. These issues can affect lawn health and appearance, but they can be effectively managed with regular care and professional treatments.'
+  },
+  {
+    id: 'response-time',
+    question: 'What are some DIY lawn care tips?',
+    answer: ' Regular mowing, aerating the lawn, and applying balanced fertilizers are effective DIY tips. These steps help maintain a healthy lawn, improve soil quality, and support consistent grass growth throughout the year.'
+  },
+   {
+    id: 'response-time',
+    question: 'What are the benefits of professional lawn care?',
+    answer: ' Professional lawn care provides expert knowledge, consistent results, and time savings. Experts use the right products and techniques for your specific lawn type, ensuring optimal results while saving you the hassle of maintaining the lawn yourself.'
+  },
+   {
+    id: 'response-time',
+    question: 'What are the steps for lawn care?',
+    answer: 'The key steps for lawn care include mowing, fertilizing, aerating, and controlling pests. Regular mowing keeps the lawn even, fertilizing boosts nutrients, aeration helps with soil compaction, and pest control protects your lawn from damage.'
+  },
+  {
+    id: 'response-time',
+    question: 'How much should you pay someone for mowing your lawn?',
+    answer: ' Lawn mowing services typically cost between $30 and $80 per visit, depending on lawn size, location, and service requirements. Some providers offer packages for additional services such as trimming and edging, which may increase the cost.'
+  },
+  {
+    id: 'response-time',
+    question: 'What is considered full-service lawn care?',
+    answer: ' Full-service lawn care includes mowing, fertilization, aeration, pest control, and general landscaping. This comprehensive package covers all aspects of lawn maintenance, ensuring your yard is always in top condition year-round.'
+  },
 ];
 
 export const galleryItems: GalleryItem[] = [
