@@ -35,11 +35,12 @@ const GallerySection: React.FC = () => {
                         id="gallery-section-heading"
                         className="text-2xl sm:text-5xl font-bold text-gray-900 mb-4 mx-8 sm:mx-0"
                     >
-                        See the Difference We Create
+                        Experience the Transformation We Bring to Every Lawn
+
                     </h2>
                     <p className="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto">
-                        From lifeless lawns to stunning landscapes, explore how we turn ordinary
-                        yards into extraordinary outdoor spaces.
+                        From dull, lifeless grass to vibrant, healthy landscapes, witness how we turn ordinary yards into extraordinary outdoor spaces. Let us enhance your curb appeal with expert care and precision.
+
                     </p>
                 </div>
 

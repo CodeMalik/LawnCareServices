@@ -94,10 +94,10 @@ const TrustIndicators = (): React.ReactNode => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-xl sm:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-            Experience the Transformation We Bring to Every Lawn
+            Why Business and Homeowners Trust Us
           </h2>
           <p className="text-sm text-gray-600 max-w-4xl mx-auto">
-            From dull, lifeless grass to vibrant, healthy landscapes, witness how we turn ordinary yards into extraordinary outdoor spaces. Let us enhance your curb appeal with expert care and precision.
+            With over 18 years of experience, we’re a trusted lawn care contractor offering consistent, reliable service across the United States, backed by all-season craftsmanship you can count on.
           </p>
         </div>
 
