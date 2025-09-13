@@ -28,9 +28,9 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-3xl leading-tight sm:leading-relaxed text-center sm:text-left sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-8">
-            Transform Your Yard into a{' '}
+            Transform Your Lawn with Professional {' '}
             <span className="text-green-400 relative inline-block">
-              Tropical Paradise
+             Lawn Care Services
               {/* Decorative underline */}
               <svg
                 className="absolute -bottom-2 left-0 w-full h-3 text-green-300"
@@ -45,7 +45,7 @@ const Hero = () => {
 
           {/* Subtitle */}
           <p className="text-white text-center sm:text-left text-md sm:text-xl mb-8 max-w-4xl leading-tight sm:leading-relaxed">
-            Fast, affordable sprinkler repair, lawn care, and landscaping — all handled by local experts. Book today and enjoy a worry-free yard.
+            Smart lawn care, professional sprinkler repair, and eco-friendly landscaping designed for lasting beauty.
           </p>
 
           {/* CTA Button */}

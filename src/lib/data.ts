@@ -1,5 +1,3 @@
-// src/lib/data.ts
-
 import { Service, TrustIndicator, Testimonial, ServiceArea, FAQItem, GalleryItem, MiniGalleryItem, ServiceContent, LocationMainPage } from '@/types';
 
 export const services: Service[] = [
@@ -12,7 +10,7 @@ export const services: Service[] = [
       'Leak repairs & pressure fixes',
       'Smart controller upgrades'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992705/sprinkler-installation_b4lvq6.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/sprinkles_ygwubq.webp',
     link: '/services/sprinkler-installation-repair'
   },
   {
@@ -24,7 +22,7 @@ export const services: Service[] = [
       'Valve & line repairs',
       'Pressure optimization'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754998417/Irrigation-System-Repair_z8cjw0.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/arrigation_repair_qtouoi.webp',
     link: '/services/irrigation-system-repair'
   },
   {
@@ -36,7 +34,7 @@ export const services: Service[] = [
       'Garden & hardscape installs',
       'Mulching & soil prep'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991870/Landscaping-Services_xupixr.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/service_jre4ii.webp',
     link: '/services/landscaping-services'
   },
   {
@@ -48,7 +46,7 @@ export const services: Service[] = [
       'Aeration & soil care',
       'Disease & drought defense'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991879/Lawn-Health-Protection_b11ucp.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/lawn-care_nr24lc.webp',
     link: '/services/lawn-health-protection'
   },
   {
@@ -60,7 +58,7 @@ export const services: Service[] = [
       'Plant-specific care',
       'Pest & disease treatment'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991893/Tree-Plant-Health-Management_lgtuof.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/tree-cares_b46fzz.webp',
     link: '/services/tree-plant-health-management'
   },
   {
@@ -72,7 +70,7 @@ export const services: Service[] = [
       'Eco-friendly insect control',
       'Seasonal protection plans'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991871/Insect-Weed-Control_nsadyz.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/weed_fzqelt.webp',
     link: '/services/insect-weed-control'
   }
 ];
