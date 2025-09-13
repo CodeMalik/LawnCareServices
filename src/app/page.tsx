@@ -8,6 +8,7 @@ import GallerySection from '@/components/GallerySection'
 import FAQ from '@/components/FAQ'
 import LastSection from '@/components/LastSection'
 import { Metadata } from 'next'
+import About from '@/components/About'
 
 export const metadata: Metadata = {
   title: 'Lawn Care Services | Transform Your Outdoor Space',
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
+      <About />
       <Services />
       <TrustIndicators />
       <Testimonials />

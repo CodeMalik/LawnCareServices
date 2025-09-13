@@ -94,10 +94,10 @@ const TrustIndicators = (): React.ReactNode => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-xl sm:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
-            Why Homeowners Trust Us
+            Experience the Transformation We Bring to Every Lawn
           </h2>
           <p className="text-sm text-gray-600 max-w-4xl mx-auto">
-            Serving Dallas for over 25 years with care, consistency, and craftsmanship you can count on.
+            From dull, lifeless grass to vibrant, healthy landscapes, witness how we turn ordinary yards into extraordinary outdoor spaces. Let us enhance your curb appeal with expert care and precision.
           </p>
         </div>
 

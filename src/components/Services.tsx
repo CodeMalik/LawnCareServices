@@ -58,7 +58,7 @@ const ServiceCard = ({ service }: ServiceCardProps): React.ReactNode => {
           href={service.link}
           className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-semibold transition-colors duration-200 group"
         >
-          Learn More
+          Book Your Service Now!
           <svg
             className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
             fill="none"
@@ -92,7 +92,7 @@ const Services = (): React.ReactNode => {
             Tailored Landscaping Solutions for Every Yard
           </h2>
           <p className="text-md text-gray-500 max-w-3xl mx-auto">
-            Sick of Constant Lawn Hassles? Get Total Solutions for a Lush, Worry-Free Yard—All in One Place.
+            Sick of constant lawn hassles? Get total solutions for a lush, worry-free yard— all in one place. Select From Our Property Services Below.
           </p>
         </div>
 

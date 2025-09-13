@@ -36,7 +36,7 @@ const LastSection: React.FC = () => {
                             id="last-section-heading"
                             className="text-center text-3xl md:text-4xl font-bold text-white mb-6 leading-12"
                         >
-                            From Lawn to Lush, Let’s Begin!
+                            Transform Your Lawn into a Lush Oasis!
                         </h2>
                         {/* Decorative underline */}
                         <svg
@@ -49,8 +49,7 @@ const LastSection: React.FC = () => {
                             <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
                         </svg>
                         <p className="text-sm text-white text-center sm:text-md mb-8 max-w-3xl mx-auto">
-                            Whether it’s lush lawn care, expert sprinkler repair, or full-scale
-                            landscaping, Lawn Care Services is here to help your yard thrive.
+                            From expert lawn care and sprinkler repair to complete landscaping services, Lawn Care Services is dedicated to making your yard thrive year-round. Let us bring your vision to life with professional care.
                         </p>
                         <div className="w-full flex justify-center">
                             <Link

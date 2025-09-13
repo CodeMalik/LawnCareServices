@@ -54,9 +54,9 @@ const Hero: React.FC = () => {
                             id="hero-heading"
                             className="text-3xl leading-tight sm:leading-relaxed text-center sm:text-left sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-8"
                         >
-                            Transform Your Yard into a{' '}
+                            Hire an Expert {' '}
                             <span className="text-green-400 relative inline-block">
-                                Tropical Paradise
+                                Lawn Care Services
                                 {/* Decorative underline */}
                                 <svg
                                     className="absolute -bottom-2 left-0 w-full h-3 text-green-300"
@@ -68,11 +68,12 @@ const Hero: React.FC = () => {
                                     <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
                                 </svg>
                             </span>
+                            Provider within five minutes
                         </h1>
 
                         {/* Subtitle */}
                         <p className="text-white text-center sm:text-left text-md sm:text-xl mb-8 max-w-4xl leading-tight sm:leading-relaxed">
-                            Fast, affordable sprinkler repair, lawn care, and landscaping — all handled by local experts. Book today and enjoy a worry-free yard.
+                            Smart lawn care, professional sprinkler repair, and eco-friendly landscaping designed for lasting beauty.
                         </p>
 
                         {/* CTA Button */}
