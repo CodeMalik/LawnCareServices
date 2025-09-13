@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
                                     <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
                                 </svg>
                             </span>
-                            Provider within five minutes
+                            Expert within five minutes
                         </h1>
 
                         {/* Subtitle */}
