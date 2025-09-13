@@ -1,3 +1,5 @@
+// src/lib/data.ts
+
 import { Service, TrustIndicator, Testimonial, ServiceArea, FAQItem, GalleryItem, MiniGalleryItem, ServiceContent, LocationMainPage } from '@/types';
 
 export const services: Service[] = [
@@ -13,7 +15,7 @@ export const services: Service[] = [
       'Custom irrigation designs for unique landscapes',
       'System check-ups for year-round performance'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/sprinkles_ygwubq.webp',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992705/sprinkler-installation_b4lvq6.jpg',
     link: '/services/sprinkler-installation-repair'
   },
   {
@@ -28,7 +30,7 @@ export const services: Service[] = [
   'Improve system performance with modern upgrades',
   'Regular inspections to maintain peak efficiency',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/arrigation_repair_qtouoi.webp',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754998417/Irrigation-System-Repair_z8cjw0.jpg',
     link: '/services/irrigation-system-repair'
   },
   {
@@ -43,7 +45,7 @@ export const services: Service[] = [
   'Outdoor lighting and decorative features',
   'Year-round maintenance for continuous beauty',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/service_jre4ii.webp',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991870/Landscaping-Services_xupixr.jpg',
     link: '/services/landscaping-services'
   },
   {
@@ -58,7 +60,7 @@ export const services: Service[] = [
   'Nutrient-rich soil care for optimum plant life',
   'Expert advice on maintaining a healthy lawn',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/lawn-care_nr24lc.webp',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991879/Lawn-Health-Protection_b11ucp.jpg',
     link: '/services/lawn-health-protection'
   },
   {
@@ -73,7 +75,7 @@ export const services: Service[] = [
   'Pruning & trimming for healthy development',
   'Seasonal protection for year-round health',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/tree-cares_b46fzz.webp',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991893/Tree-Plant-Health-Management_lgtuof.jpg',
     link: '/services/tree-plant-health-management'
   },
   {
@@ -88,7 +90,7 @@ export const services: Service[] = [
   'Targeted treatments for problem areas',
   'Safe for pets and family-friendly treatments',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/weed_fzqelt.webp',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991871/Insect-Weed-Control_nsadyz.jpg',
     link: '/services/insect-weed-control'
   }
 ];
