@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: `url('https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg')`, // ✅ Removed trailing space
+                        backgroundImage: `url('https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg')`,
                     }}
                     role="img"
                     aria-label="Beautiful tropical landscape background"
@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
                             id="hero-heading"
                             className="text-3xl leading-tight sm:leading-relaxed text-center sm:text-left sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-8"
                         >
-                            Hire an Expert {' '}
+                            <span className="inline-block">Hire an Expert</span>{' '}
                             <span className="text-green-400 relative inline-block">
                                 Lawn Care Services
                                 {/* Decorative underline */}
@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
                                     <path d="M0,8 Q150,0 300,8 L300,12 L0,12 Z" />
                                 </svg>
                             </span>
-                            Expert within five minutes
+                            <span className="inline-block">Expert within Five minutes</span>
                         </h1>
 
                         {/* Subtitle */}

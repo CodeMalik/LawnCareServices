@@ -213,37 +213,37 @@ export const faqItems: FAQItem[] = [
     answer: ' Yes, all our insect and weed treatments are pet-safe. We use eco-friendly, non-toxic products that are safe for both pets and children, ensuring your lawn stays healthy without compromising safety.'
   },
   {
-    id: 'response-time',
+    id: 'response-time-1',
     question: 'How soon can you start after I book a service?',
     answer: 'We can typically start within 12-48 hours of booking. Once your service is scheduled, we prioritize quick response times, ensuring your lawn care needs are met as soon as possible based on location and service availability.'
   },
   {
-    id: 'response-time',
+    id: 'response-time-2',
     question: 'What are the common lawn care problems?',
     answer: 'Common lawn care problems include weeds, pests, poor soil conditions, and inconsistent watering. These issues can affect lawn health and appearance, but they can be effectively managed with regular care and professional treatments.'
   },
   {
-    id: 'response-time',
+    id: 'response-time-3',
     question: 'What are some DIY lawn care tips?',
     answer: ' Regular mowing, aerating the lawn, and applying balanced fertilizers are effective DIY tips. These steps help maintain a healthy lawn, improve soil quality, and support consistent grass growth throughout the year.'
   },
    {
-    id: 'response-time',
+    id: 'response-time-4',
     question: 'What are the benefits of professional lawn care?',
     answer: ' Professional lawn care provides expert knowledge, consistent results, and time savings. Experts use the right products and techniques for your specific lawn type, ensuring optimal results while saving you the hassle of maintaining the lawn yourself.'
   },
    {
-    id: 'response-time',
+    id: 'response-time-5',
     question: 'What are the steps for lawn care?',
     answer: 'The key steps for lawn care include mowing, fertilizing, aerating, and controlling pests. Regular mowing keeps the lawn even, fertilizing boosts nutrients, aeration helps with soil compaction, and pest control protects your lawn from damage.'
   },
   {
-    id: 'response-time',
+    id: 'response-time-6',
     question: 'How much should you pay someone for mowing your lawn?',
     answer: ' Lawn mowing services typically cost between $30 and $80 per visit, depending on lawn size, location, and service requirements. Some providers offer packages for additional services such as trimming and edging, which may increase the cost.'
   },
   {
-    id: 'response-time',
+    id: 'response-time-7',
     question: 'What is considered full-service lawn care?',
     answer: ' Full-service lawn care includes mowing, fertilization, aeration, pest control, and general landscaping. This comprehensive package covers all aspects of lawn maintenance, ensuring your yard is always in top condition year-round.'
   },
