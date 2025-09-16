@@ -20,7 +20,7 @@ interface Location {
   careers?: string;
 }
 
-const MAIN_WEBSITE_URL: string = 'http://localhost:3000';
+const MAIN_WEBSITE_URL: string = 'https://lawncareservices.us/';
 
 // Updated locations with specific entries and top 10 locations
 const locations: Location[] = [
