@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { locations } from '@/lib/data';
+import { locations } from '../[location]/services/location-services-data';
 import LocationHero from '@/components/LocationHero';
 import LocationStats from '@/components/LocationStats';
 import LocationServiceList from '@/components/LocationServiceList';

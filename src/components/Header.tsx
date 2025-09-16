@@ -57,28 +57,61 @@ export default function Header() {
   // Get navigation items based on current path
   const serviceNavItems = getServiceNavigation(pathname);
   
+  // ✅ Extract location slug from URL — works for:
+  // - /wisconsin
+  // - /wisconsin/services/anything
+  const locationSlug = useMemo(() => {
+    if (!pathname) return null;
+
+    const parts = pathname.split('/').filter(Boolean);
+
+    // Case 1: /{location} (root location page)
+    if (parts.length === 1) {
+      const slug = parts[0];
+      const globalPages = ['about', 'contact', 'gallery', 'services', 'locations'];
+      if (!globalPages.includes(slug)) {
+        return slug;
+      }
+    }
+
+    // Case 2: /{location}/services/... (inside location service)
+    if (parts.length >= 2 && parts[1] === 'services') {
+      return parts[0];
+    }
+
+    return null;
+  }, [pathname]);
+
+  // ✅ Now, isLocationPage is derived from whether we have a locationSlug
+  const isLocationPage = !!locationSlug;
+
   // Check if we're on a location or service page
   const isLocationOrServicePage = pathname?.startsWith('/location/') || 
                                pathname?.startsWith('/services/') ||
                                pathname === '/locations' ||
-                               // Check if we're on a dynamic location page (e.g., /dallas, /austin)
-                               (pathname && pathname.split('/').filter(Boolean).length === 1 && 
-                                !['', 'about', 'contact', 'gallery', 'services'].includes(pathname.split('/')[1]));
-  
+                               isLocationPage;
+
   // Close menus when pathname changes
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
   }, [pathname]);
 
-  // Map navigation items to service items
+  // Map navigation items to service items — DYNAMICALLY PREFIX WITH LOCATION IF APPLICABLE
   const serviceItems: ServiceItem[] = useMemo(() => {
-    return serviceNavItems.map(item => ({
-      name: item.name,
-      href: item.href,
-      serviceSlug: item.href.split('/').pop()
-    }));
-  }, [serviceNavItems]);
+    return serviceNavItems.map(item => {
+      let href = item.href;
+      // If we have a location slug and it's a service link, prefix it
+      if (locationSlug && href.startsWith('/services/')) {
+        href = `/${locationSlug}${href}`;
+      }
+      return {
+        name: item.name,
+        href,
+        serviceSlug: item.href.split('/').pop()
+      };
+    });
+  }, [serviceNavItems, locationSlug]);
 
   const isActivePage = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -111,12 +144,15 @@ export default function Header() {
     router.push(href); // Programmatic navigation
   };
 
+  // ✅ DYNAMIC HOME LINK — location-specific or global
+  const homeLink = locationSlug ? `/${locationSlug}` : '/';
+
   return (
     <header className="fixed w-full top-0 left-0 bg-gradient-to-r from-[rgba(20,23,14,255)] via-[rgba(29,32,24,255)] to-[rgba(14,18,10,255)] shadow-xl z-50">
       <div className="max-w-[1700px] mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
+          <Link href={homeLink} className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
             <Image 
               src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1756287854/output-onlinepngtools_qcy2wr.png" 
               alt="Lawn Care Services Logo"
@@ -130,9 +166,10 @@ export default function Header() {
           {/* Desktop Navigation & Phone */}
           <div className="hidden lg:flex items-center space-x-8">
             <nav className="flex items-center space-x-8">
+              {/* ✅ Dynamic Home Link */}
               <Link 
-                href="/" 
-                className={getLinkClasses('/') + ' text-white hover:text-green-400'}
+                href={homeLink} 
+                className={getLinkClasses(homeLink) + ' text-white hover:text-green-400'}
               >
                 Home
               </Link>
@@ -141,7 +178,7 @@ export default function Header() {
               <div className="relative" ref={dropdownRef}>
                 <div className="flex items-center">
                   <Link 
-                    href="/services"
+                    href=""
                     className={`${getLinkClasses('/services')} text-white hover:text-green-400`}
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                   >
@@ -170,7 +207,7 @@ export default function Header() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
-                  </div>
+                </div>
 
                 {/* Dropdown Menu */}
                 {servicesDropdownOpen && (
@@ -194,18 +231,23 @@ export default function Header() {
                 )}
               </div>
 
-              <Link 
-                href="/gallery" 
-                className={getLinkClasses('/gallery') + ' text-white'}
-              >
-                Gallery
-              </Link>
-              <Link 
-                href="/about" 
-                className={getLinkClasses('/about') + ' text-white'}
-              >
-                About
-              </Link>
+              {/* ✅ Conditionally show Gallery & About — ONLY if NOT on location page */}
+              {!isLocationPage && (
+                <>
+                  <Link 
+                    href="/gallery" 
+                    className={getLinkClasses('/gallery') + ' text-white'}
+                  >
+                    Gallery
+                  </Link>
+                  <Link 
+                    href="/about" 
+                    className={getLinkClasses('/about') + ' text-white'}
+                  >
+                    About
+                  </Link>
+                </>
+              )}
               
               {/* Hide Locations link when on location or service pages */}
               {!isLocationOrServicePage && (
@@ -272,9 +314,10 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white shadow-lg z-60">
           <nav className="max-w-7xl mx-auto px-4 py-2 flex flex-col divide-y divide-gray-100">
+            {/* ✅ Dynamic Home Link */}
             <div 
-              className={`py-2 ${getLinkClasses('/')} text-black`}
-              onClick={() => handleNavigation('/')}
+              className={`py-2 ${getLinkClasses(homeLink)} text-black`}
+              onClick={() => handleNavigation(homeLink)}
             >
               Home
             </div>
@@ -326,18 +369,24 @@ export default function Header() {
               )}
             </div>
 
-            <div 
-              className={`py-2 ${getLinkClasses('/gallery')} text-black`}
-              onClick={() => handleNavigation('/gallery')}
-            >
-              Gallery
-            </div>
-            <div 
-              className={`py-2 ${getLinkClasses('/about')} text-black`}
-              onClick={() => handleNavigation('/about')}
-            >
-              About
-            </div>
+            {/* ✅ Conditionally show Gallery & About — ONLY if NOT on location page */}
+            {!isLocationPage && (
+              <>
+                <div 
+                  className={`py-2 ${getLinkClasses('/gallery')} text-black`}
+                  onClick={() => handleNavigation('/gallery')}
+                >
+                  Gallery
+                </div>
+                <div 
+                  className={`py-2 ${getLinkClasses('/about')} text-black`}
+                  onClick={() => handleNavigation('/about')}
+                >
+                  About
+                </div>
+              </>
+            )}
+
             {!isLocationOrServicePage && (
               <div 
                 className={`py-2 ${getLinkClasses('/locations')} text-black`}
@@ -346,6 +395,7 @@ export default function Header() {
                 Locations
               </div>
             )}
+
             <div 
               className={`py-2 ${getLinkClasses('/contact')} text-black`}
               onClick={(e) => {
