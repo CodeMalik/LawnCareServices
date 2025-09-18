@@ -15,7 +15,7 @@ export const services: Service[] = [
       'Custom irrigation designs for unique landscapes',
       'System check-ups for year-round performance'
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754992705/sprinkler-installation_b4lvq6.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/sprinkles_ygwubq.webp',
     link: '/services/sprinkler-installation-repair'
   },
   {
@@ -30,7 +30,7 @@ export const services: Service[] = [
   'Improve system performance with modern upgrades',
   'Regular inspections to maintain peak efficiency',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754998417/Irrigation-System-Repair_z8cjw0.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/arrigation_repair_qtouoi.webp',
     link: '/services/irrigation-system-repair'
   },
   {
@@ -45,7 +45,7 @@ export const services: Service[] = [
   'Outdoor lighting and decorative features',
   'Year-round maintenance for continuous beauty',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991870/Landscaping-Services_xupixr.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/service_jre4ii.webp',
     link: '/services/landscaping-services'
   },
   {
@@ -60,7 +60,7 @@ export const services: Service[] = [
   'Nutrient-rich soil care for optimum plant life',
   'Expert advice on maintaining a healthy lawn',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991879/Lawn-Health-Protection_b11ucp.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/lawn-care_nr24lc.webp',
     link: '/services/lawn-health-protection'
   },
   {
@@ -75,7 +75,7 @@ export const services: Service[] = [
   'Pruning & trimming for healthy development',
   'Seasonal protection for year-round health',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991893/Tree-Plant-Health-Management_lgtuof.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/tree-cares_b46fzz.webp',
     link: '/services/tree-plant-health-management'
   },
   {
@@ -90,7 +90,7 @@ export const services: Service[] = [
   'Targeted treatments for problem areas',
   'Safe for pets and family-friendly treatments',
     ],
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991871/Insect-Weed-Control_nsadyz.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501914/weed_fzqelt.webp',
     link: '/services/insect-weed-control'
   }
 ];
@@ -280,7 +280,7 @@ export const miniGalleryItems: MiniGalleryItem[] = [
     id: 'transformation-1',
     title: 'Complete Yard Makeover',
     description: 'From bare to beautiful in just 3 weeks',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991713/1-4-300x202_hhdfz4.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757503178/Complete_Yard_Makeover_0A_zltqef.jpg',
     category: 'before-after',
     featured: true
   },
@@ -288,14 +288,14 @@ export const miniGalleryItems: MiniGalleryItem[] = [
     id: 'sprinkler-repair',
     title: 'Sprinkler System Repair',
     description: 'Fixed leaks and optimized water pressure',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991454/1-300x202_t0pcrg.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757503180/Sprinkler_System_Repair_0A_zfmoop.jpg',
     category: 'services'
   },
   {
     id: 'lawn-recovery',
     title: 'Lawn Health Recovery',
     description: 'Revived this damaged lawn in 60 days',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991761/4-4-300x202_mvnm5b.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757503185/Lawn_Health_Recovery_0A_o4wlwq.jpg',
     category: 'results',
     featured: true
   },
@@ -303,14 +303,14 @@ export const miniGalleryItems: MiniGalleryItem[] = [
     id: 'irrigation-install',
     title: 'Smart Irrigation Install',
     description: 'Water-saving system with full coverage',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991777/5-4-300x202_mmrkc6.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757503182/Smart_Irrigation_Install_0A_sfsrfn.jpg',
     category: 'services'
   },
   {
     id: 'landscape-design',
     title: 'Custom Landscape Design',
     description: 'Created this tropical paradise',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991779/5-300x202_ejrhhr.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757503180/Custom_Landscape_Design_0A_ppji3b.jpg',
     category: 'before-after',
     featured: true
   },
@@ -318,7 +318,7 @@ export const miniGalleryItems: MiniGalleryItem[] = [
     id: 'weed-control',
     title: 'Weed Elimination',
     description: 'Completely weed-free in 30 days',
-    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991604/8-4-300x202_umwbsx.jpg',
+    image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757503180/Weed_Elimination_0A_j6ds4n.jpg',
     category: 'results'
   }
 ];
