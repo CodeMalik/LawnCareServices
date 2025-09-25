@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Lawn Care Services - Professional Landscaping Services',
   description: 'Transform your yard into a tropical paradise with our professional landscaping services.',
+    verification: {
+    google: "LyprpqTSzgZqjY3rSz1aqH9LnI8ZQovLtV980g8o7h8", // 👈 Google site-verification
+  },
 }
 
 export default function RootLayout({
