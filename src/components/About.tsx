@@ -9,7 +9,7 @@ const About = () => {
       <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 md:pl-14">
         {/* Left Content */}
         <div className="left-content w-full md:w-1/2 space-y-4 md:space-y-6">
-          <div className="font-semibold text-green-600 text-sm md:text-base">
+          <div className="font-bold text-green-600 text-xl md:text-2xl">
             About Us
           </div>
           <h2 className="text-3xl md:text-4xl font-bold leading-tight">
