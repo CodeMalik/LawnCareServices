@@ -1,21 +1,12 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { testimonials } from '@/lib/data';
+import { fetchTestimonialData, Testimonial } from '@/lib/testimonialsdata';
 import { ScaleIn } from './animations/Animate';
 
 // ======================
 // 🔹 Type Definitions
 // ======================
-
-interface Testimonial {
-  id: string;
-  name: string;
-  date: string;
-  rating: number;
-  verified?: boolean; // ✅ Optional to avoid TS error
-  text: string;
-}
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
@@ -122,9 +113,34 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps): React.ReactNode
 // ======================
 
 const Testimonials = (): React.ReactNode => {
+  // 🔥 NEW: State for dynamic data
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [heading, setHeading] = useState<string>('What Our Happy Clients Say');
+  const [subheading, setSubheading] = useState<string>('Real stories. Real results. See why homeowners across Dallas trust Lawn Care Services for lawns they love.');
+  const [loading, setLoading] = useState(true);
+
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
   const [cardsToShow, setCardsToShow] = useState<number>(1);
+
+  // 🔥 Fetch from Firestore on mount
+  useEffect(() => {
+    const loadTestimonials = async () => {
+      try {
+        const data = await fetchTestimonialData();
+        if (data) {
+          setHeading(data.heading);
+          setSubheading(data.subheading);
+          setTestimonials(data.testimonials);
+        }
+      } catch (error) {
+        console.error('Failed to load testimonials:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadTestimonials();
+  }, []);
 
   useEffect(() => {
     const handleResize = (): void => {
@@ -136,14 +152,14 @@ const Testimonials = (): React.ReactNode => {
   }, []);
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || loading) return;
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex >= testimonials.length - cardsToShow ? 0 : prevIndex + 1
       );
     }, 4000);
     return () => clearInterval(interval);
-  }, [isAutoPlaying, cardsToShow]);
+  }, [isAutoPlaying, cardsToShow, testimonials.length, loading]);
 
   const nextSlide = (): void => {
     setCurrentIndex((prevIndex) =>
@@ -161,6 +177,99 @@ const Testimonials = (): React.ReactNode => {
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
+  // Loading state
+  if (loading) {
+    return (
+      <section className="py-20 bg-[rgba(237,251,226,255)] relative overflow-hidden">
+        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-48 h-48 opacity-20">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 20C140 20 180 60 180 100C180 140 140 180 100 180C80 160 60 140 40 120C20 100 20 60 40 40C60 20 80 20 100 20Z" fill="#22c55e"/>
+            <path d="M100 20C80 40 60 60 40 80C60 100 80 120 100 140C120 120 140 100 160 80C140 60 120 40 100 20Z" fill="#16a34a"/>
+            <circle cx="70" cy="80" r="8" fill="#dcfce7"/>
+            <circle cx="130" cy="120" r="6" fill="#dcfce7"/>
+            <circle cx="90" cy="140" r="4" fill="#dcfce7"/>
+          </svg>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Header Loader */}
+          <div className="text-center mb-16">
+            <div className="animate-pulse">
+              <div className="h-12 bg-gray-300 rounded w-3/4 mx-auto mb-6"></div>
+              <div className="h-6 bg-gray-300 rounded w-1/2 mx-auto mb-8"></div>
+              <div className="w-16 h-1 bg-gray-300 mx-auto"></div>
+            </div>
+          </div>
+
+          {/* Rating Section Loader */}
+          <div className="rounded-xl text-center mb-10">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-300 rounded w-32 mx-auto mb-4"></div>
+              <div className="flex justify-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className="w-8 h-8 bg-gray-300 rounded"></div>
+                ))}
+              </div>
+              <div className="h-4 bg-gray-300 rounded w-48 mx-auto mb-2"></div>
+              <div className="h-8 bg-gray-300 rounded w-64 mx-auto"></div>
+            </div>
+          </div>
+
+          {/* Testimonials Carousel Loader */}
+          <div className="relative flex justify-center items-center mx-auto">
+            {/* Navigation Buttons Loader */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-gray-300 rounded-full md:block hidden"></div>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-gray-300 rounded-full md:block hidden"></div>
+
+            <div className="overflow-hidden mx-12 w-full">
+              <div className="flex">
+                {[...Array(3)].map((_, index) => (
+                  <div key={index} className="w-full sm:w-1/3 flex-shrink-0 px-2">
+                    <div className="animate-pulse">
+                      <div className="bg-white rounded-lg shadow-md p-6 mx-2 my-4 flex flex-col justify-between h-[300px]">
+                        {/* Header Loader */}
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
+                            <div>
+                              <div className="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                              <div className="h-3 bg-gray-300 rounded w-16"></div>
+                            </div>
+                          </div>
+                          <div className="w-6 h-6 bg-gray-300 rounded"></div>
+                        </div>
+
+                        {/* Stars Loader */}
+                        <div className="flex items-center gap-1 mb-3">
+                          {[...Array(5)].map((_, i) => (
+                            <div key={i} className="w-4 h-4 bg-gray-300 rounded"></div>
+                          ))}
+                        </div>
+
+                        {/* Content Loader */}
+                        <div className="space-y-2">
+                          <div className="h-4 bg-gray-300 rounded w-full"></div>
+                          <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+                          <div className="h-4 bg-gray-300 rounded w-4/6"></div>
+                          <div className="h-4 bg-gray-300 rounded w-3/6"></div>
+                        </div>
+
+                        {/* Read More Loader */}
+                        <div className="mt-3">
+                          <div className="h-4 bg-gray-300 rounded w-16 mx-auto"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-20 bg-[rgba(237,251,226,255)] relative overflow-hidden">
       <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-48 h-48 opacity-20">
@@ -177,10 +286,10 @@ const Testimonials = (): React.ReactNode => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-xl sm:text-5xl font-bold text-gray-900 mb-6">
-              What Our Happy Clients Say
+              {heading}
             </h2>
             <p className="text-sm sm:text-md text-gray-600 max-w-4xl mx-auto mb-8">
-              Real stories. Real results. See why homeowners across Dallas trust Lawn Care Services for lawns they love.
+              {subheading}
             </p>
             <div className="w-16 h-1 bg-gray-800 mx-auto"></div>
           </div>
@@ -237,7 +346,7 @@ const Testimonials = (): React.ReactNode => {
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)` }}
               >
-                {testimonials.map((testimonial: Testimonial) => (
+                {testimonials.map((testimonial) => (
                   <div key={testimonial.id} className="w-full sm:w-1/3 flex-shrink-0">
                     <TestimonialCard testimonial={testimonial} />
                   </div>

@@ -6,10 +6,104 @@ import { fetchHeroContent, HeroContent } from '@/lib/heroData'; // adjust path
 
 const Hero: React.FC = () => {
   const [content, setContent] = useState<HeroContent | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchHeroContent().then(setContent);
+    const loadHeroContent = async () => {
+      try {
+        const data = await fetchHeroContent();
+        setContent(data);
+      } catch (error) {
+        console.error('Error loading hero content:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadHeroContent();
   }, []);
+
+  // Loading state
+  if (loading) {
+    return (
+      <section
+        className="relative min-h-[50vh] sm:min-h-[80vh] 2xl:min-h-[70vh] flex overflow-hidden pt-24 md:pt-28"
+        aria-labelledby="hero-heading"
+      >
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg')`,
+            }}
+            role="img"
+            aria-label="Beautiful tropical landscape background"
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl px-4 sm:px-6 2xl:px-20 py-20 w-full">
+          <div className="mx-[10px] sm:mx-[50px] lg:mx-[60px] max-w-6xl">
+            {/* Tagline Loader */}
+            <div className="animate-pulse mb-4">
+              <div className="h-6 bg-gray-300/80 rounded w-3/4 max-w-md mx-auto sm:mx-0"></div>
+            </div>
+
+            {/* Main Heading Loader */}
+            <div className="animate-pulse mb-8">
+              <div className="h-10 bg-gray-300/80 rounded w-full max-w-2xl mb-3 mx-auto sm:mx-0"></div>
+              <div className="h-10 bg-green-300/80 rounded w-3/4 max-w-xl mb-3 mx-auto sm:mx-0"></div>
+              <div className="h-10 bg-gray-300/80 rounded w-5/6 max-w-lg mx-auto sm:mx-0"></div>
+            </div>
+
+            {/* Subtitle Loader */}
+            <div className="animate-pulse mb-8">
+              <div className="h-5 bg-gray-300/80 rounded w-full max-w-4xl mb-2 mx-auto sm:mx-0"></div>
+              <div className="h-5 bg-gray-300/80 rounded w-4/5 max-w-3xl mx-auto sm:mx-0"></div>
+            </div>
+
+            {/* CTA Button Loader */}
+            <div className="animate-pulse mb-12 text-center sm:text-left">
+              <div className="h-14 bg-gray-300/80 rounded-full w-48 mx-auto sm:mx-0"></div>
+            </div>
+
+            {/* Trust Indicators Loader */}
+            <div className="flex items-center justify-between sm:justify-start flex-wrap gap-4 sm:gap-8">
+              {[...Array(3)].map((_, index) => (
+                <div key={index} className="flex items-center gap-2 animate-pulse">
+                  <div className="w-8 h-8 bg-gray-300/80 rounded-full"></div>
+                  <div className="h-4 bg-gray-300/80 rounded w-24"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Curved Bottom Right Design */}
+        <div className="absolute bottom-0 right-0 w-full overflow-hidden" aria-hidden="true">
+          <svg
+            className="absolute bottom-0 right-0 w-full h-32 sm:h-40 md:h-48"
+            preserveAspectRatio="none"
+            viewBox="0 0 1200 200"
+            fill="none"
+          >
+            <path
+              d="M1200,200 L1200,100 C1000,50 800,150 600,100 C400,50 200,150 0,100 L0,200 Z"
+              fill="white"
+              opacity="0.9"
+            />
+            <path
+              d="M1200,200 L1200,120 C1050,80 850,170 650,120 C450,70 250,170 0,120 L0,200 Z"
+              fill="white"
+              opacity="0.6"
+            />
+          </svg>
+        </div>
+      </section>
+    );
+  }
 
   // While loading or if error, use fallback
   const data = content || {

@@ -4,9 +4,9 @@ import { doc, getDoc } from "firebase/firestore";
 // lib/heroData.ts
 export interface HeroContent {
   tagline: string;
-  h1Part1: string;   // ← must be here
-  h1Part2: string;   // ← must be here
-  h1Part3: string;   // ← must be here
+  h1Part1: string;  
+  h1Part2: string;   
+  h1Part3: string;   
   subtitle: string;
   ctaText: string;
   trustIndicators: { icon: string; text: string }[];
@@ -14,7 +14,6 @@ export interface HeroContent {
 
 export async function fetchHeroContent(): Promise<HeroContent> {
   try {
-    // ✅ Updated path: "mainSite", not "main site"cc
     const docRef = doc(db, "mainsite", "herosection");
     const docSnap = await getDoc(docRef);
 

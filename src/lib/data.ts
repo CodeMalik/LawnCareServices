@@ -172,24 +172,24 @@ export const testimonials: Testimonial[] = [
     verified: true
   }
 ];
-
 export const serviceAreas: ServiceArea[] = [
-  { id: 'farmers-branch', name: 'Farmers Branch' },
-  { id: 'universal-park', name: 'Universal Park' },
-  { id: 'north-dallas', name: 'North Dallas' },
-  { id: 'dallas', name: 'Dallas' },
-  { id: 'coppell', name: 'Coppell' },
-  { id: 'garland', name: 'Garland' },
-  { id: 'plano', name: 'Plano' },
-  { id: 'mckinney', name: 'McKinney' },
-  { id: 'irving', name: 'Irving' },
-  { id: 'arlington', name: 'Arlington' },
-  { id: 'north-richland-hills', name: 'North Richland Hills' },
-  { id: 'flower-mound', name: 'Flower Mound' },
-  { id: 'corinth', name: 'Corinth' },
-  { id: 'frisco', name: 'Frisco' },
-  { id: 'denton', name: 'Denton' }
+  { id: 'columbia', name: 'Columbia' },
+  { id: 'minnesota', name: 'Minnesota' },
+  { id: 'wisconsin', name: 'Wisconsin' },
+  { id: 'virginia', name: 'Virginia' },
+  { id: 'michigan', name: 'Michigan' },
+  { id: 'georgia', name: 'Georgia' },
+  { id: 'north-carolina', name: 'North Carolina' },
+  { id: 'nebraska', name: 'Nebraska' },
+  { id: 'delaware', name: 'Delaware' },
+  { id: 'indiana', name: 'Indiana' },
+  { id: 'nocatee', name: 'Nocatee' },
+  { id: 'aiken', name: 'Aiken' },
+  { id: 'alexandria', name: 'Alexandria' },
+  { id: 'augusta', name: 'Augusta' },
+  { id: 'bentonville', name: 'Bentonville' }
 ];
+
 
 export const faqItems: FAQItem[] = [
   {

@@ -1,18 +1,15 @@
+// components/ServiceAreas.tsx
+
 'use client';
 
-import React from 'react';
-import { serviceAreas } from '@/lib/data';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FadeIn } from './animations/Animate';
+import { getServiceAreasData, ServiceAreasSection, ServiceArea } from '@/lib/serviceareadata';
 
 // ======================
 // 🔹 Type Definitions
 // ======================
-
-interface ServiceArea {
-  id: string;
-  name: string;
-}
 
 interface ServiceAreasProps {}
 
@@ -21,8 +18,102 @@ interface ServiceAreasProps {}
 // ======================
 
 const ServiceAreas = (_props: ServiceAreasProps): React.ReactNode => {
-  // Explicitly typed — though imported, we confirm shape via interface
-  const areas: ServiceArea[] = serviceAreas;
+  const [serviceData, setServiceData] = useState<ServiceAreasSection | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchServiceAreas = async () => {
+      try {
+        setLoading(true);
+        const data = await getServiceAreasData();
+        setServiceData(data);
+      } catch (err) {
+        setError('Failed to load service areas');
+        console.error('Error fetching service areas:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServiceAreas();
+  }, []);
+
+  // Loading state
+  if (loading) {
+    return (
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            
+            {/* Map Section Loader */}
+            <div className="relative sm:px-6 lg:px-8">
+              <div className="animate-pulse">
+                <div className="relative rounded-2xl overflow-hidden h-96 bg-gray-300">
+                  {/* Map placeholder */}
+                </div>
+                {/* Map Overlay Loader */}
+                <div className="absolute top-4 left-4 bg-gray-200 p-4 rounded-lg shadow-md w-48">
+                  <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-3/4"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Service Areas List Loader */}
+            <div>
+              {/* Section Header Loader */}
+              <div className="text-center mb-8 px-8 sm:px-6 lg:px-8">
+                <div className="animate-pulse">
+                  <div className="h-8 bg-gray-300 rounded w-3/4 mx-auto mb-4"></div>
+                  <div className="h-4 bg-gray-300 rounded w-1/2 mx-auto mb-2"></div>
+                  <div className="h-4 bg-gray-300 rounded w-2/3 mx-auto"></div>
+                </div>
+              </div>
+
+              {/* Grid of Service Areas Loader */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-8 px-8 sm:px-6 lg:px-8">
+                {[...Array(12)].map((_, index) => (
+                  <div key={index} className="animate-pulse">
+                    <div className="flex items-center gap-2 rounded-lg">
+                      <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+                      <div className="h-4 bg-gray-300 rounded w-20"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Tagline Loader */}
+              <div className="text-center mb-8">
+                <div className="animate-pulse">
+                  <div className="h-6 bg-gray-300 rounded w-2/3 mx-auto"></div>
+                </div>
+              </div>
+
+              {/* Call to Action Loader */}
+              <div className="bg-white rounded-xl text-center">
+                <div className="animate-pulse">
+                  <div className="h-12 bg-gray-300 rounded-2xl w-48 mx-auto"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !serviceData) {
+    return (
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-red-600">{error || 'Failed to load service areas'}</p>
+        </div>
+      </section>
+    );
+  }
+
+  const areas: ServiceArea[] = serviceData.serviceAreas;
 
   return (
     <section className="py-20 bg-white">
@@ -68,23 +159,23 @@ const ServiceAreas = (_props: ServiceAreasProps): React.ReactNode => {
               {/* Section Header */}
               <div className="text-center mb-8 px-8 sm:px-6 lg:px-8">
                 <h5 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-                  Proudly Serving Dallas & Beyond
+                  {serviceData.title}
                 </h5>
                 <p className="text-sm text-gray-500 max-w-4xl mx-auto">
-                  Wherever you are in North Texas, Lawn Care Services brings expert lawn care,
-                  sprinkler repair, and landscaping right to your doorstep.
+                  {serviceData.description}
                 </p>
               </div>
 
-              {/* Grid of Service Areas */}
+              {/* Grid of Service Areas — NOW CLICKABLE */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-8 px-8 sm:px-6 lg:px-8">
                 {areas.map((area: ServiceArea, index: number): React.ReactNode => (
-                  <div
+                  <Link
                     key={area.id}
-                    className="flex items-center gap-2 rounded-lg hover:text-green-700 transition-colors duration-200"
+                    href={`/${area.id}`}
+                    className="flex items-center gap-2 rounded-lg hover:text-green-700 transition-colors duration-200 group"
                   >
                     <svg
-                      className="w-4 h-4 text-green-600 flex-shrink-0"
+                      className="w-4 h-4 text-green-600 flex-shrink-0 group-hover:text-green-700 transition-colors"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -102,14 +193,16 @@ const ServiceAreas = (_props: ServiceAreasProps): React.ReactNode => {
                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                       />
                     </svg>
-                    <span className="text-sm font-medium text-gray-800">{area.name}</span>
-                  </div>
+                    <span className="text-sm font-medium text-gray-800 group-hover:text-green-700">
+                      {area.name}
+                    </span>
+                  </Link>
                 ))}
               </div>
 
               {/* Tagline */}
               <h2 className="text-xl font-bold text-gray-900 mb-8 text-center">
-                Local Service. Lasting Results.
+                {serviceData.tagline}
               </h2>
 
               {/* Call to Action */}
@@ -119,7 +212,7 @@ const ServiceAreas = (_props: ServiceAreasProps): React.ReactNode => {
                     href="/contact"
                     className="bg-[var(--primary-color)] inline-flex items-center justify-center gap-2 hover:bg-green-600 hover:scale-105 duration-300 text-white px-4 py-2 rounded-2xl font-semibold"
                   >
-                    One Call To A Greener Yard!
+                    {serviceData.ctaText}
                   </Link>
                 </div>
               </div>
