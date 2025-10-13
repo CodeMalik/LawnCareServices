@@ -15,33 +15,33 @@ interface ServiceItem {
 }
 
 const defaultServiceItems: ServiceItem[] = [
-  { 
-    name: 'Sprinkler Installation & Repair', 
-    href: '/services/sprinkler-installation-repair',
-    serviceSlug: 'sprinkler-installation-repair'
+  {
+    name: 'Sprinkler System Installation',
+    href: '/services/sprinkler-system-installation',
+    serviceSlug: 'sprinkler-system-installation'
   },
-  { 
-    name: 'Irrigation System Repair', 
-    href: '/services/irrigation-system-repair',
-    serviceSlug: 'irrigation-system-repair'
+  {
+    name: 'Sprinkler System Repair',
+    href: '/services/Sprinkler-system-repair',
+    serviceSlug: 'sprinkler-system-repair'
   },
-  { 
-    name: 'Landscaping Services', 
+  {
+    name: 'Landscaping Services',
     href: '/services/landscaping-services',
     serviceSlug: 'landscaping-services'
   },
-  { 
-    name: 'Lawn Health & Protection', 
+  {
+    name: 'Lawn Health & Protection',
     href: '/services/lawn-health-protection',
     serviceSlug: 'lawn-health-protection'
   },
-  { 
-    name: 'Tree & Plant Health Management', 
+  {
+    name: 'Tree & Plant Health Management',
     href: '/services/tree-plant-health-management',
     serviceSlug: 'tree-plant-health-management'
   },
-  { 
-    name: 'Insect & Weed Control', 
+  {
+    name: 'Insect & Weed Control',
     href: '/services/insect-weed-control',
     serviceSlug: 'insect-weed-control'
   }
@@ -56,7 +56,7 @@ export default function Header() {
 
   // Get navigation items based on current path
   const serviceNavItems = getServiceNavigation(pathname);
-  
+
   // ✅ Extract location slug from URL — works for:
   // - /wisconsin
   // - /wisconsin/services/anything
@@ -86,10 +86,10 @@ export default function Header() {
   const isLocationPage = !!locationSlug;
 
   // Check if we're on a location or service page
-  const isLocationOrServicePage = pathname?.startsWith('/location/') || 
-                               pathname?.startsWith('/services/') ||
-                               pathname === '/locations' ||
-                               isLocationPage;
+  const isLocationOrServicePage = pathname?.startsWith('/location/') ||
+    pathname?.startsWith('/services/') ||
+    pathname === '/locations' ||
+    isLocationPage;
 
   // Close menus when pathname changes
   useEffect(() => {
@@ -120,9 +120,8 @@ export default function Header() {
 
   const getLinkClasses = (href: string) => {
     const isActive = isActivePage(href);
-    return `text-gray-700 py-1 hover:text-green-400 cursor-pointer font-normal transition-colors duration-200 text-sm ${
-      isActive ? 'text-green-400' : 'hover:text-green-400'
-    }`;
+    return `text-gray-700 py-1 hover:text-green-400 cursor-pointer font-normal transition-colors duration-200 text-sm ${isActive ? 'text-green-400' : 'hover:text-green-400'
+      }`;
   };
 
   // Handle navigation and menu closure
@@ -131,7 +130,7 @@ export default function Header() {
       e.preventDefault();
     }
     setMobileMenuOpen(false); // Close menu before navigation
-    
+
     // If on mobile and clicking contact, scroll to contact form
     if (window.innerWidth < 640 && href === '/contact') {
       const contactForm = document.getElementById('contact-form');
@@ -140,7 +139,7 @@ export default function Header() {
         return;
       }
     }
-    
+
     router.push(href); // Programmatic navigation
   };
 
@@ -153,8 +152,8 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href={homeLink} className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
-            <Image 
-              src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1756287854/output-onlinepngtools_qcy2wr.png" 
+            <Image
+              src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1756287854/output-onlinepngtools_qcy2wr.png"
               alt="Lawn Care Services Logo"
               height={100}
               width={100}
@@ -167,24 +166,24 @@ export default function Header() {
           <div className="hidden lg:flex items-center space-x-8">
             <nav className="flex items-center space-x-8">
               {/* ✅ Dynamic Home Link */}
-              <Link 
-                href={homeLink} 
+              <Link
+                href={homeLink}
                 className={getLinkClasses(homeLink) + ' text-white hover:text-green-400'}
               >
                 Home
               </Link>
-              
+
               {/* Services Dropdown */}
               <div className="relative" ref={dropdownRef}>
                 <div className="flex items-center">
-                  <Link 
+                  <Link
                     href=""
                     className={`${getLinkClasses('/services')} text-white hover:text-green-400`}
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                   >
                     Services
                   </Link>
-                  <div 
+                  <div
                     className="relative group cursor-pointer"
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                     onMouseLeave={() => setServicesDropdownOpen(false)}
@@ -198,10 +197,10 @@ export default function Header() {
                       }
                     }}
                   >
-                    <svg 
+                    <svg
                       className={`w-4 h-4 text-white cursor-pointer hover:text-green-400 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`}
-                      fill="none" 
-                      viewBox="0 0 24 24" 
+                      fill="none"
+                      viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -211,7 +210,7 @@ export default function Header() {
 
                 {/* Dropdown Menu */}
                 {servicesDropdownOpen && (
-                  <div 
+                  <div
                     className="absolute left-0 mt-2 w-64 origin-top-left bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50 overflow-hidden"
                     onMouseLeave={() => setServicesDropdownOpen(false)}
                   >
@@ -234,34 +233,34 @@ export default function Header() {
               {/* ✅ Conditionally show Gallery & About — ONLY if NOT on location page */}
               {!isLocationPage && (
                 <>
-                  <Link 
-                    href="/gallery" 
+                  <Link
+                    href="/gallery"
                     className={getLinkClasses('/gallery') + ' text-white'}
                   >
                     Gallery
                   </Link>
-                  <Link 
-                    href="/about" 
+                  <Link
+                    href="/about"
                     className={getLinkClasses('/about') + ' text-white'}
                   >
                     About
                   </Link>
                 </>
               )}
-              
+
               {/* Hide Locations link when on location or service pages */}
               {!isLocationOrServicePage && (
-                <Link 
-                  href="/locations" 
+                <Link
+                  href="/locations"
                   className={getLinkClasses('/locations') + ' text-white'}
                 >
                   Locations
                 </Link>
               )}
-              
+
               {/* Contact link - scrolls to form on mobile or location/service pages */}
-              <a 
-                href="#contact-form" 
+              <a
+                href="#contact-form"
                 className={`${getLinkClasses('/contact')} text-white`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -282,8 +281,8 @@ export default function Header() {
             </nav>
 
             {/* Phone Number Button */}
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               (972) 743-9021
@@ -291,7 +290,7 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden text-white bg-[rgba(84,180,53,255)] focus:outline-none p-2 cursor-pointer"
             aria-label="Toggle menu"
@@ -315,17 +314,17 @@ export default function Header() {
         <div className="lg:hidden bg-white shadow-lg z-60">
           <nav className="max-w-7xl mx-auto px-4 py-2 flex flex-col divide-y divide-gray-100">
             {/* ✅ Dynamic Home Link */}
-            <div 
+            <div
               className={`py-2 ${getLinkClasses(homeLink)} text-black`}
               onClick={() => handleNavigation(homeLink)}
             >
               Home
             </div>
-            
+
             {/* Services Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <div className="flex items-center justify-between w-full">
-                <div 
+                <div
                   className={`${getLinkClasses('/services')} text-gray-700 hover:text-green-400`}
                   onClick={() => handleNavigation('/services')}
                   onMouseEnter={() => setServicesDropdownOpen(true)}
@@ -343,17 +342,17 @@ export default function Header() {
                   aria-expanded={servicesDropdownOpen}
                   aria-label="Toggle services dropdown"
                 >
-                  <svg 
+                  <svg
                     className={`w-4 h-4 text-gray-700 hover:text-green-400 cursor-pointer transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`}
-                    fill="none" 
-                    viewBox="0 0 24 24" 
+                    fill="none"
+                    viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
               </div>
-              
+
               {servicesDropdownOpen && (
                 <div className="ml-4 mt-1 space-y-0 pl-3">
                   {serviceItems.map((item, index) => (
@@ -372,13 +371,13 @@ export default function Header() {
             {/* ✅ Conditionally show Gallery & About — ONLY if NOT on location page */}
             {!isLocationPage && (
               <>
-                <div 
+                <div
                   className={`py-2 ${getLinkClasses('/gallery')} text-black`}
                   onClick={() => handleNavigation('/gallery')}
                 >
                   Gallery
                 </div>
-                <div 
+                <div
                   className={`py-2 ${getLinkClasses('/about')} text-black`}
                   onClick={() => handleNavigation('/about')}
                 >
@@ -388,7 +387,7 @@ export default function Header() {
             )}
 
             {!isLocationOrServicePage && (
-              <div 
+              <div
                 className={`py-2 ${getLinkClasses('/locations')} text-black`}
                 onClick={() => handleNavigation('/locations')}
               >
@@ -396,12 +395,12 @@ export default function Header() {
               </div>
             )}
 
-            <div 
+            <div
               className={`py-2 ${getLinkClasses('/contact')} text-black`}
               onClick={(e) => {
                 e.preventDefault();
                 setMobileMenuOpen(false);
-                
+
                 // On mobile or when on location/service page, scroll to contact form if it exists
                 if ((window.innerWidth < 640 || isLocationOrServicePage) && document.getElementById('contact-form')) {
                   const contactForm = document.getElementById('contact-form');
@@ -410,7 +409,7 @@ export default function Header() {
                     return;
                   }
                 }
-                
+
                 // Otherwise, navigate to contact page
                 router.push('/contact');
               }}

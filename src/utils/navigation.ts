@@ -54,8 +54,8 @@ export function getServiceNavigation(currentPath: string): NavigationItem[] {
 
     // ✅ Fallback: default services for main website
     return [
-        { name: 'Sprinkler Installation & Repair', href: '/services/sprinkler-installation-repair' },
-        { name: 'Irrigation System Repair', href: '/services/irrigation-system-repair' },
+        { name: 'Sprinkler System Installation', href: '/services/sprinkler-system-installation' },
+        { name: 'Sprinkler System Repair', href: '/services/sprinkler-system-repair' },
         { name: 'Landscaping Services', href: '/services/landscaping-services' },
         { name: 'Lawn Health & Protection', href: '/services/lawn-health-protection' },
         { name: 'Tree & Plant Care', href: '/services/tree-plant-health-management' },

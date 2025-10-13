@@ -330,7 +330,7 @@ export const serviceContent: ServiceContent[] = [
   {
     id: 'sprinkler-installation',
     slug: 'sprinkler-installation-repair',
-    title: 'Sprinkler Installation & Repair',
+    title: 'Sprinkler Installation & Repairs',
     heroTitle: 'Smarter Sprinklers. Greener Lawns',
     heroSubtitle: 'Get expert sprinkler installation and repair to keep your yard green, healthy, and worry-free year-round.',
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519852/service-1-bg-image_bndfq1_11_11zon_spwl4k.jpg',

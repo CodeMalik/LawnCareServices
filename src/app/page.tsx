@@ -9,6 +9,8 @@ import FAQ from '@/components/FAQ'
 import LastSection from '@/components/LastSection'
 import { Metadata } from 'next'
 import About from '@/components/About'
+// import Dataputter from '@/components/FirebaseUploader'
+
 
 export const metadata: Metadata = {
   title: 'Lawn Care Services | Transform Your Outdoor Space',
@@ -34,6 +36,7 @@ export default function Home() {
       {/* <Gallery /> */}
       <FAQ />
       <LastSection />
+      {/* <Dataputter /> */}
     </main>
   )
 }

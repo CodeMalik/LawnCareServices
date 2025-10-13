@@ -328,9 +328,9 @@ export const miniGalleryItems: MiniGalleryItem[] = [
 
 export const serviceContent: ServiceContent[] = [
   {
-    id: 'sprinkler-installation',
-    slug: 'sprinkler-installation-repair',
-    title: 'Sprinkler Installation & Repair',
+    id: 'sprinkler-system-installation',
+    slug: 'sprinkler-system-installation',
+    title: 'Sprinkler System Installation',
     heroTitle: 'Smarter Sprinklers. Greener Lawns',
     heroSubtitle: 'Get expert sprinkler installation and repair to keep your yard green, healthy, and worry-free year-round.',
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519852/service-1-bg-image_bndfq1_11_11zon_spwl4k.jpg',
@@ -433,11 +433,11 @@ export const serviceContent: ServiceContent[] = [
     }
   },
   {
-    id: 'irrigation-repair',
-    slug: 'irrigation-system-repair',
-    title: 'Irrigation System Repair',
-    heroTitle: 'Healthy Lawns Start with Efficient Irrigation',
-    heroSubtitle: 'Restore perfect water flow, fix leaks, and keep your yard healthy, without wasting a drop.',
+    id: 'sprinkler-system-repair',
+    slug: 'sprinkler-system-repair',
+    title: 'Sprinkler System Repair',
+    heroTitle: 'Sprinkler System Repair & Maintenance Services Across the USA',
+    heroSubtitle: 'Restore your lawn’s beauty with precision watering systems repaired by America’s trusted irrigation experts.',
     image: 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519848/Irrigation-System-Repair_z8cjw0_5_11zon_wjdrko.jpg',
     stats: [
       {
@@ -523,24 +523,36 @@ export const serviceContent: ServiceContent[] = [
     },
     faqs: [
       {
-        question: 'How much does irrigation repair cost in Dallas?',
-        answer: 'Costs vary by issue, but we offer free estimates before any work begins.'
+        question: 'What is included in a sprinkler system repair service?',
+        answer: 'A sprinkler system repair includes inspection of valves, heads, and controllers, leak detection in underground lines, and system testing after component replacement. Technicians verify pressure balance and controller timing to ensure full irrigation coverage and efficient water use.'
       },
       {
-        question: 'How do I know if my irrigation system needs repair?',
-        answer: 'Look for signs like uneven watering, leaks, or higher water bills—our experts can diagnose the problem fast.'
+        question: 'How often should a sprinkler system be serviced?',
+        answer: 'Most irrigation systems benefit from professional servicing every six months — once before spring startup and once before winter shutdown. Regular maintenance keeps valves responsive, prevents clogs, and maintains even water distribution throughout the year.'
       },
       {
-        question: 'Do you upgrade old irrigation systems?',
-        answer: 'Yes! We install smart, eco-friendly solutions to save water and money.'
+        question: 'Why does my sprinkler system lose pressure?',
+        answer: 'Pressure loss often results from small leaks, cracked pipes, or clogged nozzles restricting flow. As pressure drops, outer zones receive less water. Detecting and repairing these faults restores uniform spray patterns and reduces overall water waste.'
       },
       {
-        question: 'How fast can you fix an irrigation issue?',
-        answer: 'Most repairs are completed the same day after your inspection.'
+        question: 'Can I fix a broken sprinkler head myself?',
+        answer: 'Yes, minor repairs such as replacing a nozzle or tightening a seal can be done at home if the system is off and pressure released. However, persistent leaks or electrical issues require a licensed irrigation technician to prevent further damage.'
       },
       {
-        question: 'Which areas do you serve outside Dallas?',
-        answer: 'We cover Plano, Garland, Frisco, Denton, McKinney, Farmers Branch, and more.'
+        question: 'How do I prepare my sprinkler system for winter?',
+        answer: 'Turn off the main supply, drain remaining water from lines, and use compressed air to clear moisture from valves and pipes. Proper winterization prevents freezing damage and ensures a smooth startup next spring.'
+      },
+      {
+        question: 'What is the average cost of sprinkler system repair in the USA?',
+        answer: 'Typical repairs range from $150 to $600, depending on system size, component damage, and labor scope. Complex leak detection or controller replacement can increase costs, while routine maintenance remains at the lower end.'
+      },
+      {
+        question: 'How do smart irrigation controllers save water?',
+        answer: 'Smart controllers adjust watering schedules based on real-time weather and soil data. By skipping unnecessary cycles after rain or humidity spikes, they reduce water use by up to 30 percent without affecting lawn health.'
+      },
+      {
+        question: 'Why choose professional technicians instead of DIY repairs?',
+        answer: 'Certified irrigation technicians use pressure testing and leak detection tools that identify hidden issues before they cause damage. Professional service extends system life and ensures EPA-compliant water efficiency standards are met.'
       }
     ],
     cta: {
@@ -1018,6 +1030,11 @@ export const serviceContent: ServiceContent[] = [
       buttonText: 'Get Expert Help'
     }
   },
+
+
+  //-------------------------------------------------------------------------------------------------
+
+  
   {
     id: 'columbia-lawn-care-services',
     slug: 'columbia-lawn-care-services',

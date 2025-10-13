@@ -296,7 +296,9 @@ const ServicePageClient = ({ service }: { service: any }) => {
       </section>
       }
       <Testimonials />
-      {service.faq &&
+      
+      {/* FAQ Section - Fixed conditional rendering */}
+      {service.faqs && service.faqs.length > 0 &&
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-20">
@@ -339,6 +341,7 @@ const ServicePageClient = ({ service }: { service: any }) => {
         </div>
       </div>
       }
+      
       {/* Final CTA Section */}
       <div className="relative sm:py-24 py-16 overflow-hidden w-full">
         <div className="absolute inset-0">
