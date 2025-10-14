@@ -560,7 +560,26 @@ export const serviceContent: ServiceContent[] = [
       finalCta: 'Let\'s Restore Your Lawn with Smarter Irrigation',
       finalCtaDescription: 'From water leaks to full system tune-ups — our irrigation specialists keep your lawn green and your water bill low.',
       buttonText: 'Restore My Lawn'
-    }
+    },
+     // Add the long description content here
+    longDescription: [
+      {
+        title: "Professional Sprinkler System Repair & Maintenance",
+        description: "When your sprinkler system stops working properly, it doesn't just waste water — it silently damages the health of your lawn, garden, and landscape. That's why at Lawn Care Service, we specialize in professional sprinkler system repair and maintenance services that keep your irrigation running at peak performance all year long."
+      },
+      {
+        title: "Comprehensive Irrigation Solutions",
+        description: "Our licensed irrigation technicians detect and fix every issue from broken sprinkler heads and leaky valves to malfunctioning timers and uneven water pressure. Using WaterSense-certified components and advanced leak detection tools, we ensure every droplet is used efficiently, protecting both your landscape and your water bill."
+      },
+      {
+        title: "Restoring System Efficiency",
+        description: "We don't just repair sprinklers, we restore your entire watering system's efficiency, helping homeowners and businesses across the USA enjoy lush, green lawns without the hassle of overwatering, dry spots, or system breakdowns."
+      },
+      {
+        title: "Ready to Fix Your Sprinkler System?",
+        description: "Call a Licensed Technician. Understanding your sprinkler system is the first step to keeping your lawn alive, healthy, and perfectly balanced."
+      }
+    ],
   },
   {
     id: 'landscaping',

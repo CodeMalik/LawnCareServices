@@ -208,6 +208,13 @@ export interface ServiceContent {
         finalCtaDescription: string;
         buttonText: string;
     };
+
+
+  // Add longDescription field to the interface
+  longDescription?: Array<{
+    title: string
+    description: string
+  }>
 }
 
 // ✅ Location Main Page — for city/region landing pages

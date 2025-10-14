@@ -9,6 +9,9 @@ import { ScaleIn, SlideInTop, StaggeredContainer, StaggeredItem, FadeIn } from '
 import { serviceAreas } from '@/lib/data';
 import LocationContactForm from '@/components/LocationContactForm';
 import LocationServiceText from '@/components/LocationServiceText';
+import Sprinklerdescription from '@/components/Sprinklerdescription';
+
+
 
 // This is the new client component that holds the page's content and logic.
 const ServicePageClient = ({ service }: { service: any }) => {
@@ -126,6 +129,8 @@ const ServicePageClient = ({ service }: { service: any }) => {
 
       {service.ServiceText &&
       <LocationServiceText serviceText={service.ServiceText} />}
+
+      <Sprinklerdescription />
       
       {/* Solution Gallery - Enhanced with better grid and hover effects */}
       {service.solution &&
