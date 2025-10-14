@@ -9,17 +9,10 @@ const LongDescription = () => {
   }
 
   return (
-    <div className="w-full my-20 py-12 bg-pink-theme relative text-gray-900">
+    <div className="w-full my-10 ml-14 py-12 bg-pink-theme relative text-gray-900">
       {/* Diagonal Grid with Electric Orange */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(45deg, rgba(255, 0, 100, 0.1) 0, rgba(255, 0, 100, 0.1) 1px, transparent 1px, transparent 20px),
-            repeating-linear-gradient(-45deg, rgba(255, 0, 100, 0.1) 0, rgba(255, 0, 100, 0.1) 1px, transparent 1px, transparent 20px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
       />
       <div className="container">
         <div className="relative z-20 bg-white max-w-7xl h-[450px] mx-auto overflow-hidden overflow-y-auto py-12 rounded-xl px-8">
