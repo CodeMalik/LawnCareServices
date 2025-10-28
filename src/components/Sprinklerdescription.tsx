@@ -9,7 +9,7 @@ const LongDescription = () => {
   }
 
   return (
-    <div className="w-full my-10 ml-14 py-12 bg-pink-theme relative text-gray-900">
+    <div className="w-full my-10 md:ml-48 py-12 bg-pink-theme relative text-gray-900">
       {/* Diagonal Grid with Electric Orange */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
