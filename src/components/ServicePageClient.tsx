@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Testimonials from '@/components/Testimonials';
-import FAQItem from '@/components/FAQItem';
+import FAQSection from '@/components/FAQSection';
 import Counter from '@/components/Counter';
 import { ScaleIn, SlideInTop, StaggeredContainer, StaggeredItem, FadeIn } from '@/components/animations/Animate';
 import { serviceAreas } from '@/lib/data';
@@ -11,10 +12,11 @@ import LocationContactForm from '@/components/LocationContactForm';
 import LocationServiceText from '@/components/LocationServiceText';
 import Sprinklerdescription from '@/components/Sprinklerdescription';
 
-
-
 // This is the new client component that holds the page's content and logic.
 const ServicePageClient = ({ service }: { service: any }) => {
+  const pathname = usePathname();
+  const isSprinklerRepairPage = pathname === '/services/sprinkler-system-repair';
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - Enhanced with better gradient and text positioning */}
@@ -130,7 +132,8 @@ const ServicePageClient = ({ service }: { service: any }) => {
       {service.ServiceText &&
       <LocationServiceText serviceText={service.ServiceText} />}
 
-      <Sprinklerdescription />
+      {/* Only show Sprinklerdescription on the sprinkler-system-repair page */}
+      {isSprinklerRepairPage && <Sprinklerdescription />}
       
       {/* Solution Gallery - Enhanced with better grid and hover effects */}
       {service.solution &&
@@ -302,49 +305,13 @@ const ServicePageClient = ({ service }: { service: any }) => {
       }
       <Testimonials />
       
-      {/* FAQ Section - Fixed conditional rendering */}
+      {/* FAQ Section - Using the new separate component */}
       {service.faqs && service.faqs.length > 0 &&
-      <div className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-20">
-            {/* Left Column - Image */}
-            <FadeIn>
-            <div className="mb-10 lg:mb-0">
-              <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden">
-                <Image
-                  src="https://res.cloudinary.com/dfnjpfucl/image/upload/v1754991298/faq_jgddyu.jpg"
-                  alt="Frequently Asked Questions"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </div>
-            </FadeIn>
-
-            {/* Right Column - FAQ */}
-            <FadeIn>
-            <div className="max-w-2xl mx-auto">
-              <div className="mb-5">
-                <h2 className="text-center sm:text-left text-4xl font-bold text-gray-900 sm:text-4xl">
-                  FAQs
-                </h2>
-              </div>
-
-              <div className="">
-                {service.faqs.map((faq: any, index: number) => (
-                  <FAQItem
-                    key={index}
-                    question={faq.question}
-                    answer={faq.answer}
-                  />
-                ))}
-              </div>
-            </div>
-            </FadeIn>
-          </div>
-        </div>
-      </div>
+        <FAQSection 
+          faqs={service.faqs}
+          title="FAQs"
+          description="Find answers to common questions about our services"
+        />
       }
       
       {/* Final CTA Section */}

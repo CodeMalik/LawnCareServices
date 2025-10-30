@@ -1,89 +1,115 @@
 // src/app/services/[slug]/page.tsx
 import { notFound } from 'next/navigation';
-import { serviceContent } from '@/lib/data';
 import { Metadata } from 'next';
 import ServicePageClient from '@/components/ServicePageClient';
+import { getAllServices, getServiceBySlug, Service } from '@/lib/homepageservices';
 
-// Define the shape of a service (if not already defined in '@/lib/data')
-// You should ideally define this in your data file, but we'll define it here for completeness
-export interface Service {
-    slug: string;
-    title: string;
-    heroSubtitle: string;
-    // Add other properties your service object has, e.g.:
-    // description?: string;
-    // features?: string[];
-    // imageUrl?: string;
-    // etc.
-}
-
-// Ensure serviceContent is typed (if not already)
-// If your '@/lib/data' already exports `Service[]`, you can remove this re-declaration
-const typedServiceContent: Service[] = serviceContent;
-
-// Generate static params for static site generation
+// Generate static params for static site generation with error handling
 export async function generateStaticParams() {
-    return typedServiceContent.map((service) => ({
+  try {
+    const services = await getAllServices();
+    
+    // Filter out any services with invalid slugs and log warnings
+    const validParams = services
+      .filter(service => {
+        if (!service.slug) {
+          console.warn(`Service ${service.id} has no slug, skipping`);
+          return false;
+        }
+        return true;
+      })
+      .map((service) => ({
         slug: service.slug,
-    }));
+      }));
+    
+    console.log(`Generated static params for ${validParams.length} services`);
+    return validParams;
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    // Return empty array to prevent build failure
+    return [];
+  }
 }
 
 // Define the type for params
 interface Props {
-    params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>;
 }
 
-// Helper function to find service by slug (for reuse and type safety)
-const findServiceBySlug = (slug: string): Service | undefined => {
-    return typedServiceContent.find((service) => service.slug === slug);
-};
-
-// ServicePage component
+// ServicePage component with better error handling
 const ServicePage = async ({ params }: Props) => {
-    // Await params to resolve the slug
+  let slug: string;
+  
+  try {
     const resolvedParams = await params;
-    const { slug } = resolvedParams;
-
-    // Find matching service
-    const service = findServiceBySlug(slug);
-
-    // If no service found, trigger 404
-    if (!service) {
-        notFound();
+    slug = resolvedParams.slug;
+    
+    if (!slug) {
+      console.error('Slug parameter is undefined');
+      notFound();
     }
+  } catch (error) {
+    console.error('Error resolving params:', error);
+    notFound();
+  }
 
-    // Render client component with service data
-    return <ServicePageClient service={service} />;
+  // Find matching service from Firebase
+  const service = await getServiceBySlug(slug);
+
+  // If no service found, trigger 404
+  if (!service) {
+    console.log(`Service not found for slug: ${slug}`);
+    notFound();
+  }
+
+  // Render client component with service data from Firebase
+  return <ServicePageClient service={service} />;
 };
 
-// Generate metadata for the page
+// Generate metadata for the page with error handling
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
-    // Await params to resolve the slug
+  let slug: string;
+  
+  try {
     const resolvedParams = await params;
-    const { slug } = resolvedParams;
-
-    // Find matching service
-    const service = findServiceBySlug(slug);
-
-    // Fallback metadata if service not found
-    if (!service) {
-        return {
-            title: 'Service Not Found',
-            description: 'The requested service could not be found.',
-        };
+    slug = resolvedParams.slug;
+    
+    if (!slug) {
+      return {
+        title: 'Service Not Found',
+        description: 'The requested service could not be found.',
+      };
     }
-
-    // Return dynamic metadata
+  } catch (error) {
     return {
-        title: `${service.title} | Lawn Care Services - Professional Dallas Landscaping`,
-        description: service.heroSubtitle,
-        openGraph: {
-            title: `${service.title} | Lawn Care Services`,
-            description: service.heroSubtitle,
-            type: 'website',
-            locale: 'en_US',
-        },
+      title: 'Service Not Found',
+      description: 'The requested service could not be found.',
     };
+  }
+
+  // Find matching service from Firebase
+  const service = await getServiceBySlug(slug);
+
+  // Fallback metadata if service not found
+  if (!service) {
+    return {
+      title: 'Service Not Found',
+      description: 'The requested service could not be found.',
+    };
+  }
+
+  // Return dynamic metadata from Firebase data
+  return {
+    title: `${service.title} | Lawn Care Services - Professional Dallas Landscaping`,
+    description: service.heroSubtitle,
+    openGraph: {
+      title: `${service.title} | Lawn Care Services`,
+      description: service.heroSubtitle,
+      type: 'website',
+      locale: 'en_US',
+      images: service.image ? [service.image] : [],
+    },
+  };
 };
 
 export default ServicePage;
