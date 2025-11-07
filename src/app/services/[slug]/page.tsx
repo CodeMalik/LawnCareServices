@@ -4,6 +4,10 @@ import { Metadata } from 'next';
 import ServicePageClient from '@/components/ServicePageClient';
 import { getAllServices, getServiceBySlug, Service } from '@/lib/homepageservices';
 
+// Force dynamic rendering for runtime data fetching
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 // Generate static params for static site generation with error handling
 export async function generateStaticParams() {
   try {
@@ -36,7 +40,7 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// ServicePage component with better error handling
+// ServicePage component with better error handling and runtime data fetching
 const ServicePage = async ({ params }: Props) => {
   let slug: string;
   
@@ -53,8 +57,14 @@ const ServicePage = async ({ params }: Props) => {
     notFound();
   }
 
-  // Find matching service from Firebase
-  const service = await getServiceBySlug(slug);
+  // Find matching service from Firebase at RUNTIME
+  let service: Service | null = null;
+  try {
+    service = await getServiceBySlug(slug);
+  } catch (error) {
+    console.error(`Error fetching service for slug ${slug}:`, error);
+    // Continue to 404 instead of throwing to prevent page crashes
+  }
 
   // If no service found, trigger 404
   if (!service) {
@@ -66,7 +76,7 @@ const ServicePage = async ({ params }: Props) => {
   return <ServicePageClient service={service} />;
 };
 
-// Generate metadata for the page with error handling
+// Generate metadata for the page with error handling and runtime data
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   let slug: string;
   
@@ -87,8 +97,14 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
     };
   }
 
-  // Find matching service from Firebase
-  const service = await getServiceBySlug(slug);
+  // Find matching service from Firebase at RUNTIME
+  let service: Service | null = null;
+  try {
+    service = await getServiceBySlug(slug);
+  } catch (error) {
+    console.error(`Error fetching service for metadata with slug ${slug}:`, error);
+    // Fall through to not found metadata
+  }
 
   // Fallback metadata if service not found
   if (!service) {

@@ -54,8 +54,22 @@ export interface Service {
   ServiceText?: any;
 }
 
-// Get all services for static generation with error handling
+// Caching mechanism for production
+let servicesCache: Service[] | null = null;
+let cacheTimestamp: number | null = null;
+const CACHE_DURATION = process.env.NODE_ENV === 'development' ? 0 : 5 * 60 * 1000; // 0 in dev, 5 min in prod
+
+// Get all services for static generation with error handling and caching
 export async function getAllServices(): Promise<Service[]> {
+  // Return cached data if valid (production only)
+  if (process.env.NODE_ENV !== 'development' && 
+      servicesCache && 
+      cacheTimestamp && 
+      Date.now() - cacheTimestamp < CACHE_DURATION) {
+    console.log('Returning services from cache');
+    return servicesCache;
+  }
+
   try {
     console.log('Fetching services from Firebase...');
     const querySnapshot = await getDocs(collection(db, 'mainservicescontent'));
@@ -74,16 +88,26 @@ export async function getAllServices(): Promise<Service[]> {
       }
     });
     
+    // Update cache (only in production)
+    if (process.env.NODE_ENV !== 'development') {
+      servicesCache = services;
+      cacheTimestamp = Date.now();
+    }
+    
     console.log(`Successfully fetched ${services.length} services from Firebase`);
     return services;
   } catch (error) {
     console.error('Error fetching services from Firebase:', error);
-    // Return empty array instead of throwing to prevent build failures
+    // Return cached data if available, even if stale (production only)
+    if (process.env.NODE_ENV !== 'development' && servicesCache) {
+      console.log('Returning cached services due to error');
+      return servicesCache;
+    }
     return [];
   }
 }
 
-// Get a single service by slug with better error handling
+// Get a single service by slug with better error handling and caching
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
   try {
     if (!slug) {
@@ -93,6 +117,15 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
 
     console.log(`Fetching service with slug: ${slug}`);
     
+    // Try to get from cache first (production only)
+    if (process.env.NODE_ENV !== 'development' && servicesCache) {
+      const cachedService = servicesCache.find(s => s.slug === slug);
+      if (cachedService) {
+        console.log('Returning service from cache');
+        return cachedService;
+      }
+    }
+
     // Query Firestore directly for the specific slug
     const q = query(
       collection(db, 'mainservicescontent'),
@@ -116,6 +149,23 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
     return service;
   } catch (error) {
     console.error(`Error fetching service with slug ${slug}:`, error);
+    
+    // Try cache as fallback (production only)
+    if (process.env.NODE_ENV !== 'development' && servicesCache) {
+      const cachedService = servicesCache.find(s => s.slug === slug);
+      if (cachedService) {
+        console.log('Returning cached service as fallback due to error');
+        return cachedService;
+      }
+    }
+    
     return null;
   }
+}
+
+// Utility function to clear cache (useful for development)
+export function clearServicesCache(): void {
+  servicesCache = null;
+  cacheTimestamp = null;
+  console.log('Services cache cleared');
 }
