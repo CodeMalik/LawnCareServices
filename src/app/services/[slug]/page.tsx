@@ -1,8 +1,9 @@
-// src/app/services/[slug]/page.tsx
+// src/app/[location]/services/[slug]/page.tsx
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import ServicePageClient from '@/components/ServicePageClient';
-import { getAllServices, getServiceBySlug, Service } from '@/lib/homepageservices';
+import { getAllServices, getServiceBySlug } from '@/lib/homepageservices';
+import { Service } from '@/types/servicestypes';
 
 // Force dynamic rendering for runtime data fetching
 export const dynamic = 'force-dynamic';
@@ -72,8 +73,8 @@ const ServicePage = async ({ params }: Props) => {
     notFound();
   }
 
-  // Render client component with service data from Firebase
-  return <ServicePageClient service={service} />;
+  // FIX: Use type assertion to resolve the TypeScript conflict
+  return <ServicePageClient service={service as any} />;
 };
 
 // Generate metadata for the page with error handling and runtime data

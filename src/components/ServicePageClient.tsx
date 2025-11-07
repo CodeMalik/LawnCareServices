@@ -13,7 +13,13 @@ import { serviceAreas } from '@/lib/data';
 import LocationContactForm from '@/components/LocationContactForm';
 import LocationServiceText from '@/components/LocationServiceText';
 import Sprinklerdescription from '@/components/Sprinklerdescription';
-import { getServiceBySlug, Service } from '@/lib/homepageservices';
+import { getServiceBySlug } from '@/lib/homepageservices';
+import { Service } from '@/types/servicestypes';
+
+// Define the props interface with flexible typing
+interface ServicePageClientProps {
+  service: Service | any;
+}
 
 // Loading component
 const LoadingSpinner = () => (
@@ -22,19 +28,17 @@ const LoadingSpinner = () => (
   </div>
 );
 
-// This is the enhanced client component that can fetch data if needed
-const ServicePageClient = ({ service: initialService }: { service: Service }) => {
-  const [service, setService] = useState<Service | null>(initialService);
+// Client component
+const ServicePageClient = ({ service: initialService }: ServicePageClientProps) => {
+  const [service, setService] = useState<Service | any>(initialService);
   const [loading, setLoading] = useState(false);
   const pathname = usePathname();
 
-  // Fallback data fetching if initial service is not provided
   useEffect(() => {
     if (!initialService) {
       const fetchServiceData = async () => {
         setLoading(true);
         try {
-          // Extract slug from pathname
           const slug = pathname.split('/').pop();
           if (slug) {
             const serviceData = await getServiceBySlug(slug);
@@ -51,12 +55,10 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
     }
   }, [initialService, pathname]);
 
-  // Show loading state
   if (loading) {
     return <LoadingSpinner />;
   }
 
-  // Show error state if no service data
   if (!service) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -76,14 +78,39 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
 
   const isSprinklerRepairPage = pathname === '/services/sprinkler-system-repair';
 
+  // Create safe service object with fallbacks
+  const safeService = {
+    id: service.id || '',
+    slug: service.slug || '',
+    title: service.title || 'Service',
+    heroTitle: service.heroTitle || service.title || 'Service',
+    heroSubtitle: service.heroSubtitle || '',
+    image: service.image || '/default-service-image.jpg',
+    features: service.features || [],
+    cta: service.cta || {
+      image: '/default-cta-image.jpg',
+      finalCta: 'Get Started Today',
+      finalCtaDescription: 'Contact us for professional service',
+      buttonText: 'Contact Us'
+    },
+    stats: service.stats || [],
+    solution: service.solution,
+    card: service.card,
+    mapSection: service.mapSection,
+    faqs: service.faqs || [],
+    longDescription: service.longDescription,
+    form: service.form,
+    ServiceText: service.ServiceText
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section - Enhanced with better gradient and text positioning */}
+      {/* Hero Section */}
       <div className="relative bg-gray-900 min-h-[70vh] sm:min-h-[110vh] 2xl:min-h-[70vh] pt-24 md:pt-28">
         <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
           <Image
-            src={service.image}
-            alt={service.title}
+            src={safeService.image}
+            alt={safeService.title}
             fill
             className="object-cover"
             priority
@@ -95,22 +122,22 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
           <ScaleIn viewportMargin='0px'>
             <div className="w-full flex flex-col items-center justify-center">
               <h1 className="text-center text-2xl md:text-5xl lg:text-5xl 2xl:text-6xl font-bold text-white mb-6 leading-tight text-center">
-                {service.heroTitle}
+                {safeService.heroTitle}
               </h1>
               <p className="text-center text-sm md:text-md lg:text-xl 2xl:text-2xl text-gray-200 mb-10 leading-relaxed font-light">
-                {service.heroSubtitle}
+                {safeService.heroSubtitle}
               </p>
             </div>
           </ScaleIn>
         </div>
       </div>
 
-      {/* Stats Section - Enhanced with animations */}
-      {service.stats && service.stats.length > 0 && (
+      {/* Stats Section */}
+      {safeService.stats && safeService.stats.length > 0 && (
         <div className="bg-[var(--primary-color)] py-10 sm:py-20 bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-              {service.stats.map((stat: any, index: number) => (
+              {safeService.stats.map((stat: any, index: number) => (
                 <div key={index} className="text-center group">
                   <div className="text-xl sm:text-4xl lg:text-5xl font-bold text-green-600 mb-3 group-hover:scale-110 transition-transform duration-300">
                     <Counter value={stat.number} duration={2} prefix="" suffix="+" />
@@ -123,13 +150,13 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
         </div>
       )}
 
-      {/* Features Section - Enhanced cards with better spacing */}
-      {service.features && service.features.length > 0 && (
+      {/* Features Section */}
+      {safeService.features && safeService.features.length > 0 && (
         <div className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6">
             <StaggeredContainer staggerChildren={0.4}>
               <div className="space-y-20">
-                {service.features.map((feature: any, index: number) => {
+                {safeService.features.map((feature: any, index: number) => {
                   const isEven = index % 2 === 0;
                   return (
                     <StaggeredItem key={index}>
@@ -139,7 +166,7 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
                         >
                           <div className="w-full md:w-1/2 h-80 md:h-auto relative overflow-hidden rounded-xl">
                             <Image
-                              src={feature.image}
+                              src={feature.image || '/default-service-image.jpg'}
                               alt={feature.title}
                               fill
                               className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -154,7 +181,7 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
                             <p className="text-sm sm:text-md md:text-lg text-center sm:text-left text-gray-600 mb-6 leading-relaxed">{feature.description}</p>
 
                             <ul className="space-y-3 mb-8">
-                              {feature.featuresArray.map((item: any, i: number) => (
+                              {feature.featuresArray && feature.featuresArray.map((item: any, i: number) => (
                                 <li key={i} className="flex items-start">
                                   <svg className="h-6 w-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -168,7 +195,7 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
                               href="/contact"
                               className="bg-[var(--primary-color)] inline-flex items-center justify-center text-white sm:items-start sm:justify-start text-sm sm:text-md md:text-lg px-6 py-2 sm:py-3 sm:px-8 rounded-2xl hover:bg-green-700 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 w-fit mx-auto sm:mx-0"
                             >
-                              {feature.buttonText}
+                              {feature.buttonText || 'Learn More'}
                             </Link>
                           </div>
                         </div>
@@ -182,40 +209,40 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
         </div>
       )}
 
-      {service.form && (
+      {safeService.form && (
         <div id="contact-form">
-          <LocationContactForm form={service.form} />
+          <LocationContactForm form={safeService.form} />
         </div>
       )}
 
-      {service.ServiceText && (
-        <LocationServiceText serviceText={service.ServiceText} />
+      {safeService.ServiceText && (
+        <LocationServiceText serviceText={safeService.ServiceText} />
       )}
 
       {/* Only show Sprinklerdescription on the sprinkler-system-repair page */}
       {isSprinklerRepairPage && <Sprinklerdescription />}
       
-      {/* Solution Gallery - Enhanced with better grid and hover effects */}
-      {service.solution && (
+      {/* Solution Gallery */}
+      {safeService.solution && (
         <div className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                {service.solution.title}
+                {safeService.solution.title}
               </h2>
               <p className="text-sm sm:text-md md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
-                {service.solution.description}
+                {safeService.solution.description}
               </p>
             </div>
             <StaggeredContainer staggerChildren={0.2}>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {service.solution.imageGallery.map((image: any, index: number) => (
+                {safeService.solution.imageGallery && safeService.solution.imageGallery.map((image: any, index: number) => (
                   <StaggeredItem key={index}>
                     <FadeIn>
                       <div className="group relative rounded-2xl overflow-hidden cursor-pointer h-64 w-full">
                         <Image
-                          src={image.image}
-                          alt={`${service.title} project ${index + 1}`}
+                          src={image.image || '/default-service-image.jpg'}
+                          alt={`${safeService.title} project ${index + 1}`}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -233,30 +260,30 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
                 href="/gallery"
                 className="bg-[var(--primary-color)] text-white px-6 py-2 rounded-2xl hover:bg-green-700 transition-all duration-300 font-semibold text-sm sm:text-md md:text-lg lg:text-xl shadow-lg hover:shadow-xl transform hover:scale-105 w-fit mx-auto "
               >
-                {service.solution.buttonText}
+                {safeService.solution.buttonText || 'View Gallery'}
               </Link>
             </div>
           </div>
         </div>
       )}
       
-      {/* Card Section - Enhanced with better styling */}
-      {service.card && (
+      {/* Card Section */}
+      {safeService.card && (
         <div className="relative py-16 bg-[rgba(237,251,226,255)] overflow-hidden">
           <FadeIn>
             <div className="relative sm:max-w-6xl md:max-w-7xl lg:max-w-6xl bg-white rounded-xl mx-auto px-6 py-10 text-center">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                {service.card.title}
+                {safeService.card.title}
               </h2>
               <p className="text-sm sm:text-md md:text-lg lg:text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
-                {service.card.description}
+                {safeService.card.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center bg-[var(--primary-color)] text-white px-6 py-2 rounded-2xl hover:bg-green-700 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 w-fit mx-auto"
                 >
-                  {service.card.buttonText}
+                  {safeService.card.buttonText || 'Get Started'}
                 </Link>
               </div>
             </div>
@@ -264,7 +291,7 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
         </div>
       )}
       
-      {service.mapSection && (
+      {safeService.mapSection && (
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -303,10 +330,10 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
                   {/* Section header */}
                   <div className="text-center mb-8">
                     <h5 className="text-4xl sm:text-4xl font-bold text-gray-900 mb-4">
-                      {service.mapSection.title}
+                      {safeService.mapSection.title}
                     </h5>
                     <p className="text-sm text-gray-500 max-w-4xl mx-auto">
-                      {service.mapSection.description}
+                      {safeService.mapSection.description}
                     </p>
                   </div>
 
@@ -364,10 +391,10 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
       
       <Testimonials />
       
-      {/* FAQ Section - Using the new separate component */}
-      {service.faqs && service.faqs.length > 0 && (
+      {/* FAQ Section */}
+      {safeService.faqs && safeService.faqs.length > 0 && (
         <FAQSection 
-          faqs={service.faqs}
+          faqs={safeService.faqs}
           title="FAQs"
           description="Find answers to common questions about our services"
         />
@@ -377,7 +404,7 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
       <div className="relative sm:py-24 py-16 overflow-hidden w-full">
         <div className="absolute inset-0">
           <Image
-            src={service.cta.image}
+            src={safeService.cta.image || '/default-cta-image.jpg'}
             alt="Final CTA Background"
             fill
             className="object-cover opacity-100"
@@ -388,7 +415,7 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
         <ScaleIn>
           <div className="relative max-w-3xl px-6 sm:px-20 flex flex-col justify-center items-center mx-auto">
             <h2 className="text-2xl md:text-4xl lg:text-4xl font-bold text-white mb-8 leading-tight text-center">
-              {service.cta.finalCta}
+              {safeService.cta.finalCta}
             </h2>
             {/* Decorative underline */}
             <svg
@@ -401,14 +428,14 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
             </svg>
 
             <p className="text-md lg:text-lg text-white mb-12 leading-relaxed text-center">
-              {service.cta.finalCtaDescription}
+              {safeService.cta.finalCtaDescription}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-fit mx-auto"
               >
-                {service.cta.buttonText}
+                {safeService.cta.buttonText || 'Get Started'}
               </Link>
             </div>
           </div>
@@ -416,6 +443,6 @@ const ServicePageClient = ({ service: initialService }: { service: Service }) =>
       </div>
     </div>
   );
-}
+};
 
 export default ServicePageClient;

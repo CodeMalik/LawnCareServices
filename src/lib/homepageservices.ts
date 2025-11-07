@@ -1,67 +1,16 @@
 // lib/homepageservices.ts
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from './firebase'; // Your Firebase config
+import { db } from './firebase';
+import { Service } from '@/types/servicestypes';
 
-// Service interface matching your Firebase data structure
-export interface Service {
-  id: string;
-  slug: string;
-  title: string;
-  heroTitle: string;
-  heroSubtitle: string;
-  image: string;
-  stats?: Array<{
-    number: number;
-    description: string;
-  }>;
-  features: Array<{
-    image: string;
-    title: string;
-    description: string;
-    featuresArray: Array<{ description: string }>;
-    buttonText: string;
-  }>;
-  solution?: {
-    title: string;
-    description: string;
-    imageGallery: Array<{ image: string }>;
-    buttonText: string;
-  };
-  card?: {
-    title: string;
-    description: string;
-    buttonText: string;
-  };
-  mapSection?: {
-    title: string;
-    description: string;
-  };
-  faqs?: Array<{
-    question: string;
-    answer: string;
-  }>;
-  cta: {
-    image: string;
-    finalCta: string;
-    finalCtaDescription: string;
-    buttonText: string;
-  };
-  longDescription?: Array<{
-    title: string;
-    description: string;
-  }>;
-  form?: any;
-  ServiceText?: any;
-}
-
-// Caching mechanism for production
+// Caching mechanism
 let servicesCache: Service[] | null = null;
 let cacheTimestamp: number | null = null;
-const CACHE_DURATION = process.env.NODE_ENV === 'development' ? 0 : 5 * 60 * 1000; // 0 in dev, 5 min in prod
+const CACHE_DURATION = process.env.NODE_ENV === 'development' ? 0 : 5 * 60 * 1000;
 
-// Get all services for static generation with error handling and caching
+// Get all services for static generation with error handling
 export async function getAllServices(): Promise<Service[]> {
-  // Return cached data if valid (production only)
+  // Return cached data if valid
   if (process.env.NODE_ENV !== 'development' && 
       servicesCache && 
       cacheTimestamp && 
@@ -79,10 +28,30 @@ export async function getAllServices(): Promise<Service[]> {
       const data = doc.data();
       // Validate that the document has required fields
       if (data.slug && data.title) {
-        services.push({
+        const service: Service = {
           id: doc.id,
-          ...data
-        } as Service);
+          slug: data.slug,
+          title: data.title,
+          heroTitle: data.heroTitle || data.title,
+          heroSubtitle: data.heroSubtitle || '',
+          image: data.image || '/default-service-image.jpg',
+          features: data.features || [],
+          cta: data.cta || {
+            image: '/default-cta-image.jpg',
+            finalCta: 'Get Started Today',
+            finalCtaDescription: 'Contact us for professional service',
+            buttonText: 'Contact Us'
+          },
+          stats: data.stats || [],
+          solution: data.solution,
+          card: data.card,
+          mapSection: data.mapSection,
+          faqs: data.faqs || [],
+          longDescription: data.longDescription,
+          form: data.form,
+          ServiceText: data.ServiceText
+        };
+        services.push(service);
       } else {
         console.warn(`Skipping document ${doc.id}: missing required fields`, data);
       }
@@ -107,7 +76,7 @@ export async function getAllServices(): Promise<Service[]> {
   }
 }
 
-// Get a single service by slug with better error handling and caching
+// Get a single service by slug with better error handling
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
   try {
     if (!slug) {
@@ -140,10 +109,32 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
     }
     
     const doc = querySnapshot.docs[0];
-    const service = {
+    const data = doc.data();
+    
+    // Create complete Service object with all required fields
+    const service: Service = {
       id: doc.id,
-      ...doc.data()
-    } as Service;
+      slug: data.slug,
+      title: data.title,
+      heroTitle: data.heroTitle || data.title,
+      heroSubtitle: data.heroSubtitle || '',
+      image: data.image || '/default-service-image.jpg',
+      features: data.features || [],
+      cta: data.cta || {
+        image: '/default-cta-image.jpg',
+        finalCta: 'Get Started Today',
+        finalCtaDescription: 'Contact us for professional service',
+        buttonText: 'Contact Us'
+      },
+      stats: data.stats,
+      solution: data.solution,
+      card: data.card,
+      mapSection: data.mapSection,
+      faqs: data.faqs,
+      longDescription: data.longDescription,
+      form: data.form,
+      ServiceText: data.ServiceText
+    };
     
     console.log(`Successfully fetched service: ${service.title}`);
     return service;
