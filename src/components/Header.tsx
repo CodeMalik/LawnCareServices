@@ -285,7 +285,7 @@ export default function Header() {
               href="/contact"
               className="bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              (972) 743-9021
+              (406) 289 6262
             </Link>
           </div>
 

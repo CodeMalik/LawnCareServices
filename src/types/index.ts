@@ -115,7 +115,7 @@ export interface ContactFormState {
 
 // ✅ Default contact info — fully typed constant
 export const DEFAULT_CONTACT_INFO: ContactInfo = {
-    phone: '(972) 543-9020',
+    phone: '(406) 289 6262',
     email: 'info@cancunlandscape.com',
     address: 'Serving Dallas, TX and surrounding areas',
     hours: {
@@ -217,6 +217,8 @@ export interface ServiceContent {
   }>
 }
 
+
+
 // ✅ Location Main Page — for city/region landing pages
 export interface LocationMainPage {
     id: string;
@@ -258,4 +260,6 @@ export interface LocationMainPage {
         slug: string; // e.g., 'columbia-lawn-care-services'
         name: string;
     }[];
+
+    
 }

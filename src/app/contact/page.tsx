@@ -40,7 +40,7 @@ const ContactSection = () => {
     const contactItems: ContactInfoItem[] = [
         {
             title: 'Call Us',
-            value: '(972) 543-9020',
+            value: '(406) 289 6262',
             href: 'tel:+19725439020',
             icon: (
                 <svg
@@ -88,7 +88,7 @@ const ContactSection = () => {
         },
         {
             title: 'Our Location',
-            value: '14035 Janwood Ln, Farmers Branch, TX 75234',
+            value: '',
             href: 'https://www.google.com/maps/place/14035+Janwood+Ln,+Farmers+Branch,+TX+75234,+USA',
             icon: (
                 <svg
@@ -260,7 +260,7 @@ const ContactSection = () => {
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-white p-2 rounded-lg shadow-md">
                         <p className="text-sm text-gray-800">
-                            14035 Janwood Ln, Farmers Branch, TX 75234, USA
+                            , USA
                         </p>
                         <a
                             href="https://www.google.com/maps/place/14035+Janwood+Ln,+Farmers+Branch,+TX+75234,+USA"

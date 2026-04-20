@@ -310,7 +310,7 @@ const ServicePageClient = ({ service: initialService }: ServicePageClientProps) 
                     ></iframe>
                     <div className="absolute top-4 left-4 bg-white p-2 rounded-lg shadow-md">
                       <p className="text-sm text-gray-800">
-                        14035 Janwood Ln, Farmers Branch, TX 75234, USA
+                        , USA
                       </p>
                       <Link
                         href="https://www.google.com/maps/place/14035+Janwood+Ln,+Farmers+Branch,+TX+75234,+USA"
