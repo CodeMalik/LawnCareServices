@@ -26,8 +26,8 @@ export default function Footer() {
           <div>
             <h3 className="text-lg sm:text-xl mt-0 font-semibold mb-4 sm:mb-7">Our Services</h3>
             <ul className="space-y-2">
-              <li><Link href="/services/sprinkler-installation-repair" className="text-xs sm:text-lg hover:text-green-400 transition-colors">Sprinkler Installation & Repair</Link></li>
-              <li><Link href="/services/irrigation-system-repair" className="text-xs sm:text-lg hover:text-green-400 transition-colors">Irrigation System Repair</Link></li>
+              <li><Link href="/services/sprinkler-system-installation" className="text-xs sm:text-lg hover:text-green-400 transition-colors">Sprinkler System Installation</Link></li>
+              <li><Link href="/services/insect-weed-control" className="text-xs sm:text-lg hover:text-green-400 transition-colors">Insect Weed Control</Link></li>
               <li><Link href="/services/landscaping-services" className="text-xs sm:text-lg hover:text-green-400 transition-colors">Landscaping Services</Link></li>
               <li><Link href="/services/lawn-health-protection" className="text-xs sm:text-lg hover:text-green-400 transition-colors">Lawn Health & Protection</Link></li>
               <li><Link href="/services/tree-plant-health-management" className="text-xs sm:text-lg hover:text-green-400 transition-colors">Tree & Plant Health</Link></li>
