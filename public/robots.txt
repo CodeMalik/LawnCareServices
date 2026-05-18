@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /*?
+Disallow: /_next/
+Disallow: /api/
+Disallow: /[location]/
+Disallow: /services/[slug]/
+
+# Block specific location-service patterns that were causing 404s
+Disallow: /columbia/
+Disallow: /michigan/
+Disallow: /delaware/
+Disallow: /virginia/
+Disallow: /wisconsin/
+Disallow: /nebraska/
+Disallow: /north-carolina/
+Disallow: /minnesota/
+Disallow: /indiana/
+Disallow: /georgia/
+
+Sitemap: https://www.lawncareservices.us/sitemap.xml
