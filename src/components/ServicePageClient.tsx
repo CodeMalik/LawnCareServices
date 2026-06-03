@@ -221,7 +221,7 @@ const ServicePageClient = ({ service: initialService }: ServicePageClientProps) 
 
       {/* Only show Sprinklerdescription on the sprinkler-system-repair page */}
       {isSprinklerRepairPage && <Sprinklerdescription />}
-      
+
       {/* Solution Gallery */}
       {safeService.solution && (
         <div className="py-20 bg-white">
@@ -266,7 +266,7 @@ const ServicePageClient = ({ service: initialService }: ServicePageClientProps) 
           </div>
         </div>
       )}
-      
+
       {/* Card Section */}
       {safeService.card && (
         <div className="relative py-16 bg-[rgba(237,251,226,255)] overflow-hidden">
@@ -290,7 +290,7 @@ const ServicePageClient = ({ service: initialService }: ServicePageClientProps) 
           </FadeIn>
         </div>
       )}
-      
+
       {safeService.mapSection && (
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -388,18 +388,18 @@ const ServicePageClient = ({ service: initialService }: ServicePageClientProps) 
           </div>
         </section>
       )}
-      
+
       <Testimonials />
-      
+
       {/* FAQ Section */}
       {safeService.faqs && safeService.faqs.length > 0 && (
-        <FAQSection 
+        <FAQSection
           faqs={safeService.faqs}
           title="FAQs"
           description="Find answers to common questions about our services"
         />
       )}
-      
+
       {/* Final CTA Section */}
       <div className="relative sm:py-24 py-16 overflow-hidden w-full">
         <div className="absolute inset-0">

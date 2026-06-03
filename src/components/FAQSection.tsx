@@ -72,8 +72,8 @@ interface FAQSectionProps {
   description?: string;
 }
 
-const FAQSection: React.FC<FAQSectionProps> = ({ 
-  faqs, 
+const FAQSection: React.FC<FAQSectionProps> = ({
+  faqs,
   title = "FAQs"
 }) => {
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -85,7 +85,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
         setLoading(true);
         const docRef = doc(db, "mainservicescontent", "faqimage");
         const docSnap = await getDoc(docRef);
-        
+
         if (docSnap.exists()) {
           const data = docSnap.data();
           setImageUrl(data.image);

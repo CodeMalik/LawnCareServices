@@ -245,6 +245,12 @@ export default function Header() {
                   >
                     About
                   </Link>
+                  <Link
+                    href="/blog"
+                    className={getLinkClasses('/blog') + ' text-white'}
+                  >
+                    Blog
+                  </Link>
                 </>
               )}
 
@@ -382,6 +388,12 @@ export default function Header() {
                   onClick={() => handleNavigation('/about')}
                 >
                   About
+                </div>
+                <div
+                  className={`py-2 ${getLinkClasses('/blog')} text-black`}
+                  onClick={() => handleNavigation('/blog')}
+                >
+                  Blog
                 </div>
               </>
             )}

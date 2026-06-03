@@ -27,11 +27,11 @@ const GallerySection: React.FC = () => {
             try {
                 setLoading(true);
                 const data = await fetchGalleryData();
-                
+
                 setGalleryData(data.gallarysection || []);
                 setHeading1(data.h21 || 'Experience the Transformation We Bring to Every Lawn');
                 setHeading2(data.h22 || 'From dull, lifeless grass to vibrant, healthy landscapes, witness how we turn ordinary yards into extraordinary outdoor spaces. Let us enhance your curb appeal with expert care and precision.');
-                
+
             } catch (err) {
                 console.error('Error loading gallery data:', err);
                 setError('Failed to load gallery data');
