@@ -4,7 +4,6 @@ import SafeImage from '@/components/SafeImage';
 import Link from 'next/link';
 import { getBlogBySlug } from '@/lib/blogdata';
 import { Metadata } from 'next';
-import { ScaleIn } from '@/components/animations/Animate';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -135,7 +134,6 @@ export default async function BlogDetailsPage({ params }: Props) {
           </Link>
         </div>
 
-        <ScaleIn>
           {/* Header info */}
           <header className="mb-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-4">
@@ -173,7 +171,6 @@ export default async function BlogDetailsPage({ params }: Props) {
           <article className="prose max-w-none">
             {renderContent(blog.content)}
           </article>
-        </ScaleIn>
       </div>
     </main>
   );
