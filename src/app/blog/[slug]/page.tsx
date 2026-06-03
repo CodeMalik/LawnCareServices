@@ -1,6 +1,6 @@
 // src/app/blog/[slug]/page.tsx
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import SafeImage from '@/components/SafeImage';
 import Link from 'next/link';
 import { getBlogBySlug } from '@/lib/blogdata';
 import { Metadata } from 'next';
@@ -150,8 +150,8 @@ export default async function BlogDetailsPage({ params }: Props) {
 
           {/* Cover Image */}
           {blog.image && (
-            <div className="relative w-full aspect-[21/9] sm:h-[450px] rounded-2xl overflow-hidden mb-10 shadow-md border border-gray-100 bg-gray-55">
-              <Image
+            <div className="relative w-full aspect-[21/9] sm:h-[450px] rounded-2xl overflow-hidden mb-10 shadow-md border border-gray-100 bg-gray-100">
+              <SafeImage
                 src={blog.image}
                 alt={blog.title}
                 fill

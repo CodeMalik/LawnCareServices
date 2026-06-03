@@ -83,51 +83,52 @@ export default async function BlogListingPage() {
                 {blogs.map((blog, idx) => (
                   <StaggeredItem key={blog.id}>
                     <SlideInBottom duration={0.8} delay={idx * 0.1}>
-                      <article className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full group border border-gray-100">
-                        {/* Cover Image */}
-                        <div className="relative w-full aspect-video overflow-hidden bg-gray-105">
-                          <SafeImage
-                            src={blog.image || 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/sprinkles_ygwubq.webp'}
-                            alt={blog.title}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-
-                        {/* Card Body */}
-                        <div className="p-6 flex flex-col flex-grow">
-                          {/* Badges / Meta */}
-                          <div className="flex items-center gap-3 text-xs font-semibold text-gray-500 mb-3">
-                            <span className="text-green-600 font-bold uppercase tracking-wider">{blog.author}</span>
-                            <span>•</span>
-                            <span>{formatDate(blog.createdAt)}</span>
+                      <Link href={`/blog/${blog.slug}`} className="block h-full group">
+                        <article className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100">
+                          {/* Cover Image */}
+                          <div className="relative w-full aspect-video overflow-hidden bg-gray-100">
+                            <SafeImage
+                              src={blog.image || 'https://res.cloudinary.com/dfnjpfucl/image/upload/v1757501915/sprinkles_ygwubq.webp'}
+                              alt={blog.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
                           </div>
 
-                          {/* Title */}
-                          <h2 className="text-xl font-bold text-gray-950 mb-3 group-hover:text-green-600 transition-colors line-clamp-2">
-                            <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
-                          </h2>
+                          {/* Card Body */}
+                          <div className="p-6 flex flex-col flex-grow">
+                            {/* Badges / Meta */}
+                            <div className="flex items-center gap-3 text-xs font-semibold text-gray-500 mb-3">
+                              <span className="text-green-600 font-bold uppercase tracking-wider">{blog.author}</span>
+                              <span>•</span>
+                              <span>{formatDate(blog.createdAt)}</span>
+                            </div>
 
-                          {/* Summary */}
-                          <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
-                            {blog.summary || (blog.content ? blog.content.substring(0, 150) + '...' : '')}
-                          </p>
+                            {/* Title */}
+                            <h2 className="text-xl font-bold text-gray-950 mb-3 group-hover:text-green-600 transition-colors line-clamp-2">
+                              {blog.title}
+                            </h2>
 
-                          {/* CTA Link */}
-                          <div className="mt-auto">
-                            <Link
-                              href={`/blog/${blog.slug}`}
-                              className="inline-flex items-center text-sm font-bold text-green-600 hover:text-green-700 transition-colors duration-200"
-                            >
-                              Read Full Article
-                              <svg className="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                              </svg>
-                            </Link>
+                            {/* Summary */}
+                            <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
+                              {blog.summary || (blog.content ? blog.content.substring(0, 150) + '...' : '')}
+                            </p>
+
+                            {/* CTA Link */}
+                            <div className="mt-auto">
+                              <div
+                                className="inline-flex items-center text-sm font-bold text-green-600 group-hover:text-green-700 transition-colors duration-200"
+                              >
+                                Read Full Article
+                                <svg className="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </article>
+                        </article>
+                      </Link>
                     </SlideInBottom>
                   </StaggeredItem>
                 ))}
