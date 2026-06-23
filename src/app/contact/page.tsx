@@ -64,8 +64,8 @@ const ContactSection = () => {
         },
         {
             title: 'Email Us',
-            value: 'abc@gmail.com',
-            href: 'mailto:abc@gmail.com',
+            value: 'contact@lawncareservices.us',
+            href: 'mailto:contact@lawncareservices.us',
             icon: (
                 <svg
                     className="w-5 h-5 text-blue-600 group-hover:text-blue-700 transition-colors duration-200"

@@ -20,45 +20,45 @@ interface Location {
   careers?: string;
 }
 
-const MAIN_WEBSITE_URL: string = 'http://localhost:3000/';
+const MAIN_WEBSITE_URL: string = 'https://www.lawncareservices.us/';
 
 // Updated locations with specific entries and top 10 locations
 const locations: Location[] = [
   // Top 10 locations with correct geographical centers
-  { id: '1', name: 'Augusta Lawn Care of Columbia', city: 'Columbia', state: 'SC', zipCode: '29223', phone: '803.780.4459', lat: 34.0007, lng: -81.0348 }, // Columbia, SC
-  { id: '2', name: 'Augusta Lawn Care of Minnesota', city: 'Minnesota', state: 'MN', zipCode: '55401', phone: '612.555.0140', lat: 46.7296, lng: -94.6859 }, // Center of MN
-  { id: '3', name: 'Augusta Lawn Care of Wisconsin', city: 'Wisconsin', state: 'WI', zipCode: '53701', phone: '608.555.0139', lat: 44.2685, lng: -89.6165 }, // Center of WI
-  { id: '4', name: 'Augusta Lawn Care of Virginia', city: 'Virginia', state: 'VA', zipCode: '23218', phone: '804.555.0140', lat: 37.4316, lng: -78.6569 }, // Center of VA
-  { id: '5', name: 'Augusta Lawn Care of Michigan', city: 'Michigan', state: 'MI', zipCode: '48901', phone: '517.555.0141', lat: 44.3148, lng: -85.6024 }, // Center of MI
-  { id: '6', name: 'Augusta Lawn Care of Georgia', city: 'Georgia', state: 'GA', zipCode: '30301', phone: '404.555.0142', lat: 32.1656, lng: -82.9001 }, // Center of GA
-  { id: '7', name: 'Augusta Lawn Care of North Carolina', city: 'North-Carolina', state: 'NC', zipCode: '27601', phone: '919.555.0143', lat: 35.7596, lng: -79.0193 }, // Center of NC
-  { id: '8', name: 'Augusta Lawn Care of Nebraska', city: 'Nebraska', state: 'NE', zipCode: '68501', phone: '402.555.0144', lat: 41.4925, lng: -99.9018 }, // Center of NE
-  { id: '9', name: 'Augusta Lawn Care of Indiana', city: 'Indiana', state: 'IN', zipCode: '46201', phone: '317.555.0132', lat: 40.2672, lng: -86.1349 }, // Center of IN
-  { id: '10', name: 'Augusta Lawn Care of Delaware', city: 'Delaware', state: 'DE', zipCode: '19901', phone: '302.555.0145', lat: 38.9108, lng: -75.5277 }, // Center of DE
-  { id: '11', name: 'Augusta Lawn Care in Nocatee', city: 'Nocatee', state: 'FL', zipCode: '32081', phone: '904.917.2525', lat: 32.2216, lng: -81.3696 },
-  { id: '12', name: 'Augusta Lawn Care of Aiken', city: 'Aiken', state: 'SC', zipCode: '29805', phone: '803.850.4642', lat: 34.8522, lng: -81.1437 },
-  { id: '13', name: 'Augusta Lawn Care of Alexandria', city: 'Alexandria', state: 'VA', zipCode: '22206', phone: '703.870.3434', lat: 38.8022, lng: -77.0369 },
-  { id: '14', name: 'Augusta Lawn Care of Augusta Maine', city: 'Augusta', state: 'ME', zipCode: '04330', phone: '207.888.2505', lat: 44.2678, lng: -69.9048 },
-  { id: '15', name: 'Augusta Lawn Care of Baton Rouge', city: 'Baton Rouge', state: 'LA', zipCode: '70815', phone: '225.306.3015', lat: 30.6622, lng: -91.2183 },
-  { id: '16', name: 'Augusta Lawn Care of Bentonville', city: 'Bentonville', state: 'AR', zipCode: '72712', phone: '479.332.3003', lat: 36.2678, lng: -94.1667 },
-  { id: '17', name: 'Augusta Lawn Care of Biloxi', city: 'Biloxi', state: 'MS', zipCode: '39530', phone: '228.357.0164', lat: 30.2678, lng: -88.2183 },
-  { id: '18', name: 'Augusta Lawn Care of Bloomingdale', city: 'Bloomingdale', state: 'NJ', zipCode: '07403', phone: '973.954.9590', lat: 40.7128, lng: -74.0060 },
-  { id: '19', name: 'Augusta Lawn Care of Birmingham', city: 'Birmingham', state: 'AL', zipCode: '35203', phone: '205.555.0123', lat: 33.5206, lng: -86.8024 },
-  { id: '20', name: 'Augusta Lawn Care of Boston', city: 'Boston', state: 'MA', zipCode: '02101', phone: '617.555.0124', lat: 42.3601, lng: -71.0589 },
-  { id: '21', name: 'Augusta Lawn Care of Chicago', city: 'Chicago', state: 'IL', zipCode: '60601', phone: '312.555.0126', lat: 41.8781, lng: -87.6298 },
-  { id: '22', name: 'Augusta Lawn Care of Columbus', city: 'Columbus', state: 'OH', zipCode: '43085', phone: '614.555.0127', lat: 39.9612, lng: -83.0000 },
-  { id: '23', name: 'Augusta Lawn Care of Dallas', city: 'Dallas', state: 'TX', zipCode: '75201', phone: '214.555.0128', lat: 32.7767, lng: -96.7970 },
-  { id: '24', name: 'Augusta Lawn Care of Denver', city: 'Denver', state: 'CO', zipCode: '80014', phone: '303.555.0129', lat: 39.7392, lng: -104.9903 },
-  { id: '25', name: 'Augusta Lawn Care of Houston', city: 'Houston', state: 'TX', zipCode: '77001', phone: '713.555.0131', lat: 29.7604, lng: -95.3698 },
-  { id: '26', name: 'Augusta Lawn Care of Jacksonville', city: 'Jacksonville', state: 'FL', zipCode: '32099', phone: '904.555.0133', lat: 30.3322, lng: -81.6556 },
-  { id: '27', name: 'Augusta Lawn Care of Kansas City', city: 'Kansas City', state: 'MO', zipCode: '64030', phone: '816.555.0134', lat: 39.0997, lng: -94.5786 },
-  { id: '28', name: 'Augusta Lawn Care of Las Vegas', city: 'Las Vegas', state: 'NV', zipCode: '89101', phone: '702.555.0135', lat: 36.1699, lng: -115.1398 },
-  { id: '29', name: 'Augusta Lawn Care of Los Angeles', city: 'Los Angeles', state: 'CA', zipCode: '90001', phone: '213.555.0136', lat: 34.0522, lng: -118.2437 },
-  { id: '30', name: 'Augusta Lawn Care of Memphis', city: 'Memphis', state: 'TN', zipCode: '38101', phone: '901.555.0137', lat: 35.1696, lng: -89.9680 },
-  { id: '31', name: 'Augusta Lawn Care of Miami', city: 'Miami', state: 'FL', zipCode: '33101', phone: '305.555.0138', lat: 25.7678, lng: -80.1260 },
-  { id: '32', name: 'Augusta Lawn Care of Nashville', city: 'Nashville', state: 'TN', zipCode: '37201', phone: '615.555.0141', lat: 36.1699, lng: -86.7826 },
-  { id: '33', name: 'Augusta Lawn Care of New Orleans', city: 'New Orleans', state: 'LA', zipCode: '70112', phone: '504.555.0142', lat: 30.0572, lng: -89.9616 },
-  { id: '34', name: 'Augusta Lawn Care of New York', city: 'New York', state: 'NY', zipCode: '10001', phone: '212.555.0143', lat: 40.7128, lng: -74.0060 },
+  { id: '1', name: 'LCS of Columbia', city: 'Columbia', state: 'SC', zipCode: '29223', phone: '803.780.4459', lat: 34.0007, lng: -81.0348 }, // Columbia, SC
+  { id: '2', name: 'LCS of Minnesota', city: 'Minnesota', state: 'MN', zipCode: '55401', phone: '612.555.0140', lat: 46.7296, lng: -94.6859 }, // Center of MN
+  { id: '3', name: 'LCS of Wisconsin', city: 'Wisconsin', state: 'WI', zipCode: '53701', phone: '608.555.0139', lat: 44.2685, lng: -89.6165 }, // Center of WI
+  { id: '4', name: 'LCS of Virginia', city: 'Virginia', state: 'VA', zipCode: '23218', phone: '804.555.0140', lat: 37.4316, lng: -78.6569 }, // Center of VA
+  { id: '5', name: 'LCS of Michigan', city: 'Michigan', state: 'MI', zipCode: '48901', phone: '517.555.0141', lat: 44.3148, lng: -85.6024 }, // Center of MI
+  { id: '6', name: 'LCS of Georgia', city: 'Georgia', state: 'GA', zipCode: '30301', phone: '404.555.0142', lat: 32.1656, lng: -82.9001 }, // Center of GA
+  { id: '7', name: 'LCS of North Carolina', city: 'North-Carolina', state: 'NC', zipCode: '27601', phone: '919.555.0143', lat: 35.7596, lng: -79.0193 }, // Center of NC
+  { id: '8', name: 'LCS of Nebraska', city: 'Nebraska', state: 'NE', zipCode: '68501', phone: '402.555.0144', lat: 41.4925, lng: -99.9018 }, // Center of NE
+  { id: '9', name: 'LCS of Indiana', city: 'Indiana', state: 'IN', zipCode: '46201', phone: '317.555.0132', lat: 40.2672, lng: -86.1349 }, // Center of IN
+  { id: '10', name: 'LCS of Delaware', city: 'Delaware', state: 'DE', zipCode: '19901', phone: '302.555.0145', lat: 38.9108, lng: -75.5277 }, // Center of DE
+  { id: '11', name: 'LCS in Nocatee', city: 'Nocatee', state: 'FL', zipCode: '32081', phone: '904.917.2525', lat: 32.2216, lng: -81.3696 },
+  { id: '12', name: 'LCS of Aiken', city: 'Aiken', state: 'SC', zipCode: '29805', phone: '803.850.4642', lat: 34.8522, lng: -81.1437 },
+  { id: '13', name: 'LCS of Alexandria', city: 'Alexandria', state: 'VA', zipCode: '22206', phone: '703.870.3434', lat: 38.8022, lng: -77.0369 },
+  { id: '14', name: 'LCS of Augusta Maine', city: 'Augusta', state: 'ME', zipCode: '04330', phone: '207.888.2505', lat: 44.2678, lng: -69.9048 },
+  { id: '15', name: 'LCS of Baton Rouge', city: 'Baton Rouge', state: 'LA', zipCode: '70815', phone: '225.306.3015', lat: 30.6622, lng: -91.2183 },
+  { id: '16', name: 'LCS of Bentonville', city: 'Bentonville', state: 'AR', zipCode: '72712', phone: '479.332.3003', lat: 36.2678, lng: -94.1667 },
+  { id: '17', name: 'LCS of Biloxi', city: 'Biloxi', state: 'MS', zipCode: '39530', phone: '228.357.0164', lat: 30.2678, lng: -88.2183 },
+  { id: '18', name: 'LCS of Bloomingdale', city: 'Bloomingdale', state: 'NJ', zipCode: '07403', phone: '973.954.9590', lat: 40.7128, lng: -74.0060 },
+  { id: '19', name: 'LCS of Birmingham', city: 'Birmingham', state: 'AL', zipCode: '35203', phone: '205.555.0123', lat: 33.5206, lng: -86.8024 },
+  { id: '20', name: 'LCS of Boston', city: 'Boston', state: 'MA', zipCode: '02101', phone: '617.555.0124', lat: 42.3601, lng: -71.0589 },
+  { id: '21', name: 'LCS of Chicago', city: 'Chicago', state: 'IL', zipCode: '60601', phone: '312.555.0126', lat: 41.8781, lng: -87.6298 },
+  { id: '22', name: 'LCS of Columbus', city: 'Columbus', state: 'OH', zipCode: '43085', phone: '614.555.0127', lat: 39.9612, lng: -83.0000 },
+  { id: '23', name: 'LCS of Dallas', city: 'Dallas', state: 'TX', zipCode: '75201', phone: '214.555.0128', lat: 32.7767, lng: -96.7970 },
+  { id: '24', name: 'LCS of Denver', city: 'Denver', state: 'CO', zipCode: '80014', phone: '303.555.0129', lat: 39.7392, lng: -104.9903 },
+  { id: '25', name: 'LCS of Houston', city: 'Houston', state: 'TX', zipCode: '77001', phone: '713.555.0131', lat: 29.7604, lng: -95.3698 },
+  { id: '26', name: 'LCS of Jacksonville', city: 'Jacksonville', state: 'FL', zipCode: '32099', phone: '904.555.0133', lat: 30.3322, lng: -81.6556 },
+  { id: '27', name: 'LCS of Kansas City', city: 'Kansas City', state: 'MO', zipCode: '64030', phone: '816.555.0134', lat: 39.0997, lng: -94.5786 },
+  { id: '28', name: 'LCS of Las Vegas', city: 'Las Vegas', state: 'NV', zipCode: '89101', phone: '702.555.0135', lat: 36.1699, lng: -115.1398 },
+  { id: '29', name: 'LCS of Los Angeles', city: 'Los Angeles', state: 'CA', zipCode: '90001', phone: '213.555.0136', lat: 34.0522, lng: -118.2437 },
+  { id: '30', name: 'LCS of Memphis', city: 'Memphis', state: 'TN', zipCode: '38101', phone: '901.555.0137', lat: 35.1696, lng: -89.9680 },
+  { id: '31', name: 'LCS of Miami', city: 'Miami', state: 'FL', zipCode: '33101', phone: '305.555.0138', lat: 25.7678, lng: -80.1260 },
+  { id: '32', name: 'LCS of Nashville', city: 'Nashville', state: 'TN', zipCode: '37201', phone: '615.555.0141', lat: 36.1699, lng: -86.7826 },
+  { id: '33', name: 'LCS of New Orleans', city: 'New Orleans', state: 'LA', zipCode: '70112', phone: '504.555.0142', lat: 30.0572, lng: -89.9616 },
+  { id: '34', name: 'LCS of New York', city: 'New York', state: 'NY', zipCode: '10001', phone: '212.555.0143', lat: 40.7128, lng: -74.0060 },
 ];
 
 locations.forEach((location: Location): void => {
@@ -178,10 +178,10 @@ const LocationsPage: FC = () => {
   return (
     <>
       <div className="min-h-screen bg-gray-50">
-        <HeroSection 
-          Herotitle="AUGUSTA LAWN CARE LOCATIONS" 
-          Herodescription="Find the nearest Augusta Lawn Care location to your location." 
-          HerobgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1_w9p5t6_10_11zon_ii2yyf.jpg  " 
+        <HeroSection
+          Herotitle="LAWN CARE SERVICES LOCATIONS"
+          Herodescription="Find the nearest Lawn Care Services location to your location."
+          HerobgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519842/1_w9p5t6_10_11zon_ii2yyf.jpg  "
         />
         <div className="bg-white border-b">
           <div className="max-w-7xl mx-auto px-4 py-8">
@@ -190,7 +190,7 @@ const LocationsPage: FC = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-xl sm:text-4xl font-bold text-center text-green-600 mb-8"
             >
-              AUGUSTA LAWN CARE LOCATIONS
+              LAWN CARE SERVICES LOCATIONS
             </motion.h1>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 w-full px-4 sm:px-0">
@@ -236,7 +236,7 @@ const LocationsPage: FC = () => {
         </div>
 
         <div className="bg-white" ref={mapRef}>
-          <InteractiveMap 
+          <InteractiveMap
             selectedLocation={selectedLocation}
             locations={locations}
             onLocationChange={(loc: Location): void => setSelectedLocation(loc)}
@@ -371,11 +371,11 @@ const LocationsPage: FC = () => {
           </div>
         </div>
       </div>
-      <LastCTA 
-        bgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg  " 
-        title="From Lawn to Lush, Let’s Begin!" 
-        description="Whether its lush lawn care, expert sprinkler repair, or full-scale landscaping, Lawn Care Services is here to help your yard thrive." 
-        ctaText="Call Now To Get Started" 
+      <LastCTA
+        bgImage="https://res.cloudinary.com/dfnjpfucl/image/upload/v1755519843/hero-background_syinko_9_11zon_t5ldnt.jpg  "
+        title="From Lawn to Lush, Let’s Begin!"
+        description="Whether its lush lawn care, expert sprinkler repair, or full-scale landscaping, Lawn Care Services is here to help your yard thrive."
+        ctaText="Call Now To Get Started"
       />
     </>
   );
